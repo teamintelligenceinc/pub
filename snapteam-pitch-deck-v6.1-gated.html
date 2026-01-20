@@ -1004,6 +1004,140 @@
             .gtm-arrow { transform: rotate(90deg); }
             .beachhead-grid { grid-template-columns: 1fr; max-width: 350px; }
         }
+
+@media (max-width: 500px) {
+            .slide {
+                padding: 30px 20px;
+                padding-bottom: 60px;
+            }
+            .slide-footer {
+                display: none;
+            }
+            .notes-toggle {
+                display: none;
+            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.1rem; }
+            p, li { font-size: 0.95rem; line-height: 1.5; }
+            .brand-logo { font-size: 1.5rem; }
+            .team-photo {
+                width: 90px;
+                height: 90px;
+            }
+            .team-name { font-size: 1.1rem; }
+            .team-creds { font-size: 0.8rem; }
+            .stats-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            .stats-grid {
+                flex-direction: column;
+                gap: 20px !important;
+            }
+            .stat-item {
+                text-align: center;
+            }
+            .stat-number {
+                font-size: 2rem !important;
+            }
+            .stat { padding: 10px; }
+            .stat-number { font-size: 1.8rem; }
+            .stat-label { font-size: 0.7rem; }
+            .quote-box {
+                padding: 12px 15px;
+                font-size: 0.85rem;
+            }
+            .client-logos {
+                display: none;
+            }
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+                opacity: 0.3;
+            }
+            .slide-counter {
+                font-size: 0.8rem;
+            }
+            .problem-card, .journey-card, .beachhead-card, .ask-card {
+                padding: 15px;
+            }
+            .stage-card {
+                padding: 15px;
+            }
+            .use-card {
+                padding: 15px;
+                min-width: auto;
+            }
+            .use-grid {
+                gap: 15px;
+            }
+        }
+
+        /* Phone Horizontal (short height) */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .slide {
+                padding: 15px 30px;
+                padding-bottom: 40px;
+            }
+            .slide-footer {
+                display: none;
+            }
+            .notes-toggle {
+                display: none;
+            }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1rem; }
+            p, li { font-size: 0.85rem; }
+            .brand-logo { font-size: 1.2rem; }
+            .team-grid {
+                flex-direction: row;
+                gap: 30px;
+            }
+            .team-photo {
+                width: 70px;
+                height: 70px;
+            }
+            .team-name { font-size: 1rem; }
+            .team-creds { font-size: 0.7rem; }
+            .stats-bar {
+                flex-direction: row;
+                padding: 10px;
+            }
+            .stat-number { font-size: 1.4rem; }
+            .stat-label { font-size: 0.65rem; }
+            .quote-box {
+                display: none;
+            }
+            .client-logos {
+                display: none;
+            }
+            .nav-arrow {
+                opacity: 0.3;
+            }
+            .stage-cards {
+                flex-direction: row;
+            }
+            .stage-card {
+                padding: 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Touch devices - always show nav arrows */
+        @media (hover: none) {
+            .nav-arrow {
+                opacity: 0.25;
+            }
+            .slideshow:hover .nav-arrow {
+                opacity: 0.4;
+            }
+        }
+
+
     </style>
 </head>
 <body>
