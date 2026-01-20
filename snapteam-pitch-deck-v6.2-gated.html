@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>SnapTeam - The AI for Teamwork | Pre-Seed Pitch v6.2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #0a0f1a;
+            --bg-card: #141b2d;
+            --bg-card-light: #1c2541;
+            --text-white: #ffffff;
+            --text-light: #c5cee0;
+            --text-muted: #5c6b8a;
+            --accent-orange: #ff6b35;
+            --accent-orange-dim: rgba(255,107,53,0.15);
+            --accent-blue: #4a9eff;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
+            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+            --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+            --glow-orange: 0 0 60px rgba(255,107,53,0.2);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+        }
+
+        /* ============================================
+           EMAIL GATE STYLES
+           ============================================ */
+        .email-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .email-gate.hidden {
+            display: none;
+        }
+
+        .gate-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 2em;
+        }
+        .gate-logo .snap { color: var(--text-white); }
+        .gate-logo .team { color: var(--accent-orange); }
+
+        .gate-box {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 50px 60px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 450px;
+            width: 90%;
+        }
+
+        .gate-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+
+        .gate-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2em;
+        }
+
+        .gate-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            font-family: inherit;
+            margin-bottom: 1em;
+            transition: border-color 0.2s ease;
+        }
+
+        .gate-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .gate-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .gate-button {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            background: var(--accent-orange);
+            color: white;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        .gate-button:hover {
+            background: #e55a2b;
+        }
+
+        .gate-button:active {
+            transform: scale(0.98);
+        }
+
+        .gate-error {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-top: 1em;
+            display: none;
+        }
+
+        .gate-error a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .gate-error.visible {
+            display: block;
+        }
+
+        /* Gate responsive */
+        @media (max-width: 500px) {
+            .gate-logo {
+                font-size: 1.8rem;
+            }
+            .gate-box {
+                padding: 30px 25px;
+            }
+            .gate-title {
+                font-size: 1.2rem;
+            }
+            .gate-subtitle {
+                font-size: 0.85rem;
+            }
+            .gate-input, .gate-button {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ============================================
+           SLIDESHOW STYLES (loaded after auth)
+           ============================================ */
+        .slideshow { width: 100%; height: 100vh; position: relative; overflow: hidden; }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 80px 140px;
+            background: var(--bg-dark);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide.active { display: flex; opacity: 1; }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .slide > * { position: relative; z-index: 1; }
+
+        .nav-arrow {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            width: 50px; height: 80px;
+            background: transparent;
+            border: none; cursor: pointer;
+            z-index: 100;
+            font-size: 28px; color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .slideshow:hover .nav-arrow { opacity: 0.25; }
+        .nav-arrow:hover { opacity: 0.8 !important; }
+        .nav-arrow.prev { left: 20px; }
+        .nav-arrow.next { right: 20px; }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px; right: 50px;
+            font-size: 13px;
+            color: var(--text-muted);
+            z-index: 100;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
+            transition: width 0.4s ease;
+            z-index: 100;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(4rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+        }
+
+        h2 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        h3 {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 600;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.2em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            line-height: 1.5;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .highlight { color: var(--accent-orange); }
+        .highlight-blue { color: var(--accent-blue); }
+        strong { color: var(--text-white); font-weight: 600; }
+
+        .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .brand-logo .snap { color: var(--text-white); }
+        .brand-logo .team { color: var(--accent-orange); }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 30px; left: 140px; right: 140px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .center { text-align: center; align-items: center; }
+
+        /* Problem points */
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 2em 0;
+            max-width: 800px;
+        }
+        .problem-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border-left: 4px solid var(--accent-orange);
+        }
+        .problem-item span {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        /* Comparison boxes */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 2em 0;
+            max-width: 900px;
+        }
+        .compare-box {
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--bg-card);
+        }
+        .compare-box.problem { border: 2px solid var(--accent-red); }
+        .compare-box.solution { border: 2px solid var(--accent-green); }
+        .compare-box h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
+        .compare-box.problem h4 { color: var(--accent-red); }
+        .compare-box.solution h4 { color: var(--accent-green); }
+        .compare-box p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Journey timeline */
+        .journey-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 2.5em 0;
+        }
+        .journey-step {
+            padding: 30px 35px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .journey-step.current {
+            border: 2px solid var(--accent-orange);
+            box-shadow: var(--glow-orange);
+        }
+        .journey-step .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5em;
+        }
+        .journey-step h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .journey-arrow {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        /* Stage cards */
+        .stage-cards {
+            display: flex;
+            gap: 30px;
+            margin: 2em 0;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .stage-card {
+            flex: 1;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .stage-card.current {
+            border: 2px solid var(--accent-orange);
+            box-shadow: var(--glow-orange);
+        }
+        .stage-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+        .stage-card .product {
+            font-size: 1rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.8em;
+        }
+        .stage-card .status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .stage-card .status.done { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+        .stage-card .status.now { background: rgba(255,107,53,0.2); color: var(--accent-orange); }
+        .stage-card .status.next { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+
+        /* Product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+        .product-text h2 { margin-bottom: 0.2em; }
+        .diff-list { list-style: none; margin-top: 1.5em; }
+        .diff-list li { margin-bottom: 1.1em; }
+        .diff-list li strong {
+            display: block;
+            font-size: 1.15rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.15em;
+        }
+        .diff-list li span {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Phone mockup */
+        .phone-container { display: flex; justify-content: center; }
+        .phone {
+            width: 280px;
+            height: 580px;
+            background: #000;
+            border-radius: 45px;
+            padding: 12px;
+            box-shadow: var(--shadow-lg), 0 0 0 2px rgba(255,255,255,0.1);
+        }
+        .phone-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1f35 0%, #141929 100%);
+            border-radius: 36px;
+            overflow: hidden;
+        }
+        .phone-notch {
+            width: 100px;
+            height: 26px;
+            background: #000;
+            border-radius: 0 0 16px 16px;
+            margin: 0 auto;
+        }
+        .phone-content { padding: 20px 16px; }
+        .phone-msg {
+            padding: 14px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        .phone-msg.system { background: var(--accent-orange); color: white; font-weight: 600; }
+        .phone-msg.ai { background: rgba(255,255,255,0.08); color: var(--text-light); }
+        .phone-msg.user { background: var(--accent-blue); color: white; margin-left: 40px; }
+
+        /* Before/After overlay */
+        .before-after-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: -60px;
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        .before-after-box {
+            width: 160px;
+            padding: 16px;
+            background: rgba(20, 27, 45, 0.95);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .before-after-box.before { border-left: 3px solid var(--accent-red); }
+        .before-after-box.after { border-left: 3px solid var(--accent-green); }
+        .before-after-box h4 { font-size: 0.8rem; margin-bottom: 0.4em; }
+        .before-after-box.before h4 { color: var(--accent-red); }
+        .before-after-box.after h4 { color: var(--accent-green); }
+        .before-after-box p { font-size: 0.75rem; color: var(--text-light); line-height: 1.4; margin: 0; }
+
+        /* GTM flow */
+        .gtm-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5em 0;
+        }
+        .gtm-step {
+            padding: 30px 35px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.05);
+            min-width: 180px;
+        }
+        .gtm-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8em;
+        }
+        .gtm-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2em; }
+        .gtm-step p { font-size: 0.9rem; color: var(--text-muted); }
+        .gtm-arrow { font-size: 1.8rem; color: var(--accent-orange); }
+
+        /* Layer diagram */
+        .layer-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 2em 0;
+            width: 100%;
+            max-width: 900px;
+        }
+        .layer-box {
+            padding: 25px 50px;
+            border-radius: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        .layer-box.snapteam {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, #e55a2b 100%);
+            box-shadow: var(--glow-orange), var(--shadow-lg);
+        }
+        .layer-box.snapteam h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.2em;
+        }
+        .layer-box.snapteam p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .layer-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .layer-connector span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .layer-connector .arrows {
+            font-size: 1.2rem;
+            color: var(--accent-orange);
+        }
+        .layer-box.tools {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tool-item {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Competitive table */
+        .compete-table {
+            width: 100%;
+            max-width: 950px;
+            margin: 2em 0;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .compete-table th {
+            background: var(--bg-card);
+            padding: 18px 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: left;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(255,255,255,0.08);
+        }
+        .compete-table th:first-child { border-radius: 12px 0 0 0; }
+        .compete-table th:last-child { border-radius: 0 12px 0 0; }
+        .compete-table td {
+            padding: 16px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            background: var(--bg-card);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .compete-table tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+        .compete-table tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+        .compete-table tr.highlight td {
+            background: rgba(255,107,53,0.12);
+            color: var(--text-white);
+        }
+        .compete-table .category { font-weight: 600; color: var(--text-white); }
+        .compete-table .win { color: var(--accent-green); font-weight: 500; }
+
+        /* Beachhead cards */
+        .beachhead-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 2em 0;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .beachhead-card {
+            padding: 30px 25px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .beachhead-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+            color: var(--accent-orange);
+        }
+        .beachhead-card .why {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1em;
+        }
+
+        /* Traction */
+        .traction-content { width: 100%; max-width: 950px; }
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            margin: 1.5em 0;
+            flex-wrap: wrap;
+        }
+        .logo-item {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin: 2.5em 0 1.5em;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            font-weight: 800;
+            color: var(--accent-orange);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+        .stat-label { font-size: 0.95rem; color: var(--text-muted); margin-top: 0.3em; }
+
+        /* Team */
+        .team-grid {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+            margin: 2em 0;
+        }
+        .team-card { text-align: center; width: 260px; }
+        .team-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 1em;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.15);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-card);
+        }
+        .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .team-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.15em; }
+        .team-role { font-size: 0.95rem; color: var(--accent-orange); font-weight: 600; margin-bottom: 0.5em; }
+        .team-creds { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+        .team-logos {
+            display: flex;
+            gap: 35px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5em;
+            flex-wrap: wrap;
+        }
+        .team-logo-text { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.5); }
+
+        /* Ask */
+        .ask-grid { display: flex; gap: 25px; margin: 2em 0; }
+        .ask-box {
+            flex: 1;
+            padding: 40px 30px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .ask-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6em; }
+        .ask-value { font-size: 2.2rem; font-weight: 800; color: var(--accent-orange); }
+
+        /* Thank you */
+        .thank-you .brand-logo { font-size: 3rem; margin-bottom: 0.3em; }
+        .contact-info { margin-top: 2em; font-size: 1.1rem; color: var(--text-muted); }
+        .contact-info a { color: var(--text-light); text-decoration: none; }
+        .contact-info a:hover { color: var(--accent-orange); }
+
+        /* Quote card */
+        .quote-card {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 16px 16px 0;
+            padding: 25px 35px;
+            margin: 1.5em 0;
+            max-width: 700px;
+        }
+        .quote-card p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .quote-card .author {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.8em;
+            font-style: normal;
+        }
+
+        /* ========================================
+           RESPONSIVE STYLES - TABLET
+           ======================================== */
+        @media (max-width: 1100px) {
+            .slide { padding: 60px 60px; }
+            .slide-footer { left: 60px; right: 60px; }
+            .product-grid { grid-template-columns: 1fr; gap: 40px; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .stage-cards { flex-direction: column; max-width: 350px; }
+            .team-grid { flex-direction: column; gap: 40px; }
+            .ask-grid { flex-direction: column; max-width: 300px; }
+            .evolution-container { flex-direction: column; }
+            .evo-arrow { transform: rotate(90deg); }
+            .journey-timeline { flex-direction: column; }
+            .journey-arrow { transform: rotate(90deg); }
+            .gtm-flow { flex-direction: column; }
+            .gtm-arrow { transform: rotate(90deg); }
+            .beachhead-grid { grid-template-columns: 1fr; max-width: 350px; }
+        }
+
+        /* ========================================
+           RESPONSIVE STYLES - PHONE VERTICAL
+           ======================================== */
+        @media (max-width: 500px) {
+            .slide {
+                padding: 25px 18px;
+                padding-bottom: 50px;
+                overflow-y: auto;
+                justify-content: flex-start;
+                padding-top: 40px;
+            }
+            .slide-footer { display: none; }
+            h1 { font-size: 1.8rem; line-height: 1.05; }
+            h2 { font-size: 1.4rem; line-height: 1.15; }
+            h3 { font-size: 0.75rem; margin-bottom: 0.8em; letter-spacing: 0.1em; }
+            .subtitle { font-size: 1rem; line-height: 1.4; }
+            p, li { font-size: 0.9rem; line-height: 1.45; }
+            .brand-logo { font-size: 1.4rem; }
+            .problem-list { gap: 12px; margin: 1.2em 0; }
+            .problem-item { padding: 12px 15px; gap: 12px; border-radius: 12px; }
+            .problem-item span { font-size: 0.9rem; }
+            .compare-grid { gap: 15px; margin: 1.2em 0; }
+            .compare-box { padding: 18px; border-radius: 14px; }
+            .compare-box h4 { font-size: 1rem; margin-bottom: 0.6em; }
+            .compare-box p { font-size: 0.85rem; }
+            .journey-timeline { gap: 8px; margin: 1.5em 0; }
+            .journey-step { padding: 15px 18px; border-radius: 12px; }
+            .journey-step .label { font-size: 0.65rem; }
+            .journey-step h4 { font-size: 0.9rem; }
+            .journey-arrow { font-size: 1rem; }
+            .stage-cards { gap: 12px; margin: 1.2em 0; max-width: 100%; }
+            .stage-card { padding: 18px 15px; border-radius: 14px; }
+            .stage-card h4 { font-size: 1rem; }
+            .stage-card .product { font-size: 0.85rem; }
+            .stage-card p { font-size: 0.8rem !important; }
+            .stage-card .status { padding: 4px 10px; font-size: 0.7rem; }
+            .product-grid { grid-template-columns: 1fr; gap: 20px; }
+            .product-text h2 { font-size: 1.6rem !important; }
+            .product-text .subtitle { font-size: 1rem !important; }
+            .diff-list { margin-top: 1em; }
+            .diff-list li { margin-bottom: 0.8em; }
+            .diff-list li strong { font-size: 1.1rem !important; }
+            .diff-list li span { font-size: 0.85rem !important; }
+            .phone { width: 180px; height: 370px; border-radius: 30px; padding: 8px; }
+            .phone-inner { border-radius: 24px; }
+            .phone-notch { width: 70px; height: 18px; border-radius: 0 0 10px 10px; }
+            .phone-content { padding: 12px 10px; }
+            .phone-msg { padding: 10px; border-radius: 10px; margin-bottom: 8px; font-size: 0.7rem; }
+            .before-after-overlay { display: none; }
+            .gtm-flow { gap: 10px; margin: 1.2em 0; }
+            .gtm-step { padding: 15px 18px; border-radius: 14px; min-width: auto; }
+            .gtm-number { width: 28px; height: 28px; font-size: 0.9rem; margin-bottom: 0.5em; }
+            .gtm-step h4 { font-size: 0.9rem; }
+            .gtm-step p { font-size: 0.75rem; }
+            .gtm-arrow { font-size: 1rem; }
+            .pricing-boxes { flex-direction: column !important; gap: 12px !important; }
+            .pricing-box { padding: 15px 20px !important; }
+            .layer-diagram { gap: 8px; margin: 1.2em 0; }
+            .layer-box { padding: 15px 20px; border-radius: 12px; }
+            .layer-box.snapteam h4 { font-size: 1.1rem; }
+            .layer-box.snapteam p { font-size: 0.8rem; }
+            .layer-connector span { font-size: 0.7rem; }
+            .layer-connector .arrows { font-size: 0.9rem; }
+            .layer-box.tools { gap: 15px; padding: 12px 15px; }
+            .tool-item { font-size: 0.8rem; }
+            .quote-sidebar { display: none; }
+            .table-wrapper { overflow-x: auto; margin: 1em 0; -webkit-overflow-scrolling: touch; }
+            .compete-table { font-size: 0.75rem; min-width: 500px; }
+            .compete-table th { padding: 10px 8px; font-size: 0.65rem; }
+            .compete-table td { padding: 10px 8px; font-size: 0.75rem; }
+            .beachhead-grid { grid-template-columns: 1fr !important; gap: 12px; max-width: 100%; }
+            .beachhead-card { padding: 18px 15px; border-radius: 14px; }
+            .beachhead-card h4 { font-size: 1rem; }
+            .beachhead-card .why { font-size: 0.8rem; }
+            .stats-grid { flex-direction: column; gap: 15px !important; margin: 1.5em 0 1em; }
+            .stat-item { text-align: center; }
+            .stat-number { font-size: 2rem !important; }
+            .stat-label { font-size: 0.75rem; }
+            .logo-row { gap: 20px; margin: 1em 0; }
+            .logo-item { font-size: 0.9rem; }
+            .quote-card { padding: 15px 18px; margin: 1em 0; }
+            .quote-card p { font-size: 0.9rem; }
+            .quote-card .author { font-size: 0.75rem; }
+            .quotes-row { flex-direction: column !important; gap: 12px !important; }
+            .team-grid { flex-direction: column; gap: 25px; margin: 1.2em 0; }
+            .team-card { width: 100%; }
+            .team-photo { width: 80px; height: 80px; border-width: 3px; }
+            .team-name { font-size: 1.1rem; }
+            .team-role { font-size: 0.85rem; }
+            .team-creds { font-size: 0.75rem; }
+            .team-logos { gap: 15px; margin-top: 1em; }
+            .team-logo-text { font-size: 0.8rem; }
+            .ask-grid { gap: 12px; margin: 1.2em 0; max-width: 100%; }
+            .ask-box { padding: 20px 15px; border-radius: 14px; }
+            .ask-label { font-size: 0.7rem; }
+            .ask-value { font-size: 1.5rem; }
+            .thank-you .brand-logo { font-size: 2rem; }
+            .thank-you h1 { font-size: 1.8rem !important; }
+            .contact-info { font-size: 0.9rem; margin-top: 1.5em; }
+            .nav-arrow { width: 35px; height: 50px; font-size: 1.3rem; opacity: 0.25; }
+            .nav-arrow.prev { left: 5px; }
+            .nav-arrow.next { right: 5px; }
+            .slide-counter { font-size: 0.7rem; bottom: 15px; right: 15px; }
+            .progress-bar { height: 2px; }
+        }
+
+        /* ========================================
+           RESPONSIVE STYLES - PHONE HORIZONTAL
+           ======================================== */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .slide {
+                padding: 12px 25px;
+                padding-bottom: 35px;
+                overflow-y: auto;
+                justify-content: flex-start;
+            }
+            .slide-footer { display: none; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            h3 { font-size: 0.65rem; margin-bottom: 0.5em; }
+            .subtitle { font-size: 0.85rem; }
+            p, li { font-size: 0.75rem; }
+            .brand-logo { font-size: 1.1rem; }
+            .problem-list { gap: 8px; margin: 0.8em 0; }
+            .problem-item { padding: 8px 12px; gap: 10px; }
+            .problem-item span { font-size: 0.75rem; }
+            .compare-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin: 0.8em 0; }
+            .compare-box { padding: 12px; }
+            .compare-box h4 { font-size: 0.85rem; margin-bottom: 0.4em; }
+            .compare-box p { font-size: 0.7rem; }
+            .journey-timeline { flex-direction: row; gap: 8px; margin: 0.8em 0; }
+            .journey-step { padding: 10px 12px; }
+            .journey-step .label { font-size: 0.55rem; }
+            .journey-step h4 { font-size: 0.75rem; }
+            .journey-arrow { font-size: 0.9rem; transform: none; }
+            .stage-cards { flex-direction: row; gap: 10px; max-width: 100%; }
+            .stage-card { padding: 10px; }
+            .stage-card h4 { font-size: 0.8rem; }
+            .stage-card .product { font-size: 0.7rem; }
+            .stage-card p { font-size: 0.65rem !important; display: none; }
+            .stage-card .status { padding: 3px 8px; font-size: 0.6rem; }
+            .product-grid { grid-template-columns: 1fr 0.8fr; gap: 20px; }
+            .product-text h2 { font-size: 1.3rem !important; }
+            .product-text .subtitle { font-size: 0.85rem !important; margin: 0.3em 0 0.6em !important; }
+            .diff-list li { margin-bottom: 0.5em; }
+            .diff-list li strong { font-size: 0.9rem !important; }
+            .diff-list li span { font-size: 0.7rem !important; }
+            .phone { width: 140px; height: 280px; border-radius: 22px; padding: 6px; }
+            .phone-inner { border-radius: 18px; }
+            .phone-notch { width: 50px; height: 12px; }
+            .phone-content { padding: 8px; }
+            .phone-msg { padding: 6px; font-size: 0.55rem; margin-bottom: 5px; }
+            .before-after-overlay { display: none; }
+            .gtm-flow { flex-direction: row; gap: 10px; margin: 0.8em 0; }
+            .gtm-step { padding: 10px 12px; min-width: auto; }
+            .gtm-number { width: 22px; height: 22px; font-size: 0.75rem; margin-bottom: 0.3em; }
+            .gtm-step h4 { font-size: 0.75rem; }
+            .gtm-step p { font-size: 0.6rem; }
+            .gtm-arrow { font-size: 0.9rem; transform: none; }
+            .layer-diagram { gap: 6px; margin: 0.8em 0; }
+            .layer-box { padding: 10px 15px; }
+            .layer-box.snapteam h4 { font-size: 0.9rem; }
+            .layer-box.snapteam p { font-size: 0.65rem; }
+            .layer-connector span { font-size: 0.55rem; }
+            .layer-box.tools { gap: 12px; }
+            .tool-item { font-size: 0.7rem; }
+            .stats-grid { flex-direction: row; gap: 30px; margin: 0.8em 0; }
+            .stat-number { font-size: 1.5rem !important; }
+            .stat-label { font-size: 0.6rem; }
+            .logo-row { gap: 15px; margin: 0.5em 0; }
+            .logo-item { font-size: 0.75rem; }
+            .quote-card { display: none; }
+            .team-grid { flex-direction: row; gap: 25px; }
+            .team-card { width: auto; }
+            .team-photo { width: 55px; height: 55px; }
+            .team-name { font-size: 0.85rem; }
+            .team-role { font-size: 0.7rem; }
+            .team-creds { font-size: 0.6rem; }
+            .team-logos { display: none; }
+            .beachhead-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
+            .beachhead-card { padding: 10px; }
+            .beachhead-card h4 { font-size: 0.8rem; }
+            .beachhead-card .why { font-size: 0.6rem; display: none; }
+            .compete-table { font-size: 0.65rem; }
+            .compete-table th, .compete-table td { padding: 6px 5px; }
+            .ask-grid { flex-direction: row; gap: 12px; max-width: 100%; }
+            .ask-box { padding: 15px 12px; }
+            .ask-label { font-size: 0.6rem; }
+            .ask-value { font-size: 1.2rem; }
+            .thank-you .brand-logo { font-size: 1.5rem; }
+            .thank-you h1 { font-size: 1.3rem !important; }
+            .contact-info { font-size: 0.75rem; margin-top: 1em; }
+            .nav-arrow { opacity: 0.25; }
+            .slide-counter { font-size: 0.65rem; bottom: 10px; right: 10px; }
+        }
+
+        /* Touch devices */
+        @media (hover: none) {
+            .nav-arrow { opacity: 0.25; }
+            .slideshow:hover .nav-arrow { opacity: 0.35; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- EMAIL GATE -->
+    <div class="email-gate" id="emailGate">
+        <div class="gate-logo"><span class="snap">Snap</span><span class="team">Team</span></div>
+        <div class="gate-box">
+            <h2 class="gate-title">Pre-Seed Investment Deck</h2>
+            <p class="gate-subtitle">Please enter your email to continue</p>
+            <input type="email" class="gate-input" id="emailInput" placeholder="your@email.com" autocomplete="email">
+            <button class="gate-button" id="submitEmail">Continue</button>
+            <p class="gate-error" id="gateError">Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a></p>
+        </div>
+    </div>
+
+    <!-- DECK CONTENT (loaded after auth) -->
+    <div id="deckContent" style="display: none;"></div>
+
+    <script>
+        // Approved emails in plaintext (for simpler implementation)
+        // In production, use only hashes above
+        const APPROVED_EMAILS = [
+            'bmcgaw@hotmail.com',
+            'olivier@snapinstruct.com',
+            'kitt@snapinstruct.com',
+            'olivier@teamintelligence.ai',
+            'kitt@teamintelligence.ai',
+            'omanuel@gmail.com'
+        ];
+        // Create a Google Apps Script web app and paste URL here
+        const LOG_WEBHOOK = ''; // Leave empty to disable logging
+        const DOCUMENT_NAME = 'SnapTeam Pitch Deck v6.2'; // Name for logging
+        // Encoded deck content (base64)
+        const ENCODED_DECK =  + encoded_deck + ;
+
+
+        // DOM elements
+        const emailGate = document.getElementById('emailGate');
+        const deckContent = document.getElementById('deckContent');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitEmail');
+        const errorMsg = document.getElementById('gateError');
+
+        // Check if already authenticated
+        const savedEmail = localStorage.getItem('snapteam_deck_email');
+        if (savedEmail && isEmailApproved(savedEmail)) {
+            showDeck(savedEmail);
+        }
+
+        function isEmailApproved(email) {
+            const normalizedEmail = email.toLowerCase().trim();
+            return APPROVED_EMAILS.includes(normalizedEmail);
+        }
+
+        function logAccess(email, approved) {
+            if (!LOG_WEBHOOK) return;
+            fetch(LOG_WEBHOOK, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    timestamp: new Date().toISOString(),
+                    email: email,
+                    document: DOCUMENT_NAME,
+                    approved: approved,
+                    userAgent: navigator.userAgent
+                })
+            }).catch(() => {});
+        }
+
+        function showDeck(email) {
+            // Decode and insert deck content
+            const decoded = atob(ENCODED_DECK);
+            deckContent.innerHTML = decoded;
+
+            // Hide gate, show deck
+            emailGate.classList.add('hidden');
+            deckContent.style.display = 'block';
+
+            // Initialize slideshow
+            initSlideshow();
+        }
+
+        function handleSubmit() {
+            const email = emailInput.value.toLowerCase().trim();
+
+            if (!email || !email.includes('@')) {
+                errorMsg.textContent = 'Please enter a valid email address.';
+                errorMsg.classList.add('visible');
+                return;
+            }
+
+            if (isEmailApproved(email)) {
+                localStorage.setItem('snapteam_deck_email', email);
+                logAccess(email, true);
+                showDeck(email);
+            } else {
+                logAccess(email, false);
+                errorMsg.innerHTML = 'Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>';
+                errorMsg.classList.add('visible');
+            }
+        }
+
+        submitBtn.addEventListener('click', handleSubmit);
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSubmit();
+        });
+
+        function initSlideshow() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const total = slides.length;
+            document.getElementById('total').textContent = total;
+
+            window.showSlide = function(n) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (n + total) % total;
+                slides[currentSlide].classList.add('active');
+                document.getElementById('current').textContent = currentSlide + 1;
+                document.getElementById('progress').style.width = ((currentSlide + 1) / total * 100) + '%';
+            }
+
+            window.changeSlide = function(d) { showSlide(currentSlide + d); }
+
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+                else if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+            });
+
+            let touchStartX = 0;
+            document.querySelector('.slideshow').addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            });
+            document.querySelector('.slideshow').addEventListener('touchend', e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) changeSlide(1);
+                    else changeSlide(-1);
+                }
+            });
+
+            document.querySelector('.slideshow').addEventListener('click', e => {
+                if (e.target.classList.contains('nav-arrow')) return;
+                const x = e.clientX / window.innerWidth;
+                if (x < 0.25) changeSlide(-1);
+                else if (x > 0.75) changeSlide(1);
+            });
+
+            showSlide(0);
+        }
+    </script>
+</body>
+</html>
