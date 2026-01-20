@@ -136,7 +136,7 @@
         }
 
         .gate-error {
-            color: var(--accent-red);
+            color: #ffffff;
             font-size: 0.9rem;
             margin-top: 1em;
             display: none;
@@ -146,8 +146,8 @@
             display: block;
         }
 
-        .gate-error a {
-            color: var(--accent-red);
+        .gate-error, .gate-error a {
+            color: #ffffff;
         }
 
         .gate-footer {
@@ -350,7 +350,7 @@
             font-weight: 700;
             margin-bottom: 1em;
         }
-        .compare-box.problem h4 { color: var(--accent-red); }
+        .compare-box.problem h4 { color: #ffffff; }
         .compare-box.solution h4 { color: var(--accent-green); }
         .compare-box p {
             font-size: 1.05rem;
@@ -1030,482 +1030,7 @@
          DECK CONTENT (hidden until authenticated)
          ============================================ -->
     <div class="deck-content" id="deckContent">
-        <div class="slideshow">
-
-            <!-- SLIDE 1: TITLE -->
-            <div class="slide center active">
-                <div class="brand-logo" style="margin-bottom: 0.5em;"><span class="snap">Snap</span><span class="team">Team</span></div>
-                <h1>The AI for<br><span class="highlight">Teamwork</span></h1>
-                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 3em;">
-                    Confidential Pre-Seed Investment Deck
-                </p>
-                <div class="slide-footer">
-                    <span>© 2026 Team Intelligence, Inc.</span>
-                    <span>Private and Confidential</span>
-                </div>
-            </div>
-
-            <!-- SLIDE 2: TEAM -->
-            <div class="slide center">
-                <h3>The Team</h3>
-                <h2>About Us</h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="olivier-manuel.png" alt="Olivier Manuel">
-                        </div>
-                        <div class="team-name">Olivier Manuel</div>
-                        <div class="team-role">CEO</div>
-                        <div class="team-creds">
-                            Harvard<br>
-                            Harvard Business School<br>
-                            Samsung SmartTV (0→$B)<br>
-                            6+ years in AI
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="https://ui-avatars.com/api/?name=KH&background=8b5cf6&color=fff&size=320&font-size=0.4&bold=true" alt="Kitt Hirasaki">
-                        </div>
-                        <div class="team-name">Kitt Hirasaki</div>
-                        <div class="team-role">CTO</div>
-                        <div class="team-creds">
-                            Harvard<br>
-                            Khan Academy (10M+ users)<br>
-                            Pixar · Disney · Coursera<br>
-                            6+ years in AI
-                        </div>
-                    </div>
-                </div>
-                <div class="team-logos">
-                    <span class="team-logo-text">Harvard</span>
-                    <span class="team-logo-text">Samsung</span>
-                    <span class="team-logo-text">Khan Academy</span>
-                    <span class="team-logo-text">Pixar</span>
-                    <span class="team-logo-text">Disney</span>
-                    <span class="team-logo-text">Coursera</span>
-                </div>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 3: MISSION -->
-            <div class="slide center">
-                <h3>Our Mission</h3>
-                <h2 style="font-size: clamp(2.8rem, 5vw, 4rem); max-width: 900px;">
-                    Better teamwork.<br>
-                    Better communication.<br>
-                    Better results.
-                </h2>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 3: THE PROBLEM -->
-            <div class="slide center">
-                <h3>The Problem</h3>
-                <h2>Teamwork is broken</h2>
-                <div class="problem-list">
-                    <div class="problem-item">
-                        <span>Feedback conversations that <strong>never happen</strong></span>
-                    </div>
-                    <div class="problem-item">
-                        <span>1:1s with <strong>no follow-through</strong></span>
-                    </div>
-                    <div class="problem-item">
-                        <span>Coordination takes <strong>more time than the work itself</strong></span>
-                    </div>
-                </div>
-                <p class="subtitle" style="margin-top: 1em; max-width: 850px;">
-                    Teamwork is one of life's most <span class="highlight">meaningful experiences</span>.<br>
-                    AI can help us do it with less friction and more flow.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 4: WHY NOW -->
-            <div class="slide center">
-                <h3>Why Now</h3>
-                <h2>From single-player AI to <span class="highlight">multiplayer</span></h2>
-                <div class="compare-grid">
-                    <div class="compare-box" style="border: 2px solid var(--text-muted);">
-                        <h4 style="color: var(--text-muted);">Today</h4>
-                        <p>ChatGPT, Copilot make <strong>individuals</strong> faster at tasks.</p>
-                    </div>
-                    <div class="compare-box" style="border: 2px solid var(--accent-orange);">
-                        <h4 style="color: var(--accent-orange);">The Gap</h4>
-                        <p>AI that helps <strong>teams</strong> execute together.</p>
-                    </div>
-                </div>
-                <p class="subtitle" style="max-width: 800px;">
-                    People need help managing themselves <em>and</em> managing others — that requires <span class="highlight">communication & collaboration</span>.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 5: OUR JOURNEY -->
-            <div class="slide center">
-                <h3>Our Journey</h3>
-                <h2>How <span class="highlight">SnapTeam</span> got here</h2>
-                <div class="journey-timeline">
-                    <div class="journey-step current">
-                        <div class="label">2023 · Launched</div>
-                        <h4>Practice Tools</h4>
-                    </div>
-                    <div class="journey-arrow">→</div>
-                    <div class="journey-step current">
-                        <div class="label">2024 · Launched</div>
-                        <h4>AI Coach</h4>
-                    </div>
-                    <div class="journey-arrow">→</div>
-                    <div class="journey-step current">
-                        <div class="label">Now · Launching</div>
-                        <h4>Coach + Coordinator</h4>
-                    </div>
-                </div>
-                <p class="subtitle" style="max-width: 800px;">
-                    Each step got us closer to the <span class="highlight">root of the problem</span>: the coordination tax — all the work that goes into teamwork.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 6: TEAM INTELLIGENCE - THE LAYER ABOVE -->
-            <div class="slide">
-                <div style="display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 50px; align-items: center; width: 100%;">
-                    <div>
-                        <h3>The Category</h3>
-                        <h2>A new layer:<br><span class="highlight">Team Intelligence</span></h2>
-                        <div class="layer-diagram" style="margin: 1.5em 0;">
-                            <div class="layer-box snapteam">
-                                <h4>SnapTeam</h4>
-                                <p>Coaching + coordination across all your tools</p>
-                            </div>
-                            <div class="layer-connector">
-                                <span>collects from & writes to</span>
-                                <div class="arrows">↕ ↕ ↕</div>
-                            </div>
-                            <div class="layer-box tools">
-                                <span class="tool-item">Slack</span>
-                                <span class="tool-item">Asana</span>
-                                <span class="tool-item">Email</span>
-                                <span class="tool-item">Calendar</span>
-                                <span class="tool-item">Jira</span>
-                                <span class="tool-item">Salesforce</span>
-                            </div>
-                        </div>
-                        <p style="font-size: 1rem; color: var(--text-muted);">
-                            Each integration = <span class="highlight">deeper context</span> + <span class="highlight">higher switching costs</span>.
-                        </p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div style="background: var(--bg-card); border: 2px solid var(--accent-orange); border-radius: 20px; padding: 50px 35px; box-shadow: var(--glow-orange); max-width: 280px;">
-                            <p style="font-size: 1.15rem; color: var(--text-light); font-style: italic; line-height: 1.7; margin: 0;">
-                                "We built an Asana connector, and suddenly no one checks Asana anymore. The AI just handles it."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE: TAM -->
-            <div class="slide center">
-                <h3>TAM</h3>
-                <h2>Three phases of <span class="highlight">AI adoption</span></h2>
-                <div class="stage-cards">
-                    <div class="stage-card">
-                        <h4>Individual AI</h4>
-                        <p class="product">ChatGPT, Copilot</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.8em;">AI helps individuals do tasks faster</p>
-                        <span class="status done">Phase 1</span>
-                        <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-muted); margin-top: 0.8em;">$XXB TAM</p>
-                    </div>
-                    <div class="stage-card current">
-                        <h4>Team AI</h4>
-                        <p class="product">SnapTeam</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.8em;">AI becomes the circulatory system for your team</p>
-                        <span class="status now">Phase 2</span>
-                        <p style="font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); margin-top: 0.8em;">$XXB TAM</p>
-                    </div>
-                    <div class="stage-card">
-                        <h4>Company AI</h4>
-                        <p class="product">Coming next</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.8em;">Process visibility across the entire organization</p>
-                        <span class="status next">Phase 3</span>
-                        <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-muted); margin-top: 0.8em;">$XXB TAM</p>
-                    </div>
-                </div>
-                <p class="subtitle" style="max-width: 800px; margin-top: 1em;">
-                    Positioning to own core parts of <span class="highlight">Phase 2</span> — and be ready for Phase 3.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE: THE PRODUCT -->
-            <div class="slide">
-                <div class="product-grid">
-                    <div class="product-text">
-                        <h3>The Product</h3>
-                        <h2 style="font-size: clamp(3rem, 5.5vw, 4.5rem);">A Coach In<br>Your Pocket</h2>
-                        <p class="subtitle" style="margin: 0.8em 0 1.5em; font-size: 1.5rem;">That <span class="highlight">makes teamwork work</span>.</p>
-                        <ul class="diff-list" style="margin-top: 1.2em;">
-                            <li style="margin-bottom: 1.8em;">
-                                <strong style="font-size: 1.6rem;">Proactive</strong>
-                                <span style="font-size: 1.15rem;">Reaches out when needed</span>
-                            </li>
-                            <li style="margin-bottom: 1.8em;">
-                                <strong style="font-size: 1.6rem;">Shared context</strong>
-                                <span style="font-size: 1.15rem;">Team AIs talk to each other</span>
-                            </li>
-                            <li style="margin-bottom: 1.8em;">
-                                <strong style="font-size: 1.6rem;">Behavior change</strong>
-                                <span style="font-size: 1.15rem;">Real performance improvement</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="phone-container" style="position: relative;">
-                        <div class="phone">
-                            <div class="phone-inner">
-                                <div class="phone-notch"></div>
-                                <div class="phone-content">
-                                    <div class="phone-msg system">SnapTeam</div>
-                                    <div class="phone-msg ai">
-                                        Sarah's project update: Q2 report on track. She flagged a potential delay on the analytics section.
-                                    </div>
-                                    <div class="phone-msg ai">
-                                        No action needed — just keeping you in the loop before your 1:1.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Before/After overlay -->
-                        <div style="position: absolute; bottom: 20px; right: -60px; display: flex; gap: 12px; z-index: 10;">
-                            <div style="width: 160px; padding: 16px; background: rgba(20, 27, 45, 0.95); border-radius: 12px; border-left: 3px solid var(--accent-red); backdrop-filter: blur(8px); box-shadow: var(--shadow-lg);">
-                                <h4 style="color: var(--accent-red); font-size: 0.8rem; margin-bottom: 0.4em;">Before</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.4; margin: 0;">Meeting or status update. Someone writes it. Someone asks.</p>
-                            </div>
-                            <div style="width: 160px; padding: 16px; background: rgba(20, 27, 45, 0.95); border-radius: 12px; border-left: 3px solid var(--accent-green); backdrop-filter: blur(8px); box-shadow: var(--shadow-lg);">
-                                <h4 style="color: var(--accent-green); font-size: 0.8rem; margin-bottom: 0.4em;">After</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.4; margin: 0;">Coach passively pushes what you need. No status update. No meeting.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 8: TESTIMONIALS -->
-            <div class="slide center">
-                <h3>Traction</h3>
-                <h2><span class="highlight">Fortune 500</span> clients</h2>
-                <div class="logo-row" style="gap: 40px; margin: 1.5em 0;">
-                    <span class="logo-item">Amazon</span>
-                    <span class="logo-item">UCSF</span>
-                    <span class="logo-item">Mass General</span>
-                    <span class="logo-item">Bottega Veneta</span>
-                    <span class="logo-item">Sunbelt Rentals UK</span>
-                </div>
-                <div style="display: flex; gap: 30px; margin: 2em 0; max-width: 1000px;">
-                    <div class="quote-card" style="flex: 1; margin: 0;">
-                        <p>"Insert quote"</p>
-                        <div class="author">UCSF</div>
-                    </div>
-                    <div class="quote-card" style="flex: 1; margin: 0;">
-                        <p>"Insert quote"</p>
-                        <div class="author">Amazon</div>
-                    </div>
-                </div>
-                <div class="stats-grid" style="gap: 60px; margin: 1.5em 0;">
-                    <div class="stat-item">
-                        <div class="stat-number" style="font-size: 3rem;">XX%</div>
-                        <div class="stat-label">completion rate</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" style="font-size: 3rem;">XX%</div>
-                        <div class="stat-label">would try it again</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" style="font-size: 3rem;">XX%</div>
-                        <div class="stat-label">said it helped them improve</div>
-                    </div>
-                </div>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-
-            <!-- SLIDE 10: BEACHHEADS -->
-            <div class="slide center">
-                <h3>Expanding Within Enterprise Clients</h3>
-                <h2>Growth in our <span class="highlight">beachheads</span></h2>
-                <table class="compete-table" style="max-width: 900px;">
-                    <tr>
-                        <th>Client</th>
-                        <th>Current Users</th>
-                        <th>Expanding To</th>
-                        <th>Total Employees</th>
-                    </tr>
-                    <tr>
-                        <td class="category">Amazon</td>
-                        <td>200</td>
-                        <td>600</td>
-                        <td>1,500,000</td>
-                    </tr>
-                    <tr>
-                        <td class="category">UCSF</td>
-                        <td>200</td>
-                        <td>500</td>
-                        <td>35,000</td>
-                    </tr>
-                    <tr>
-                        <td class="category">Mass General Brigham</td>
-                        <td>Contract</td>
-                        <td>200</td>
-                        <td>80,000</td>
-                    </tr>
-                    <tr>
-                        <td class="category">Bottega Veneta</td>
-                        <td>140</td>
-                        <td>300</td>
-                        <td>4,000</td>
-                    </tr>
-                    <tr>
-                        <td class="category">Sunbelt Rentals UK</td>
-                        <td>150</td>
-                        <td>300</td>
-                        <td>2,500</td>
-                    </tr>
-                    <tr>
-                        <td class="category">Rutgers</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td class="category"><strong>Total</strong></td>
-                        <td><strong>~700</strong></td>
-                        <td><strong>~1,900</strong></td>
-                        <td><strong>~1.6M</strong></td>
-                    </tr>
-                </table>
-                <div style="margin-top: 1.5em; text-align: center;">
-                    <span style="font-size: 1.8rem; font-weight: 800; color: var(--accent-orange);">$400K</span>
-                    <span style="font-size: 1rem; color: var(--text-muted); margin-left: 0.5em;">lifetime revenue</span>
-                </div>
-                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 0.5em;">
-                    Cash-flow neutral · Bootstrapped · All reinvested
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE: PRODUCT-LED GROWTH -->
-            <div class="slide center">
-                <h3>Product-Led Growth</h3>
-                <h2>Expanding through <span class="highlight">viral spread</span></h2>
-                <div class="gtm-flow" style="margin: 1.5em 0;">
-                    <div class="gtm-step">
-                        <div class="gtm-number">1</div>
-                        <h4>2-Week Challenge</h4>
-                        <p>Manager adopts</p>
-                    </div>
-                    <div class="gtm-arrow">→</div>
-                    <div class="gtm-step">
-                        <div class="gtm-number">2</div>
-                        <h4>3-Month Cohort</h4>
-                        <p>Continue using it</p>
-                    </div>
-                    <div class="gtm-arrow">→</div>
-                    <div class="gtm-step">
-                        <div class="gtm-number">3</div>
-                        <h4>Launch Teams</h4>
-                        <p>Back to step 1 for their team</p>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 30px; justify-content: center; margin: 1.5em 0;">
-                    <div style="padding: 20px 30px; background: linear-gradient(135deg, rgba(255,107,53,0.15) 0%, rgba(255,107,53,0.05) 100%); border: 2px solid var(--accent-orange); border-radius: 16px; text-align: center;">
-                        <div class="ask-label">Launch (3 months)</div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-orange);">$299</div>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2em;">per person</p>
-                    </div>
-                    <div style="padding: 20px 30px; background: linear-gradient(135deg, rgba(255,107,53,0.15) 0%, rgba(255,107,53,0.05) 100%); border: 2px solid var(--accent-orange); border-radius: 16px; text-align: center;">
-                        <div class="ask-label">Ongoing</div>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-orange);">$100<span style="font-size: 0.9rem; font-weight: 400;">/mo</span></div>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2em;">per person</p>
-                    </div>
-                </div>
-                <p style="font-size: 0.95rem; color: var(--text-muted);">
-                    Embedded in <span class="highlight">Slack, Microsoft Teams, and text message</span>. Nothing to install.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE: USE OF FUNDS -->
-            <div class="slide center">
-                <h3>Use of Funds</h3>
-                <h2>Scaling to meet <span class="highlight">demand</span></h2>
-                <div class="beachhead-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 1100px;">
-                    <div class="beachhead-card" style="text-align: center;">
-                        <h4>Patents & IP</h4>
-                        <p class="why" style="margin-bottom: 0;">File foundational patents on shared context architecture</p>
-                    </div>
-                    <div class="beachhead-card" style="text-align: center;">
-                        <h4>Grow Team</h4>
-                        <p class="why" style="margin-bottom: 0;">Engineering and product hires to expand capacity</p>
-                    </div>
-                    <div class="beachhead-card" style="text-align: center;">
-                        <h4>Expand Clients</h4>
-                        <p class="why" style="margin-bottom: 0;">Grow within current Fortune 500 accounts</p>
-                    </div>
-                    <div class="beachhead-card" style="text-align: center;">
-                        <h4>Viral PLG</h4>
-                        <p class="why" style="margin-bottom: 0;">Launch team-based viral growth engine</p>
-                    </div>
-                </div>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 14: THE ASK -->
-            <div class="slide center">
-                <h3>The Ask</h3>
-                <h2>Pre-Seed Round</h2>
-                <div class="ask-grid">
-                    <div class="ask-box">
-                        <div class="ask-label">Instrument</div>
-                        <div class="ask-value">SAFE</div>
-                    </div>
-                    <div class="ask-box">
-                        <div class="ask-label">Discount</div>
-                        <div class="ask-value">20%</div>
-                    </div>
-                    <div class="ask-box">
-                        <div class="ask-label">Cap</div>
-                        <div class="ask-value" style="font-size: 1.6rem;">No Cap</div>
-                    </div>
-                </div>
-                <p class="subtitle" style="max-width: 700px; margin-top: 1em;">
-                    Looking for <span class="highlight">intros</span>, <span class="highlight">advice</span>, and believers in <span class="highlight">elevating people and teams</span>.
-                </p>
-                <div class="slide-footer"><span>© 2026 Team Intelligence, Inc.</span><span></span></div>
-            </div>
-
-            <!-- SLIDE 16: THANK YOU -->
-            <div class="slide center thank-you">
-                <div class="brand-logo"><span class="snap">Snap</span><span class="team">Team</span></div>
-                <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem);">Thank You</h1>
-                <p class="contact-info">
-                    <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>
-                    &nbsp;·&nbsp;
-                    <a href="mailto:kitt@snapinstruct.com">kitt@snapinstruct.com</a>
-                </p>
-                <div class="slide-footer">
-                    <span>© 2026 Team Intelligence, Inc.</span>
-                    <span>Private and Confidential</span>
-                </div>
-            </div>
-
-        </div>
-
-        <button class="nav-arrow prev" onclick="changeSlide(-1)">‹</button>
-        <button class="nav-arrow next" onclick="changeSlide(1)">›</button>
-        <div class="slide-counter"><span id="current">1</span> / <span id="total">15</span></div>
-        <div class="progress-bar" id="progress"></div>
+        <!-- DECK CONTENT ENCODED - Will be decoded after authentication -->
     </div>
 
     <script>
@@ -1539,6 +1064,9 @@
         // Google Sheets webhook URL for logging (optional)
         // Create a Google Apps Script web app and paste URL here
         const LOG_WEBHOOK = ''; // Leave empty to disable logging
+        // Encoded deck content (base64)
+        const ENCODED_DECK = 'ICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZXNob3ciPgoKICAgICAgICAgICAgPCEtLSBTTElERSAxOiBUSVRMRSAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIGFjdGl2ZSI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJicmFuZC1sb2dvIiBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMC41ZW07Ij48c3BhbiBjbGFzcz0ic25hcCI+U25hcDwvc3Bhbj48c3BhbiBjbGFzcz0idGVhbSI+VGVhbTwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgICAgIDxoMT5UaGUgQUkgZm9yPGJyPjxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlRlYW13b3JrPC9zcGFuPjwvaDE+CiAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxcmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDNlbTsiPgogICAgICAgICAgICAgICAgICAgIENvbmZpZGVudGlhbCBQcmUtU2VlZCBJbnZlc3RtZW50IERlY2sKICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8c3Bhbj5Qcml2YXRlIGFuZCBDb25maWRlbnRpYWw8L3NwYW4+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8IS0tIFNMSURFIDI6IFRFQU0gLS0+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgICAgICA8aDM+VGhlIFRlYW08L2gzPgogICAgICAgICAgICAgICAgPGgyPkFib3V0IFVzPC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tZ3JpZCI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1jYXJkIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1waG90byI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0ib2xpdmllci1tYW51ZWwucG5nIiBhbHQ9Ik9saXZpZXIgTWFudWVsIj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tbmFtZSI+T2xpdmllciBNYW51ZWw8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1yb2xlIj5DRU88L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1jcmVkcyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBIYXJ2YXJkPGJyPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgSGFydmFyZCBCdXNpbmVzcyBTY2hvb2w8YnI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBTYW1zdW5nIFNtYXJ0VFYgKDDihpIkQik8YnI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA2KyB5ZWFycyBpbiBBSQogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLWNhcmQiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLXBob3RvIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpbWcgc3JjPSJodHRwczovL3VpLWF2YXRhcnMuY29tL2FwaS8/bmFtZT1LSCZiYWNrZ3JvdW5kPThiNWNmNiZjb2xvcj1mZmYmc2l6ZT0zMjAmZm9udC1zaXplPTAuNCZib2xkPXRydWUiIGFsdD0iS2l0dCBIaXJhc2FraSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLW5hbWUiPktpdHQgSGlyYXNha2k8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1yb2xlIj5DVE88L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1jcmVkcyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBIYXJ2YXJkPGJyPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgS2hhbiBBY2FkZW15ICgxME0rIHVzZXJzKTxicj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIFBpeGFyIMK3IERpc25leSDCtyBDb3Vyc2VyYTxicj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDYrIHllYXJzIGluIEFJCiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLWxvZ29zIj4KICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idGVhbS1sb2dvLXRleHQiPkhhcnZhcmQ8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRlYW0tbG9nby10ZXh0Ij5TYW1zdW5nPC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0ZWFtLWxvZ28tdGV4dCI+S2hhbiBBY2FkZW15PC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0ZWFtLWxvZ28tdGV4dCI+UGl4YXI8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRlYW0tbG9nby10ZXh0Ij5EaXNuZXk8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRlYW0tbG9nby10ZXh0Ij5Db3Vyc2VyYTwvc3Bhbj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFRlYW0gSW50ZWxsaWdlbmNlLCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8IS0tIFNMSURFIDM6IE1JU1NJT04gLS0+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgICAgICA8aDM+T3VyIE1pc3Npb248L2gzPgogICAgICAgICAgICAgICAgPGgyIHN0eWxlPSJmb250LXNpemU6IGNsYW1wKDIuOHJlbSwgNXZ3LCA0cmVtKTsgbWF4LXdpZHRoOiA5MDBweDsiPgogICAgICAgICAgICAgICAgICAgIEJldHRlciB0ZWFtd29yay48YnI+CiAgICAgICAgICAgICAgICAgICAgQmV0dGVyIGNvbW11bmljYXRpb24uPGJyPgogICAgICAgICAgICAgICAgICAgIEJldHRlciByZXN1bHRzLgogICAgICAgICAgICAgICAgPC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPCEtLSBTTElERSAzOiBUSEUgUFJPQkxFTSAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5UaGUgUHJvYmxlbTwvaDM+CiAgICAgICAgICAgICAgICA8aDI+VGVhbXdvcmsgaXMgYnJva2VuPC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb2JsZW0tbGlzdCI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJvYmxlbS1pdGVtIj4KICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4+RmVlZGJhY2sgY29udmVyc2F0aW9ucyB0aGF0IDxzdHJvbmc+bmV2ZXIgaGFwcGVuPC9zdHJvbmc+PC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb2JsZW0taXRlbSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPjE6MXMgd2l0aCA8c3Ryb25nPm5vIGZvbGxvdy10aHJvdWdoPC9zdHJvbmc+PC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb2JsZW0taXRlbSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPkNvb3JkaW5hdGlvbiB0YWtlcyA8c3Ryb25nPm1vcmUgdGltZSB0aGFuIHRoZSB3b3JrIGl0c2VsZjwvc3Ryb25nPjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPHAgY2xhc3M9InN1YnRpdGxlIiBzdHlsZT0ibWFyZ2luLXRvcDogMWVtOyBtYXgtd2lkdGg6IDg1MHB4OyI+CiAgICAgICAgICAgICAgICAgICAgVGVhbXdvcmsgaXMgb25lIG9mIGxpZmUncyBtb3N0IDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPm1lYW5pbmdmdWwgZXhwZXJpZW5jZXM8L3NwYW4+Ljxicj4KICAgICAgICAgICAgICAgICAgICBBSSBjYW4gaGVscCB1cyBkbyBpdCB3aXRoIGxlc3MgZnJpY3Rpb24gYW5kIG1vcmUgZmxvdy4KICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPCEtLSBTTElERSA0OiBXSFkgTk9XIC0tPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICAgICAgPGgzPldoeSBOb3c8L2gzPgogICAgICAgICAgICAgICAgPGgyPkZyb20gc2luZ2xlLXBsYXllciBBSSB0byA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5tdWx0aXBsYXllcjwvc3Bhbj48L2gyPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iY29tcGFyZS1ncmlkIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJjb21wYXJlLWJveCIgc3R5bGU9ImJvcmRlcjogMnB4IHNvbGlkIHZhcigtLXRleHQtbXV0ZWQpOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxoNCBzdHlsZT0iY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyI+VG9kYXk8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICA8cD5DaGF0R1BULCBDb3BpbG90IG1ha2UgPHN0cm9uZz5pbmRpdmlkdWFsczwvc3Ryb25nPiBmYXN0ZXIgYXQgdGFza3MuPC9wPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImNvbXBhcmUtYm94IiBzdHlsZT0iYm9yZGVyOiAycHggc29saWQgdmFyKC0tYWNjZW50LW9yYW5nZSk7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGg0IHN0eWxlPSJjb2xvcjogdmFyKC0tYWNjZW50LW9yYW5nZSk7Ij5UaGUgR2FwPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHA+QUkgdGhhdCBoZWxwcyA8c3Ryb25nPnRlYW1zPC9zdHJvbmc+IGV4ZWN1dGUgdG9nZXRoZXIuPC9wPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXgtd2lkdGg6IDgwMHB4OyI+CiAgICAgICAgICAgICAgICAgICAgUGVvcGxlIG5lZWQgaGVscCBtYW5hZ2luZyB0aGVtc2VsdmVzIDxlbT5hbmQ8L2VtPiBtYW5hZ2luZyBvdGhlcnMg4oCUIHRoYXQgcmVxdWlyZXMgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+Y29tbXVuaWNhdGlvbiAmIGNvbGxhYm9yYXRpb248L3NwYW4+LgogICAgICAgICAgICAgICAgPC9wPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFRlYW0gSW50ZWxsaWdlbmNlLCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8IS0tIFNMSURFIDU6IE9VUiBKT1VSTkVZIC0tPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICAgICAgPGgzPk91ciBKb3VybmV5PC9oMz4KICAgICAgICAgICAgICAgIDxoMj5Ib3cgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+U25hcFRlYW08L3NwYW4+IGdvdCBoZXJlPC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImpvdXJuZXktdGltZWxpbmUiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImpvdXJuZXktc3RlcCBjdXJyZW50Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibGFiZWwiPjIwMjMgwrcgTGF1bmNoZWQ8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGg0PlByYWN0aWNlIFRvb2xzPC9oND4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJqb3VybmV5LWFycm93Ij7ihpI8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJqb3VybmV5LXN0ZXAgY3VycmVudCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImxhYmVsIj4yMDI0IMK3IExhdW5jaGVkPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDxoND5BSSBDb2FjaDwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iam91cm5leS1hcnJvdyI+4oaSPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iam91cm5leS1zdGVwIGN1cnJlbnQiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYWJlbCI+Tm93IMK3IExhdW5jaGluZzwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+Q29hY2ggKyBDb29yZGluYXRvcjwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJzdWJ0aXRsZSIgc3R5bGU9Im1heC13aWR0aDogODAwcHg7Ij4KICAgICAgICAgICAgICAgICAgICBFYWNoIHN0ZXAgZ290IHVzIGNsb3NlciB0byB0aGUgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+cm9vdCBvZiB0aGUgcHJvYmxlbTwvc3Bhbj46IHRoZSBjb29yZGluYXRpb24gdGF4IOKAlCBhbGwgdGhlIHdvcmsgdGhhdCBnb2VzIGludG8gdGVhbXdvcmsuCiAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgVGVhbSBJbnRlbGxpZ2VuY2UsIEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDwhLS0gU0xJREUgNjogVEVBTSBJTlRFTExJR0VOQ0UgLSBUSEUgTEFZRVIgQUJPVkUgLS0+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIj4KICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9ImRpc3BsYXk6IGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogMS40ZnIgMC42ZnI7IGdhcDogNTBweDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgd2lkdGg6IDEwMCU7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8aDM+VGhlIENhdGVnb3J5PC9oMz4KICAgICAgICAgICAgICAgICAgICAgICAgPGgyPkEgbmV3IGxheWVyOjxicj48c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5UZWFtIEludGVsbGlnZW5jZTwvc3Bhbj48L2gyPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYXllci1kaWFncmFtIiBzdHlsZT0ibWFyZ2luOiAxLjVlbSAwOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYXllci1ib3ggc25hcHRlYW0iPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxoND5TbmFwVGVhbTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHA+Q29hY2hpbmcgKyBjb29yZGluYXRpb24gYWNyb3NzIGFsbCB5b3VyIHRvb2xzPC9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYXllci1jb25uZWN0b3IiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPmNvbGxlY3RzIGZyb20gJiB3cml0ZXMgdG88L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXJyb3dzIj7ihpUg4oaVIOKGlTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYXllci1ib3ggdG9vbHMiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPlNsYWNrPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPkFzYW5hPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPkVtYWlsPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPkNhbGVuZGFyPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPkppcmE8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRvb2wtaXRlbSI+U2FsZXNmb3JjZTwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMXJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBFYWNoIGludGVncmF0aW9uID0gPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+ZGVlcGVyIGNvbnRleHQ8L3NwYW4+ICsgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+aGlnaGVyIHN3aXRjaGluZyBjb3N0czwvc3Bhbj4uCiAgICAgICAgICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJkaXNwbGF5OiBmbGV4OyBmbGV4LWRpcmVjdGlvbjogY29sdW1uOyBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgYWxpZ24taXRlbXM6IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJiYWNrZ3JvdW5kOiB2YXIoLS1iZy1jYXJkKTsgYm9yZGVyOiAycHggc29saWQgdmFyKC0tYWNjZW50LW9yYW5nZSk7IGJvcmRlci1yYWRpdXM6IDIwcHg7IHBhZGRpbmc6IDUwcHggMzVweDsgYm94LXNoYWRvdzogdmFyKC0tZ2xvdy1vcmFuZ2UpOyBtYXgtd2lkdGg6IDI4MHB4OyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxLjE1cmVtOyBjb2xvcjogdmFyKC0tdGV4dC1saWdodCk7IGZvbnQtc3R5bGU6IGl0YWxpYzsgbGluZS1oZWlnaHQ6IDEuNzsgbWFyZ2luOiAwOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIldlIGJ1aWx0IGFuIEFzYW5hIGNvbm5lY3RvciwgYW5kIHN1ZGRlbmx5IG5vIG9uZSBjaGVja3MgQXNhbmEgYW55bW9yZS4gVGhlIEFJIGp1c3QgaGFuZGxlcyBpdC4iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgVGVhbSBJbnRlbGxpZ2VuY2UsIEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDwhLS0gU0xJREU6IFRBTSAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5UQU08L2gzPgogICAgICAgICAgICAgICAgPGgyPlRocmVlIHBoYXNlcyBvZiA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5BSSBhZG9wdGlvbjwvc3Bhbj48L2gyPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhZ2UtY2FyZHMiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InN0YWdlLWNhcmQiPgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+SW5kaXZpZHVhbCBBSTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJwcm9kdWN0Ij5DaGF0R1BULCBDb3BpbG90PC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAwLjlyZW07IGNvbG9yOiB2YXIoLS10ZXh0LWxpZ2h0KTsgbWFyZ2luLWJvdHRvbTogMC44ZW07Ij5BSSBoZWxwcyBpbmRpdmlkdWFscyBkbyB0YXNrcyBmYXN0ZXI8L3A+CiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJzdGF0dXMgZG9uZSI+UGhhc2UgMTwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMS4xcmVtOyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDAuOGVtOyI+JFhYQiBUQU08L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhZ2UtY2FyZCBjdXJyZW50Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGg0PlRlYW0gQUk8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICA8cCBjbGFzcz0icHJvZHVjdCI+U25hcFRlYW08L3A+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuOXJlbTsgY29sb3I6IHZhcigtLXRleHQtbGlnaHQpOyBtYXJnaW4tYm90dG9tOiAwLjhlbTsiPkFJIGJlY29tZXMgdGhlIGNpcmN1bGF0b3J5IHN5c3RlbSBmb3IgeW91ciB0ZWFtPC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ic3RhdHVzIG5vdyI+UGhhc2UgMjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMS4xcmVtOyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tYWNjZW50LW9yYW5nZSk7IG1hcmdpbi10b3A6IDAuOGVtOyI+JFhYQiBUQU08L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhZ2UtY2FyZCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxoND5Db21wYW55IEFJPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9InByb2R1Y3QiPkNvbWluZyBuZXh0PC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAwLjlyZW07IGNvbG9yOiB2YXIoLS10ZXh0LWxpZ2h0KTsgbWFyZ2luLWJvdHRvbTogMC44ZW07Ij5Qcm9jZXNzIHZpc2liaWxpdHkgYWNyb3NzIHRoZSBlbnRpcmUgb3JnYW5pemF0aW9uPC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ic3RhdHVzIG5leHQiPlBoYXNlIDM8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDEuMXJlbTsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tdG9wOiAwLjhlbTsiPiRYWEIgVEFNPC9wPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXgtd2lkdGg6IDgwMHB4OyBtYXJnaW4tdG9wOiAxZW07Ij4KICAgICAgICAgICAgICAgICAgICBQb3NpdGlvbmluZyB0byBvd24gY29yZSBwYXJ0cyBvZiA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5QaGFzZSAyPC9zcGFuPiDigJQgYW5kIGJlIHJlYWR5IGZvciBQaGFzZSAzLgogICAgICAgICAgICAgICAgPC9wPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFRlYW0gSW50ZWxsaWdlbmNlLCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8IS0tIFNMSURFOiBUSEUgUFJPRFVDVCAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJvZHVjdC1ncmlkIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwcm9kdWN0LXRleHQiPgogICAgICAgICAgICAgICAgICAgICAgICA8aDM+VGhlIFByb2R1Y3Q8L2gzPgogICAgICAgICAgICAgICAgICAgICAgICA8aDIgc3R5bGU9ImZvbnQtc2l6ZTogY2xhbXAoM3JlbSwgNS41dncsIDQuNXJlbSk7Ij5BIENvYWNoIEluPGJyPllvdXIgUG9ja2V0PC9oMj4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9InN1YnRpdGxlIiBzdHlsZT0ibWFyZ2luOiAwLjhlbSAwIDEuNWVtOyBmb250LXNpemU6IDEuNXJlbTsiPlRoYXQgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+bWFrZXMgdGVhbXdvcmsgd29yazwvc3Bhbj4uPC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8dWwgY2xhc3M9ImRpZmYtbGlzdCIgc3R5bGU9Im1hcmdpbi10b3A6IDEuMmVtOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGkgc3R5bGU9Im1hcmdpbi1ib3R0b206IDEuOGVtOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cm9uZyBzdHlsZT0iZm9udC1zaXplOiAxLjZyZW07Ij5Qcm9hY3RpdmU8L3N0cm9uZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxLjE1cmVtOyI+UmVhY2hlcyBvdXQgd2hlbiBuZWVkZWQ8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpIHN0eWxlPSJtYXJnaW4tYm90dG9tOiAxLjhlbTsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJvbmcgc3R5bGU9ImZvbnQtc2l6ZTogMS42cmVtOyI+U2hhcmVkIGNvbnRleHQ8L3N0cm9uZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxLjE1cmVtOyI+VGVhbSBBSXMgdGFsayB0byBlYWNoIG90aGVyPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMS44ZW07Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3Ryb25nIHN0eWxlPSJmb250LXNpemU6IDEuNnJlbTsiPkJlaGF2aW9yIGNoYW5nZTwvc3Ryb25nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEuMTVyZW07Ij5SZWFsIHBlcmZvcm1hbmNlIGltcHJvdmVtZW50PC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwaG9uZS1jb250YWluZXIiIHN0eWxlPSJwb3NpdGlvbjogcmVsYXRpdmU7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtaW5uZXIiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBob25lLW5vdGNoIj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwaG9uZS1jb250ZW50Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtbXNnIHN5c3RlbSI+U25hcFRlYW08L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtbXNnIGFpIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNhcmFoJ3MgcHJvamVjdCB1cGRhdGU6IFEyIHJlcG9ydCBvbiB0cmFjay4gU2hlIGZsYWdnZWQgYSBwb3RlbnRpYWwgZGVsYXkgb24gdGhlIGFuYWx5dGljcyBzZWN0aW9uLgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtbXNnIGFpIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5vIGFjdGlvbiBuZWVkZWQg4oCUIGp1c3Qga2VlcGluZyB5b3UgaW4gdGhlIGxvb3AgYmVmb3JlIHlvdXIgMToxLgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSBCZWZvcmUvQWZ0ZXIgb3ZlcmxheSAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0icG9zaXRpb246IGFic29sdXRlOyBib3R0b206IDIwcHg7IHJpZ2h0OiAtNjBweDsgZGlzcGxheTogZmxleDsgZ2FwOiAxMnB4OyB6LWluZGV4OiAxMDsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0id2lkdGg6IDE2MHB4OyBwYWRkaW5nOiAxNnB4OyBiYWNrZ3JvdW5kOiByZ2JhKDIwLCAyNywgNDUsIDAuOTUpOyBib3JkZXItcmFkaXVzOiAxMnB4OyBib3JkZXItbGVmdDogM3B4IHNvbGlkIHZhcigtLWFjY2VudC1yZWQpOyBiYWNrZHJvcC1maWx0ZXI6IGJsdXIoOHB4KTsgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LWxnKTsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxoNCBzdHlsZT0iY29sb3I6IHZhcigtLWFjY2VudC1yZWQpOyBmb250LXNpemU6IDAuOHJlbTsgbWFyZ2luLWJvdHRvbTogMC40ZW07Ij5CZWZvcmU8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuNzVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LWxpZ2h0KTsgbGluZS1oZWlnaHQ6IDEuNDsgbWFyZ2luOiAwOyI+TWVldGluZyBvciBzdGF0dXMgdXBkYXRlLiBTb21lb25lIHdyaXRlcyBpdC4gU29tZW9uZSBhc2tzLjwvcD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0id2lkdGg6IDE2MHB4OyBwYWRkaW5nOiAxNnB4OyBiYWNrZ3JvdW5kOiByZ2JhKDIwLCAyNywgNDUsIDAuOTUpOyBib3JkZXItcmFkaXVzOiAxMnB4OyBib3JkZXItbGVmdDogM3B4IHNvbGlkIHZhcigtLWFjY2VudC1ncmVlbik7IGJhY2tkcm9wLWZpbHRlcjogYmx1cig4cHgpOyBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbGcpOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGg0IHN0eWxlPSJjb2xvcjogdmFyKC0tYWNjZW50LWdyZWVuKTsgZm9udC1zaXplOiAwLjhyZW07IG1hcmdpbi1ib3R0b206IDAuNGVtOyI+QWZ0ZXI8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuNzVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LWxpZ2h0KTsgbGluZS1oZWlnaHQ6IDEuNDsgbWFyZ2luOiAwOyI+Q29hY2ggcGFzc2l2ZWx5IHB1c2hlcyB3aGF0IHlvdSBuZWVkLiBObyBzdGF0dXMgdXBkYXRlLiBObyBtZWV0aW5nLjwvcD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFRlYW0gSW50ZWxsaWdlbmNlLCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8IS0tIFNMSURFIDg6IFRFU1RJTU9OSUFMUyAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5UcmFjdGlvbjwvaDM+CiAgICAgICAgICAgICAgICA8aDI+PHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+Rm9ydHVuZSA1MDA8L3NwYW4+IGNsaWVudHM8L2gyPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibG9nby1yb3ciIHN0eWxlPSJnYXA6IDQwcHg7IG1hcmdpbjogMS41ZW0gMDsiPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJsb2dvLWl0ZW0iPkFtYXpvbjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5VQ1NGPC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJsb2dvLWl0ZW0iPk1hc3MgR2VuZXJhbDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5Cb3R0ZWdhIFZlbmV0YTwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5TdW5iZWx0IFJlbnRhbHMgVUs8L3NwYW4+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9ImRpc3BsYXk6IGZsZXg7IGdhcDogMzBweDsgbWFyZ2luOiAyZW0gMDsgbWF4LXdpZHRoOiAxMDAwcHg7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJxdW90ZS1jYXJkIiBzdHlsZT0iZmxleDogMTsgbWFyZ2luOiAwOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwPiJJbnNlcnQgcXVvdGUiPC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhdXRob3IiPlVDU0Y8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJxdW90ZS1jYXJkIiBzdHlsZT0iZmxleDogMTsgbWFyZ2luOiAwOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwPiJJbnNlcnQgcXVvdGUiPC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhdXRob3IiPkFtYXpvbjwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0cy1ncmlkIiBzdHlsZT0iZ2FwOiA2MHB4OyBtYXJnaW46IDEuNWVtIDA7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWl0ZW0iPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LW51bWJlciIgc3R5bGU9ImZvbnQtc2l6ZTogM3JlbTsiPlhYJTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWxhYmVsIj5jb21wbGV0aW9uIHJhdGU8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWl0ZW0iPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LW51bWJlciIgc3R5bGU9ImZvbnQtc2l6ZTogM3JlbTsiPlhYJTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWxhYmVsIj53b3VsZCB0cnkgaXQgYWdhaW48L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWl0ZW0iPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LW51bWJlciIgc3R5bGU9ImZvbnQtc2l6ZTogM3JlbTsiPlhYJTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWxhYmVsIj5zYWlkIGl0IGhlbHBlZCB0aGVtIGltcHJvdmU8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFRlYW0gSW50ZWxsaWdlbmNlLCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgoKICAgICAgICAgICAgPCEtLSBTTElERSAxMDogQkVBQ0hIRUFEUyAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5FeHBhbmRpbmcgV2l0aGluIEVudGVycHJpc2UgQ2xpZW50czwvaDM+CiAgICAgICAgICAgICAgICA8aDI+R3Jvd3RoIGluIG91ciA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5iZWFjaGhlYWRzPC9zcGFuPjwvaDI+CiAgICAgICAgICAgICAgICA8dGFibGUgY2xhc3M9ImNvbXBldGUtdGFibGUiIHN0eWxlPSJtYXgtd2lkdGg6IDkwMHB4OyI+CiAgICAgICAgICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgICAgICAgICA8dGg+Q2xpZW50PC90aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRoPkN1cnJlbnQgVXNlcnM8L3RoPgogICAgICAgICAgICAgICAgICAgICAgICA8dGg+RXhwYW5kaW5nIFRvPC90aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRoPlRvdGFsIEVtcGxveWVlczwvdGg+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPkFtYXpvbjwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4yMDA8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+NjAwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjEsNTAwLDAwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPlVDU0Y8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MjAwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjUwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4zNSwwMDA8L3RkPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImNhdGVnb3J5Ij5NYXNzIEdlbmVyYWwgQnJpZ2hhbTwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD5Db250cmFjdDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4yMDA8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+ODAsMDAwPC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJjYXRlZ29yeSI+Qm90dGVnYSBWZW5ldGE8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MTQwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjMwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD40LDAwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPlN1bmJlbHQgUmVudGFscyBVSzwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4xNTA8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MzAwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjIsNTAwPC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJjYXRlZ29yeSI+UnV0Z2VyczwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD7igJQ8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+4oCUPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPuKAlDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHIgY2xhc3M9ImhpZ2hsaWdodCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPjxzdHJvbmc+VG90YWw8L3N0cm9uZz48L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+PHN0cm9uZz5+NzAwPC9zdHJvbmc+PC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjxzdHJvbmc+fjEsOTAwPC9zdHJvbmc+PC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjxzdHJvbmc+fjEuNk08L3N0cm9uZz48L3RkPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICA8L3RhYmxlPgogICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDogMS41ZW07IHRleHQtYWxpZ246IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEuOHJlbTsgZm9udC13ZWlnaHQ6IDgwMDsgY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyI+JDQwMEs8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMXJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tbGVmdDogMC41ZW07Ij5saWZldGltZSByZXZlbnVlPC9zcGFuPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxcmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDAuNWVtOyI+CiAgICAgICAgICAgICAgICAgICAgQ2FzaC1mbG93IG5ldXRyYWwgwrcgQm9vdHN0cmFwcGVkIMK3IEFsbCByZWludmVzdGVkCiAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgVGVhbSBJbnRlbGxpZ2VuY2UsIEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDwhLS0gU0xJREU6IFBST0RVQ1QtTEVEIEdST1dUSCAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5Qcm9kdWN0LUxlZCBHcm93dGg8L2gzPgogICAgICAgICAgICAgICAgPGgyPkV4cGFuZGluZyB0aHJvdWdoIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPnZpcmFsIHNwcmVhZDwvc3Bhbj48L2gyPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLWZsb3ciIHN0eWxlPSJtYXJnaW46IDEuNWVtIDA7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tc3RlcCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1udW1iZXIiPjE8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGg0PjItV2VlayBDaGFsbGVuZ2U8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICA8cD5NYW5hZ2VyIGFkb3B0czwvcD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tYXJyb3ciPuKGkjwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1zdGVwIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLW51bWJlciI+MjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+My1Nb250aCBDb2hvcnQ8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICA8cD5Db250aW51ZSB1c2luZyBpdDwvcD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tYXJyb3ciPuKGkjwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1zdGVwIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLW51bWJlciI+MzwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+TGF1bmNoIFRlYW1zPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHA+QmFjayB0byBzdGVwIDEgZm9yIHRoZWlyIHRlYW08L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9ImRpc3BsYXk6IGZsZXg7IGdhcDogMzBweDsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IG1hcmdpbjogMS41ZW0gMDsiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDIwcHggMzBweDsgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDEzNWRlZywgcmdiYSgyNTUsMTA3LDUzLDAuMTUpIDAlLCByZ2JhKDI1NSwxMDcsNTMsMC4wNSkgMTAwJSk7IGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLWFjY2VudC1vcmFuZ2UpOyBib3JkZXItcmFkaXVzOiAxNnB4OyB0ZXh0LWFsaWduOiBjZW50ZXI7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWxhYmVsIj5MYXVuY2ggKDMgbW9udGhzKTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJmb250LXNpemU6IDEuOHJlbTsgZm9udC13ZWlnaHQ6IDgwMDsgY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyI+JDI5OTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAwLjc1cmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDAuMmVtOyI+cGVyIHBlcnNvbjwvcD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJwYWRkaW5nOiAyMHB4IDMwcHg7IGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsIHJnYmEoMjU1LDEwNyw1MywwLjE1KSAwJSwgcmdiYSgyNTUsMTA3LDUzLDAuMDUpIDEwMCUpOyBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1hY2NlbnQtb3JhbmdlKTsgYm9yZGVyLXJhZGl1czogMTZweDsgdGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1sYWJlbCI+T25nb2luZzwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJmb250LXNpemU6IDEuOHJlbTsgZm9udC13ZWlnaHQ6IDgwMDsgY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyI+JDEwMDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDAuOXJlbTsgZm9udC13ZWlnaHQ6IDQwMDsiPi9tbzwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMC43NXJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tdG9wOiAwLjJlbTsiPnBlciBwZXJzb248L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuOTVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsiPgogICAgICAgICAgICAgICAgICAgIEVtYmVkZGVkIGluIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlNsYWNrLCBNaWNyb3NvZnQgVGVhbXMsIGFuZCB0ZXh0IG1lc3NhZ2U8L3NwYW4+LiBOb3RoaW5nIHRvIGluc3RhbGwuCiAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgVGVhbSBJbnRlbGxpZ2VuY2UsIEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDwhLS0gU0xJREU6IFVTRSBPRiBGVU5EUyAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5Vc2Ugb2YgRnVuZHM8L2gzPgogICAgICAgICAgICAgICAgPGgyPlNjYWxpbmcgdG8gbWVldCA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5kZW1hbmQ8L3NwYW4+PC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlYWNoaGVhZC1ncmlkIiBzdHlsZT0iZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoNCwgMWZyKTsgbWF4LXdpZHRoOiAxMTAwcHg7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJiZWFjaGhlYWQtY2FyZCIgc3R5bGU9InRleHQtYWxpZ246IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+UGF0ZW50cyAmIElQPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9IndoeSIgc3R5bGU9Im1hcmdpbi1ib3R0b206IDA7Ij5GaWxlIGZvdW5kYXRpb25hbCBwYXRlbnRzIG9uIHNoYXJlZCBjb250ZXh0IGFyY2hpdGVjdHVyZTwvcD4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJiZWFjaGhlYWQtY2FyZCIgc3R5bGU9InRleHQtYWxpZ246IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgICAgICA8aDQ+R3JvdyBUZWFtPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9IndoeSIgc3R5bGU9Im1hcmdpbi1ib3R0b206IDA7Ij5FbmdpbmVlcmluZyBhbmQgcHJvZHVjdCBoaXJlcyB0byBleHBhbmQgY2FwYWNpdHk8L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYmVhY2hoZWFkLWNhcmQiIHN0eWxlPSJ0ZXh0LWFsaWduOiBjZW50ZXI7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGg0PkV4cGFuZCBDbGllbnRzPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9IndoeSIgc3R5bGU9Im1hcmdpbi1ib3R0b206IDA7Ij5Hcm93IHdpdGhpbiBjdXJyZW50IEZvcnR1bmUgNTAwIGFjY291bnRzPC9wPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlYWNoaGVhZC1jYXJkIiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxoND5WaXJhbCBQTEc8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICA8cCBjbGFzcz0id2h5IiBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMDsiPkxhdW5jaCB0ZWFtLWJhc2VkIHZpcmFsIGdyb3d0aCBlbmdpbmU8L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPCEtLSBTTElERSAxNDogVEhFIEFTSyAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgICAgIDxoMz5UaGUgQXNrPC9oMz4KICAgICAgICAgICAgICAgIDxoMj5QcmUtU2VlZCBSb3VuZDwvaDI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stZ3JpZCI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWJveCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1sYWJlbCI+SW5zdHJ1bWVudDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stdmFsdWUiPlNBRkU8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stYm94Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWxhYmVsIj5EaXNjb3VudDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stdmFsdWUiPjIwJTwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1ib3giPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stbGFiZWwiPkNhcDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stdmFsdWUiIHN0eWxlPSJmb250LXNpemU6IDEuNnJlbTsiPk5vIENhcDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXgtd2lkdGg6IDcwMHB4OyBtYXJnaW4tdG9wOiAxZW07Ij4KICAgICAgICAgICAgICAgICAgICBMb29raW5nIGZvciA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5pbnRyb3M8L3NwYW4+LCA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5hZHZpY2U8L3NwYW4+LCBhbmQgYmVsaWV2ZXJzIGluIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPmVsZXZhdGluZyBwZW9wbGUgYW5kIHRlYW1zPC9zcGFuPi4KICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPCEtLSBTTElERSAxNjogVEhBTksgWU9VIC0tPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIgdGhhbmsteW91Ij4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJyYW5kLWxvZ28iPjxzcGFuIGNsYXNzPSJzbmFwIj5TbmFwPC9zcGFuPjxzcGFuIGNsYXNzPSJ0ZWFtIj5UZWFtPC9zcGFuPjwvZGl2PgogICAgICAgICAgICAgICAgPGgxIHN0eWxlPSJmb250LXNpemU6IGNsYW1wKDIuNXJlbSwgNHZ3LCAzLjVyZW0pOyI+VGhhbmsgWW91PC9oMT4KICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJjb250YWN0LWluZm8iPgogICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Im1haWx0bzpvbGl2aWVyQHNuYXBpbnN0cnVjdC5jb20iPm9saXZpZXJAc25hcGluc3RydWN0LmNvbTwvYT4KICAgICAgICAgICAgICAgICAgICAmbmJzcDvCtyZuYnNwOwogICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Im1haWx0bzpraXR0QHNuYXBpbnN0cnVjdC5jb20iPmtpdHRAc25hcGluc3RydWN0LmNvbTwvYT4KICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4+wqkgMjAyNiBUZWFtIEludGVsbGlnZW5jZSwgSW5jLjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8c3Bhbj5Qcml2YXRlIGFuZCBDb25maWRlbnRpYWw8L3NwYW4+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgIDwvZGl2PgoKICAgICAgICA8YnV0dG9uIGNsYXNzPSJuYXYtYXJyb3cgcHJldiIgb25jbGljaz0iY2hhbmdlU2xpZGUoLTEpIj7igLk8L2J1dHRvbj4KICAgICAgICA8YnV0dG9uIGNsYXNzPSJuYXYtYXJyb3cgbmV4dCIgb25jbGljaz0iY2hhbmdlU2xpZGUoMSkiPuKAujwvYnV0dG9uPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWNvdW50ZXIiPjxzcGFuIGlkPSJjdXJyZW50Ij4xPC9zcGFuPiAvIDxzcGFuIGlkPSJ0b3RhbCI+MTU8L3NwYW4+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0icHJvZ3Jlc3MtYmFyIiBpZD0icHJvZ3Jlc3MiPjwvZGl2Pgo=';
+
 
         // ============================================
         // EMAIL GATE LOGIC
@@ -1595,6 +1123,10 @@
             if (!fromCache) {
                 logAccess(email, true);
             }
+
+            // Decode and insert deck content
+            const decoded = atob(ENCODED_DECK);
+            deckContent.innerHTML = decoded;
 
             // Show deck
             emailGate.classList.add('hidden');
