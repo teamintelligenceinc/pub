@@ -1594,7 +1594,7 @@
             if (isEmailApproved(email)) {
                 grantAccess(email, false);
             } else {
-                gateError.innerHTML = 'Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>';
+                gateError.innerHTML = `<strong>${email}</strong> is not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>`;
                 gateError.classList.add('show');
                 logAccess(email, false);
             }
