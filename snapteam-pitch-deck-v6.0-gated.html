@@ -1506,19 +1506,6 @@
         <button class="nav-arrow next" onclick="changeSlide(1)">›</button>
         <div class="slide-counter"><span id="current">1</span> / <span id="total">15</span></div>
         <div class="progress-bar" id="progress"></div>
-        <button class="notes-toggle" onclick="toggleNotes()">Notes</button>
-
-        <!-- PRESENTER NOTES PANEL (abbreviated for this version) -->
-        <div class="notes-panel" id="notesPanel">
-            <div class="notes-header">
-                <h4>Talking Points</h4>
-                <button class="notes-close" onclick="toggleNotes()">×</button>
-            </div>
-            <div class="notes-content active" data-slide="0">
-                <h5>Presenter notes available</h5>
-                <p>Press 'N' to toggle notes panel.</p>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -1641,13 +1628,11 @@
         // ============================================
 
         let currentSlide = 0;
-        let slides, total, notesPanel, notesContents;
+        let slides, total;
 
         function initSlideshow() {
             slides = document.querySelectorAll('.slide');
             total = slides.length;
-            notesPanel = document.getElementById('notesPanel');
-            notesContents = document.querySelectorAll('.notes-content');
             document.getElementById('total').textContent = total;
             showSlide(0);
         }
@@ -1659,20 +1644,6 @@
             slides[currentSlide].classList.add('active');
             document.getElementById('current').textContent = currentSlide + 1;
             document.getElementById('progress').style.width = ((currentSlide + 1) / total * 100) + '%';
-            updateNotes();
-        }
-
-        function updateNotes() {
-            if (!notesContents) return;
-            notesContents.forEach(nc => nc.classList.remove('active'));
-            const activeNote = document.querySelector(`.notes-content[data-slide="${currentSlide}"]`);
-            if (activeNote) activeNote.classList.add('active');
-        }
-
-        function toggleNotes() {
-            if (!notesPanel) return;
-            notesPanel.classList.toggle('open');
-            document.body.classList.toggle('notes-open');
         }
 
         function changeSlide(d) { showSlide(currentSlide + d); }
@@ -1682,7 +1653,6 @@
 
             if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
             else if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
-            else if (e.key === 'n' || e.key === 'N') { toggleNotes(); }
         });
 
         // Touch navigation
