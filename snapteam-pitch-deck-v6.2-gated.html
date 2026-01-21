@@ -119,17 +119,20 @@
             border-radius: 12px;
             background: var(--accent-orange);
             color: white;
-            font-family: inherit;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease;
+            transition: all 0.2s ease;
+            font-family: inherit;
         }
 
         .gate-button:hover {
             background: #e55a2b;
+            transform: translateY(-1px);
         }
 
-        .gate-button:active {
-            transform: scale(0.98);
+        .gate-button:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
         }
 
         .gate-error {
@@ -139,37 +142,40 @@
             display: none;
         }
 
-        .gate-error a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        .gate-error.visible {
+        .gate-error.show {
             display: block;
         }
 
-        /* Gate responsive */
-        @media (max-width: 500px) {
-            .gate-logo {
-                font-size: 1.8rem;
-            }
-            .gate-box {
-                padding: 30px 25px;
-            }
-            .gate-title {
-                font-size: 1.2rem;
-            }
-            .gate-subtitle {
-                font-size: 0.85rem;
-            }
-            .gate-input, .gate-button {
-                padding: 14px 16px;
-                font-size: 0.95rem;
-            }
+        .gate-error, .gate-error a {
+            color: #ffffff;
+        }
+
+        .gate-footer {
+            margin-top: 2em;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .gate-footer a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .gate-footer a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Deck content hidden by default */
+        .deck-content {
+            display: none;
+        }
+
+        .deck-content.visible {
+            display: block;
         }
 
         /* ============================================
-           SLIDESHOW STYLES (loaded after auth)
+           SLIDESHOW STYLES
            ============================================ */
         .slideshow { width: 100%; height: 100vh; position: relative; overflow: hidden; }
 
@@ -333,8 +339,12 @@
             border-radius: 20px;
             background: var(--bg-card);
         }
-        .compare-box.problem { border: 2px solid var(--accent-red); }
-        .compare-box.solution { border: 2px solid var(--accent-green); }
+        .compare-box.problem {
+            border: 2px solid var(--accent-red);
+        }
+        .compare-box.solution {
+            border: 2px solid var(--accent-green);
+        }
         .compare-box h4 {
             font-size: 1.3rem;
             font-weight: 700;
@@ -381,6 +391,42 @@
         .journey-arrow {
             font-size: 1.5rem;
             color: var(--accent-orange);
+        }
+
+        /* Evolution boxes */
+        .evolution-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 2.5em 0;
+        }
+        .evo-box {
+            padding: 40px 50px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .evo-box.highlighted {
+            border: 2px solid var(--accent-orange);
+            box-shadow: var(--glow-orange);
+            background: linear-gradient(145deg, rgba(255,107,53,0.1) 0%, var(--bg-card) 100%);
+        }
+        .evo-box h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+        .evo-box p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        .evo-arrow {
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            font-weight: 300;
         }
 
         /* Stage cards */
@@ -433,8 +479,13 @@
             width: 100%;
         }
         .product-text h2 { margin-bottom: 0.2em; }
-        .diff-list { list-style: none; margin-top: 1.5em; }
-        .diff-list li { margin-bottom: 1.1em; }
+        .diff-list {
+            list-style: none;
+            margin-top: 1.5em;
+        }
+        .diff-list li {
+            margin-bottom: 1.1em;
+        }
         .diff-list li strong {
             display: block;
             font-size: 1.15rem;
@@ -499,12 +550,24 @@
             backdrop-filter: blur(8px);
             box-shadow: var(--shadow-lg);
         }
-        .before-after-box.before { border-left: 3px solid var(--accent-red); }
-        .before-after-box.after { border-left: 3px solid var(--accent-green); }
-        .before-after-box h4 { font-size: 0.8rem; margin-bottom: 0.4em; }
+        .before-after-box.before {
+            border-left: 3px solid var(--accent-red);
+        }
+        .before-after-box.after {
+            border-left: 3px solid var(--accent-green);
+        }
+        .before-after-box h4 {
+            font-size: 0.8rem;
+            margin-bottom: 0.4em;
+        }
         .before-after-box.before h4 { color: var(--accent-red); }
         .before-after-box.after h4 { color: var(--accent-green); }
-        .before-after-box p { font-size: 0.75rem; color: var(--text-light); line-height: 1.4; margin: 0; }
+        .before-after-box p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.4;
+            margin: 0;
+        }
 
         /* GTM flow */
         .gtm-flow {
@@ -540,7 +603,7 @@
         .gtm-step p { font-size: 0.9rem; color: var(--text-muted); }
         .gtm-arrow { font-size: 1.8rem; color: var(--accent-orange); }
 
-        /* Layer diagram */
+        /* Team Intelligence Layer */
         .layer-diagram {
             display: flex;
             flex-direction: column;
@@ -663,6 +726,29 @@
             color: var(--text-muted);
             margin-bottom: 1em;
         }
+        .beachhead-card .clients {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .beachhead-card .client {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        .beachhead-card .client-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .beachhead-card .client-stat {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
 
         /* Traction */
         .traction-content { width: 100%; max-width: 950px; }
@@ -694,6 +780,7 @@
             letter-spacing: -0.03em;
         }
         .stat-label { font-size: 0.95rem; color: var(--text-muted); margin-top: 0.3em; }
+        .traction-footer { text-align: center; font-size: 0.95rem; color: var(--text-muted); }
 
         /* Team */
         .team-grid {
@@ -745,6 +832,44 @@
         .contact-info { margin-top: 2em; font-size: 1.1rem; color: var(--text-muted); }
         .contact-info a { color: var(--text-light); text-decoration: none; }
         .contact-info a:hover { color: var(--accent-orange); }
+
+        /* Demo placeholder */
+        .demo-placeholder {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            background: var(--bg-card);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255,255,255,0.15);
+            margin: 2em 0;
+        }
+        .demo-placeholder .play-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1em;
+        }
+        .demo-placeholder .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            border-left: 28px solid white;
+            margin-left: 6px;
+        }
+        .demo-placeholder p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
 
         /* Quote card */
         .quote-card {
@@ -799,99 +924,397 @@
                 justify-content: flex-start;
                 padding-top: 40px;
             }
-            .slide-footer { display: none; }
-            h1 { font-size: 1.8rem; line-height: 1.05; }
-            h2 { font-size: 1.4rem; line-height: 1.15; }
-            h3 { font-size: 0.75rem; margin-bottom: 0.8em; letter-spacing: 0.1em; }
-            .subtitle { font-size: 1rem; line-height: 1.4; }
-            p, li { font-size: 0.9rem; line-height: 1.45; }
-            .brand-logo { font-size: 1.4rem; }
-            .problem-list { gap: 12px; margin: 1.2em 0; }
-            .problem-item { padding: 12px 15px; gap: 12px; border-radius: 12px; }
-            .problem-item span { font-size: 0.9rem; }
-            .compare-grid { gap: 15px; margin: 1.2em 0; }
-            .compare-box { padding: 18px; border-radius: 14px; }
-            .compare-box h4 { font-size: 1rem; margin-bottom: 0.6em; }
-            .compare-box p { font-size: 0.85rem; }
-            .journey-timeline { gap: 8px; margin: 1.5em 0; }
-            .journey-step { padding: 15px 18px; border-radius: 12px; }
-            .journey-step .label { font-size: 0.65rem; }
-            .journey-step h4 { font-size: 0.9rem; }
-            .journey-arrow { font-size: 1rem; }
-            .stage-cards { gap: 12px; margin: 1.2em 0; max-width: 100%; }
-            .stage-card { padding: 18px 15px; border-radius: 14px; }
-            .stage-card h4 { font-size: 1rem; }
-            .stage-card .product { font-size: 0.85rem; }
-            .stage-card p { font-size: 0.8rem !important; }
-            .stage-card .status { padding: 4px 10px; font-size: 0.7rem; }
-            .product-grid { grid-template-columns: 1fr; gap: 20px; }
-            .product-text h2 { font-size: 1.6rem !important; }
-            .product-text .subtitle { font-size: 1rem !important; }
-            .diff-list { margin-top: 1em; }
-            .diff-list li { margin-bottom: 0.8em; }
-            .diff-list li strong { font-size: 1.1rem !important; }
-            .diff-list li span { font-size: 0.85rem !important; }
-            .phone { width: 180px; height: 370px; border-radius: 30px; padding: 8px; }
-            .phone-inner { border-radius: 24px; }
-            .phone-notch { width: 70px; height: 18px; border-radius: 0 0 10px 10px; }
-            .phone-content { padding: 12px 10px; }
-            .phone-msg { padding: 10px; border-radius: 10px; margin-bottom: 8px; font-size: 0.7rem; }
-            .before-after-overlay { display: none; }
-            .gtm-flow { gap: 10px; margin: 1.2em 0; }
-            .gtm-step { padding: 15px 18px; border-radius: 14px; min-width: auto; }
-            .gtm-number { width: 28px; height: 28px; font-size: 0.9rem; margin-bottom: 0.5em; }
-            .gtm-step h4 { font-size: 0.9rem; }
-            .gtm-step p { font-size: 0.75rem; }
-            .gtm-arrow { font-size: 1rem; }
-            .pricing-boxes { flex-direction: column !important; gap: 12px !important; }
-            .pricing-box { padding: 15px 20px !important; }
-            .layer-diagram { gap: 8px; margin: 1.2em 0; }
-            .layer-box { padding: 15px 20px; border-radius: 12px; }
-            .layer-box.snapteam h4 { font-size: 1.1rem; }
-            .layer-box.snapteam p { font-size: 0.8rem; }
-            .layer-connector span { font-size: 0.7rem; }
-            .layer-connector .arrows { font-size: 0.9rem; }
-            .layer-box.tools { gap: 15px; padding: 12px 15px; }
-            .tool-item { font-size: 0.8rem; }
-            .quote-sidebar { display: none; }
-            .table-wrapper { overflow-x: auto; margin: 1em 0; -webkit-overflow-scrolling: touch; }
-            .compete-table { font-size: 0.75rem; min-width: 500px; }
-            .compete-table th { padding: 10px 8px; font-size: 0.65rem; }
-            .compete-table td { padding: 10px 8px; font-size: 0.75rem; }
-            .beachhead-grid { grid-template-columns: 1fr !important; gap: 12px; max-width: 100%; }
-            .beachhead-card { padding: 18px 15px; border-radius: 14px; }
-            .beachhead-card h4 { font-size: 1rem; }
-            .beachhead-card .why { font-size: 0.8rem; }
-            .stats-grid { flex-direction: column; gap: 15px !important; margin: 1.5em 0 1em; }
-            .stat-item { text-align: center; }
-            .stat-number { font-size: 2rem !important; }
-            .stat-label { font-size: 0.75rem; }
-            .logo-row { gap: 20px; margin: 1em 0; }
-            .logo-item { font-size: 0.9rem; }
-            .quote-card { padding: 15px 18px; margin: 1em 0; }
-            .quote-card p { font-size: 0.9rem; }
-            .quote-card .author { font-size: 0.75rem; }
-            .quotes-row { flex-direction: column !important; gap: 12px !important; }
-            .team-grid { flex-direction: column; gap: 25px; margin: 1.2em 0; }
-            .team-card { width: 100%; }
-            .team-photo { width: 80px; height: 80px; border-width: 3px; }
-            .team-name { font-size: 1.1rem; }
-            .team-role { font-size: 0.85rem; }
-            .team-creds { font-size: 0.75rem; }
-            .team-logos { gap: 15px; margin-top: 1em; }
-            .team-logo-text { font-size: 0.8rem; }
-            .ask-grid { gap: 12px; margin: 1.2em 0; max-width: 100%; }
-            .ask-box { padding: 20px 15px; border-radius: 14px; }
-            .ask-label { font-size: 0.7rem; }
-            .ask-value { font-size: 1.5rem; }
-            .thank-you .brand-logo { font-size: 2rem; }
-            .thank-you h1 { font-size: 1.8rem !important; }
-            .contact-info { font-size: 0.9rem; margin-top: 1.5em; }
-            .nav-arrow { width: 35px; height: 50px; font-size: 1.3rem; opacity: 0.25; }
-            .nav-arrow.prev { left: 5px; }
-            .nav-arrow.next { right: 5px; }
-            .slide-counter { font-size: 0.7rem; bottom: 15px; right: 15px; }
-            .progress-bar { height: 2px; }
+            .slide-footer {
+                display: none;
+            }
+
+            /* Typography - smaller for mobile */
+            h1 {
+                font-size: 1.8rem;
+                line-height: 1.05;
+            }
+            h2 {
+                font-size: 1.4rem;
+                line-height: 1.15;
+            }
+            h3 {
+                font-size: 0.75rem;
+                margin-bottom: 0.8em;
+                letter-spacing: 0.1em;
+            }
+            .subtitle {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            p, li {
+                font-size: 0.9rem;
+                line-height: 1.45;
+            }
+            .brand-logo {
+                font-size: 1.4rem;
+            }
+
+            /* Problem list */
+            .problem-list {
+                gap: 12px;
+                margin: 1.2em 0;
+            }
+            .problem-item {
+                padding: 12px 15px;
+                gap: 12px;
+                border-radius: 12px;
+            }
+            .problem-item span {
+                font-size: 0.9rem;
+            }
+
+            /* Compare boxes */
+            .compare-grid {
+                gap: 15px;
+                margin: 1.2em 0;
+            }
+            .compare-box {
+                padding: 18px;
+                border-radius: 14px;
+            }
+            .compare-box h4 {
+                font-size: 1rem;
+                margin-bottom: 0.6em;
+            }
+            .compare-box p {
+                font-size: 0.85rem;
+            }
+
+            /* Journey timeline */
+            .journey-timeline {
+                gap: 8px;
+                margin: 1.5em 0;
+            }
+            .journey-step {
+                padding: 15px 18px;
+                border-radius: 12px;
+            }
+            .journey-step .label {
+                font-size: 0.65rem;
+            }
+            .journey-step h4 {
+                font-size: 0.9rem;
+            }
+            .journey-arrow {
+                font-size: 1rem;
+            }
+
+            /* Stage cards */
+            .stage-cards {
+                gap: 12px;
+                margin: 1.2em 0;
+                max-width: 100%;
+            }
+            .stage-card {
+                padding: 18px 15px;
+                border-radius: 14px;
+            }
+            .stage-card h4 {
+                font-size: 1rem;
+            }
+            .stage-card .product {
+                font-size: 0.85rem;
+            }
+            .stage-card p {
+                font-size: 0.8rem !important;
+            }
+            .stage-card .status {
+                padding: 4px 10px;
+                font-size: 0.7rem;
+            }
+
+            /* Product grid - stack and simplify */
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .product-text h2 {
+                font-size: 1.6rem !important;
+            }
+            .product-text .subtitle {
+                font-size: 1rem !important;
+            }
+            .diff-list {
+                margin-top: 1em;
+            }
+            .diff-list li {
+                margin-bottom: 0.8em;
+            }
+            .diff-list li strong {
+                font-size: 1.1rem !important;
+            }
+            .diff-list li span {
+                font-size: 0.85rem !important;
+            }
+
+            /* Phone mockup - smaller */
+            .phone {
+                width: 180px;
+                height: 370px;
+                border-radius: 30px;
+                padding: 8px;
+            }
+            .phone-inner {
+                border-radius: 24px;
+            }
+            .phone-notch {
+                width: 70px;
+                height: 18px;
+                border-radius: 0 0 10px 10px;
+            }
+            .phone-content {
+                padding: 12px 10px;
+            }
+            .phone-msg {
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 8px;
+                font-size: 0.7rem;
+            }
+
+            /* Before/After overlay - hide on mobile vertical */
+            .before-after-overlay {
+                display: none;
+            }
+
+            /* GTM flow */
+            .gtm-flow {
+                gap: 10px;
+                margin: 1.2em 0;
+            }
+            .gtm-step {
+                padding: 15px 18px;
+                border-radius: 14px;
+                min-width: auto;
+            }
+            .gtm-number {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+                margin-bottom: 0.5em;
+            }
+            .gtm-step h4 {
+                font-size: 0.9rem;
+            }
+            .gtm-step p {
+                font-size: 0.75rem;
+            }
+            .gtm-arrow {
+                font-size: 1rem;
+            }
+
+            /* Pricing boxes on GTM slide */
+            .pricing-boxes {
+                flex-direction: column !important;
+                gap: 12px !important;
+            }
+            .pricing-box {
+                padding: 15px 20px !important;
+            }
+
+            /* Layer diagram */
+            .layer-diagram {
+                gap: 8px;
+                margin: 1.2em 0;
+            }
+            .layer-box {
+                padding: 15px 20px;
+                border-radius: 12px;
+            }
+            .layer-box.snapteam h4 {
+                font-size: 1.1rem;
+            }
+            .layer-box.snapteam p {
+                font-size: 0.8rem;
+            }
+            .layer-connector span {
+                font-size: 0.7rem;
+            }
+            .layer-connector .arrows {
+                font-size: 0.9rem;
+            }
+            .layer-box.tools {
+                gap: 15px;
+                padding: 12px 15px;
+            }
+            .tool-item {
+                font-size: 0.8rem;
+            }
+
+            /* Quote box on Team Intelligence slide */
+            .quote-sidebar {
+                display: none;
+            }
+
+            /* Team Intelligence grid - single column on mobile */
+            .team-intelligence-grid {
+                display: block !important;
+                grid-template-columns: none !important;
+            }
+
+            /* Competitive table - scrollable */
+            .table-wrapper {
+                overflow-x: auto;
+                margin: 1em 0;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compete-table {
+                font-size: 0.75rem;
+                min-width: 500px;
+            }
+            .compete-table th {
+                padding: 10px 8px;
+                font-size: 0.65rem;
+            }
+            .compete-table td {
+                padding: 10px 8px;
+                font-size: 0.75rem;
+            }
+
+            /* Beachhead cards - single column */
+            .beachhead-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
+                max-width: 100%;
+            }
+            .beachhead-card {
+                padding: 18px 15px;
+                border-radius: 14px;
+            }
+            .beachhead-card h4 {
+                font-size: 1rem;
+            }
+            .beachhead-card .why {
+                font-size: 0.8rem;
+            }
+
+            /* Stats grid - vertical stack */
+            .stats-grid {
+                flex-direction: column;
+                gap: 15px !important;
+                margin: 1.5em 0 1em;
+            }
+            .stat-item {
+                text-align: center;
+            }
+            .stat-number {
+                font-size: 2rem !important;
+            }
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            /* Logo row */
+            .logo-row {
+                gap: 20px;
+                margin: 1em 0;
+            }
+            .logo-item {
+                font-size: 0.9rem;
+            }
+
+            /* Quote cards */
+            .quote-card {
+                padding: 15px 18px;
+                margin: 1em 0;
+            }
+            .quote-card p {
+                font-size: 0.9rem;
+            }
+            .quote-card .author {
+                font-size: 0.75rem;
+            }
+            .quotes-row {
+                flex-direction: column !important;
+                gap: 12px !important;
+            }
+
+            /* Team grid */
+            .team-grid {
+                flex-direction: column;
+                gap: 25px;
+                margin: 1.2em 0;
+            }
+            .team-card {
+                width: 100%;
+            }
+            .team-photo {
+                width: 80px;
+                height: 80px;
+                border-width: 3px;
+            }
+            .team-name {
+                font-size: 1.1rem;
+            }
+            .team-role {
+                font-size: 0.85rem;
+            }
+            .team-creds {
+                font-size: 0.75rem;
+            }
+            .team-logos {
+                gap: 15px;
+                margin-top: 1em;
+            }
+            .team-logo-text {
+                font-size: 0.8rem;
+            }
+
+            /* Ask grid */
+            .ask-grid {
+                gap: 12px;
+                margin: 1.2em 0;
+                max-width: 100%;
+            }
+            .ask-box {
+                padding: 20px 15px;
+                border-radius: 14px;
+            }
+            .ask-label {
+                font-size: 0.7rem;
+            }
+            .ask-value {
+                font-size: 1.5rem;
+            }
+
+            /* Thank you slide */
+            .thank-you .brand-logo {
+                font-size: 2rem;
+            }
+            .thank-you h1 {
+                font-size: 1.8rem !important;
+            }
+            .contact-info {
+                font-size: 0.9rem;
+                margin-top: 1.5em;
+            }
+
+            /* Navigation */
+            .nav-arrow {
+                width: 35px;
+                height: 50px;
+                font-size: 1.3rem;
+                opacity: 0.25;
+            }
+            .nav-arrow.prev {
+                left: 5px;
+            }
+            .nav-arrow.next {
+                right: 5px;
+            }
+            .slide-counter {
+                font-size: 0.7rem;
+                bottom: 15px;
+                right: 15px;
+            }
+            .progress-bar {
+                height: 2px;
+            }
         }
 
         /* ========================================
@@ -904,112 +1327,388 @@
                 overflow-y: auto;
                 justify-content: flex-start;
             }
-            .slide-footer { display: none; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.2rem; }
-            h3 { font-size: 0.65rem; margin-bottom: 0.5em; }
-            .subtitle { font-size: 0.85rem; }
-            p, li { font-size: 0.75rem; }
-            .brand-logo { font-size: 1.1rem; }
-            .problem-list { gap: 8px; margin: 0.8em 0; }
-            .problem-item { padding: 8px 12px; gap: 10px; }
-            .problem-item span { font-size: 0.75rem; }
-            .compare-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin: 0.8em 0; }
-            .compare-box { padding: 12px; }
-            .compare-box h4 { font-size: 0.85rem; margin-bottom: 0.4em; }
-            .compare-box p { font-size: 0.7rem; }
-            .journey-timeline { flex-direction: row; gap: 8px; margin: 0.8em 0; }
-            .journey-step { padding: 10px 12px; }
-            .journey-step .label { font-size: 0.55rem; }
-            .journey-step h4 { font-size: 0.75rem; }
-            .journey-arrow { font-size: 0.9rem; transform: none; }
-            .stage-cards { flex-direction: row; gap: 10px; max-width: 100%; }
-            .stage-card { padding: 10px; }
-            .stage-card h4 { font-size: 0.8rem; }
-            .stage-card .product { font-size: 0.7rem; }
-            .stage-card p { font-size: 0.65rem !important; display: none; }
-            .stage-card .status { padding: 3px 8px; font-size: 0.6rem; }
-            .product-grid { grid-template-columns: 1fr 0.8fr; gap: 20px; }
-            .product-text h2 { font-size: 1.3rem !important; }
-            .product-text .subtitle { font-size: 0.85rem !important; margin: 0.3em 0 0.6em !important; }
-            .diff-list li { margin-bottom: 0.5em; }
-            .diff-list li strong { font-size: 0.9rem !important; }
-            .diff-list li span { font-size: 0.7rem !important; }
-            .phone { width: 140px; height: 280px; border-radius: 22px; padding: 6px; }
-            .phone-inner { border-radius: 18px; }
-            .phone-notch { width: 50px; height: 12px; }
-            .phone-content { padding: 8px; }
-            .phone-msg { padding: 6px; font-size: 0.55rem; margin-bottom: 5px; }
-            .before-after-overlay { display: none; }
-            .gtm-flow { flex-direction: row; gap: 10px; margin: 0.8em 0; }
-            .gtm-step { padding: 10px 12px; min-width: auto; }
-            .gtm-number { width: 22px; height: 22px; font-size: 0.75rem; margin-bottom: 0.3em; }
-            .gtm-step h4 { font-size: 0.75rem; }
-            .gtm-step p { font-size: 0.6rem; }
-            .gtm-arrow { font-size: 0.9rem; transform: none; }
-            .layer-diagram { gap: 6px; margin: 0.8em 0; }
-            .layer-box { padding: 10px 15px; }
-            .layer-box.snapteam h4 { font-size: 0.9rem; }
-            .layer-box.snapteam p { font-size: 0.65rem; }
-            .layer-connector span { font-size: 0.55rem; }
-            .layer-box.tools { gap: 12px; }
-            .tool-item { font-size: 0.7rem; }
-            .stats-grid { flex-direction: row; gap: 30px; margin: 0.8em 0; }
-            .stat-number { font-size: 1.5rem !important; }
-            .stat-label { font-size: 0.6rem; }
-            .logo-row { gap: 15px; margin: 0.5em 0; }
-            .logo-item { font-size: 0.75rem; }
-            .quote-card { display: none; }
-            .team-grid { flex-direction: row; gap: 25px; }
-            .team-card { width: auto; }
-            .team-photo { width: 55px; height: 55px; }
-            .team-name { font-size: 0.85rem; }
-            .team-role { font-size: 0.7rem; }
-            .team-creds { font-size: 0.6rem; }
-            .team-logos { display: none; }
-            .beachhead-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
-            .beachhead-card { padding: 10px; }
-            .beachhead-card h4 { font-size: 0.8rem; }
-            .beachhead-card .why { font-size: 0.6rem; display: none; }
-            .compete-table { font-size: 0.65rem; }
-            .compete-table th, .compete-table td { padding: 6px 5px; }
-            .ask-grid { flex-direction: row; gap: 12px; max-width: 100%; }
-            .ask-box { padding: 15px 12px; }
-            .ask-label { font-size: 0.6rem; }
-            .ask-value { font-size: 1.2rem; }
-            .thank-you .brand-logo { font-size: 1.5rem; }
-            .thank-you h1 { font-size: 1.3rem !important; }
-            .contact-info { font-size: 0.75rem; margin-top: 1em; }
-            .nav-arrow { opacity: 0.25; }
-            .slide-counter { font-size: 0.65rem; bottom: 10px; right: 10px; }
+            .slide-footer {
+                display: none;
+            }
+
+            /* Typography */
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            h3 {
+                font-size: 0.65rem;
+                margin-bottom: 0.5em;
+            }
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            p, li {
+                font-size: 0.75rem;
+            }
+            .brand-logo {
+                font-size: 1.1rem;
+            }
+
+            /* Problem list */
+            .problem-list {
+                gap: 8px;
+                margin: 0.8em 0;
+            }
+            .problem-item {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+            .problem-item span {
+                font-size: 0.75rem;
+            }
+
+            /* Compare boxes - side by side */
+            .compare-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin: 0.8em 0;
+            }
+            .compare-box {
+                padding: 12px;
+            }
+            .compare-box h4 {
+                font-size: 0.85rem;
+                margin-bottom: 0.4em;
+            }
+            .compare-box p {
+                font-size: 0.7rem;
+            }
+
+            /* Journey timeline - horizontal */
+            .journey-timeline {
+                flex-direction: row;
+                gap: 8px;
+                margin: 0.8em 0;
+            }
+            .journey-step {
+                padding: 10px 12px;
+            }
+            .journey-step .label {
+                font-size: 0.55rem;
+            }
+            .journey-step h4 {
+                font-size: 0.75rem;
+            }
+            .journey-arrow {
+                font-size: 0.9rem;
+                transform: none;
+            }
+
+            /* Stage cards - horizontal */
+            .stage-cards {
+                flex-direction: row;
+                gap: 10px;
+                max-width: 100%;
+            }
+            .stage-card {
+                padding: 10px;
+            }
+            .stage-card h4 {
+                font-size: 0.8rem;
+            }
+            .stage-card .product {
+                font-size: 0.7rem;
+            }
+            .stage-card p {
+                font-size: 0.65rem !important;
+                display: none;
+            }
+            .stage-card .status {
+                padding: 3px 8px;
+                font-size: 0.6rem;
+            }
+
+            /* Product grid - side by side */
+            .product-grid {
+                grid-template-columns: 1fr 0.8fr;
+                gap: 20px;
+            }
+            .product-text h2 {
+                font-size: 1.3rem !important;
+            }
+            .product-text .subtitle {
+                font-size: 0.85rem !important;
+                margin: 0.3em 0 0.6em !important;
+            }
+            .diff-list li {
+                margin-bottom: 0.5em;
+            }
+            .diff-list li strong {
+                font-size: 0.9rem !important;
+            }
+            .diff-list li span {
+                font-size: 0.7rem !important;
+            }
+
+            /* Phone mockup */
+            .phone {
+                width: 140px;
+                height: 280px;
+                border-radius: 22px;
+                padding: 6px;
+            }
+            .phone-inner {
+                border-radius: 18px;
+            }
+            .phone-notch {
+                width: 50px;
+                height: 12px;
+            }
+            .phone-content {
+                padding: 8px;
+            }
+            .phone-msg {
+                padding: 6px;
+                font-size: 0.55rem;
+                margin-bottom: 5px;
+            }
+
+            /* Before/After overlay - hide */
+            .before-after-overlay {
+                display: none;
+            }
+
+            /* GTM flow - horizontal */
+            .gtm-flow {
+                flex-direction: row;
+                gap: 10px;
+                margin: 0.8em 0;
+            }
+            .gtm-step {
+                padding: 10px 12px;
+                min-width: auto;
+            }
+            .gtm-number {
+                width: 22px;
+                height: 22px;
+                font-size: 0.75rem;
+                margin-bottom: 0.3em;
+            }
+            .gtm-step h4 {
+                font-size: 0.75rem;
+            }
+            .gtm-step p {
+                font-size: 0.6rem;
+            }
+            .gtm-arrow {
+                font-size: 0.9rem;
+                transform: none;
+            }
+
+            /* Layer diagram */
+            .layer-diagram {
+                gap: 6px;
+                margin: 0.8em 0;
+            }
+            .layer-box {
+                padding: 10px 15px;
+            }
+            .layer-box.snapteam h4 {
+                font-size: 0.9rem;
+            }
+            .layer-box.snapteam p {
+                font-size: 0.65rem;
+            }
+            .layer-connector span {
+                font-size: 0.55rem;
+            }
+            .layer-box.tools {
+                gap: 12px;
+            }
+            .tool-item {
+                font-size: 0.7rem;
+            }
+
+            /* Stats grid - horizontal */
+            .stats-grid {
+                flex-direction: row;
+                gap: 30px;
+                margin: 0.8em 0;
+            }
+            .stat-number {
+                font-size: 1.5rem !important;
+            }
+            .stat-label {
+                font-size: 0.6rem;
+            }
+
+            /* Logo row */
+            .logo-row {
+                gap: 15px;
+                margin: 0.5em 0;
+            }
+            .logo-item {
+                font-size: 0.75rem;
+            }
+
+            /* Quote cards - hide */
+            .quote-card {
+                display: none;
+            }
+
+            /* Team Intelligence grid - single column */
+            .team-intelligence-grid {
+                display: block !important;
+            }
+            .team-intelligence-grid .quote-sidebar {
+                display: none;
+            }
+
+            /* Team grid - horizontal */
+            .team-grid {
+                flex-direction: row;
+                gap: 25px;
+            }
+            .team-card {
+                width: auto;
+            }
+            .team-photo {
+                width: 55px;
+                height: 55px;
+            }
+            .team-name {
+                font-size: 0.85rem;
+            }
+            .team-role {
+                font-size: 0.7rem;
+            }
+            .team-creds {
+                font-size: 0.6rem;
+            }
+            .team-logos {
+                display: none;
+            }
+
+            /* Beachhead grid - 4 columns */
+            .beachhead-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 8px;
+            }
+            .beachhead-card {
+                padding: 10px;
+            }
+            .beachhead-card h4 {
+                font-size: 0.8rem;
+            }
+            .beachhead-card .why {
+                font-size: 0.6rem;
+                display: none;
+            }
+
+            /* Table */
+            .compete-table {
+                font-size: 0.65rem;
+            }
+            .compete-table th,
+            .compete-table td {
+                padding: 6px 5px;
+            }
+
+            /* Ask grid - horizontal */
+            .ask-grid {
+                flex-direction: row;
+                gap: 12px;
+                max-width: 100%;
+            }
+            .ask-box {
+                padding: 15px 12px;
+            }
+            .ask-label {
+                font-size: 0.6rem;
+            }
+            .ask-value {
+                font-size: 1.2rem;
+            }
+
+            /* Thank you */
+            .thank-you .brand-logo {
+                font-size: 1.5rem;
+            }
+            .thank-you h1 {
+                font-size: 1.3rem !important;
+            }
+            .contact-info {
+                font-size: 0.75rem;
+                margin-top: 1em;
+            }
+
+            /* Navigation */
+            .nav-arrow {
+                opacity: 0.25;
+            }
+            .slide-counter {
+                font-size: 0.65rem;
+                bottom: 10px;
+                right: 10px;
+            }
         }
 
-        /* Touch devices */
+        /* ========================================
+           TOUCH DEVICES
+           ======================================== */
         @media (hover: none) {
-            .nav-arrow { opacity: 0.25; }
-            .slideshow:hover .nav-arrow { opacity: 0.35; }
+            .nav-arrow {
+                opacity: 0.25;
+            }
+            .slideshow:hover .nav-arrow {
+                opacity: 0.35;
+            }
         }
 
     </style>
 </head>
 <body>
-
-    <!-- EMAIL GATE -->
+    <!-- ============================================
+         EMAIL GATE
+         ============================================ -->
     <div class="email-gate" id="emailGate">
         <div class="gate-logo"><span class="snap">Snap</span><span class="team">Team</span></div>
         <div class="gate-box">
-            <h2 class="gate-title">Pre-Seed Investment Deck</h2>
-            <p class="gate-subtitle">Please enter your email to continue</p>
+            <div class="gate-title">Enter your email to view</div>
+            <div class="gate-subtitle">This deck is for approved viewers only</div>
             <input type="email" class="gate-input" id="emailInput" placeholder="your@email.com" autocomplete="email">
-            <button class="gate-button" id="submitEmail">Continue</button>
-            <p class="gate-error" id="gateError">Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a></p>
+            <button class="gate-button" id="submitEmail" onclick="checkAccess()">View Deck</button>
+            <div class="gate-error" id="gateError">
+                Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>
+            </div>
+        </div>
+        <div class="gate-footer">
+            Questions? <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>
         </div>
     </div>
 
-    <!-- DECK CONTENT (loaded after auth) -->
-    <div id="deckContent" style="display: none;"></div>
+    <!-- ============================================
+         DECK CONTENT (hidden until authenticated)
+         ============================================ -->
+    <div class="deck-content" id="deckContent">
+        <!-- DECK CONTENT ENCODED - Will be decoded after authentication -->
+    </div>
 
     <script>
+        // ============================================
+        // EMAIL GATE CONFIGURATION
+        // ============================================
+
+        // Approved email hashes (SHA-256)
+        // To add a new email: hash it with SHA-256 and add to this list
+        // Use: https://emn178.github.io/online-tools/sha256.html
+        const APPROVED_HASHES = [
+            // bmcgaw@hotmail.com
+            '8f14e45fceea167a5a36dedd4bea2543', // placeholder - will be replaced with actual hash
+            // olivier@snapinstruct.com
+            'a1b2c3d4e5f6', // placeholder
+            // kitt@snapinstruct.com
+            'b2c3d4e5f6a1', // placeholder
+        ];
+
         // Approved emails in plaintext (for simpler implementation)
         // In production, use only hashes above
         const APPROVED_EMAILS = [
@@ -1020,127 +1719,150 @@
             'kitt@teamintelligence.ai',
             'omanuel@gmail.com'
         ];
+
+        // Google Sheets webhook URL for logging (optional)
         // Create a Google Apps Script web app and paste URL here
         const LOG_WEBHOOK = ''; // Leave empty to disable logging
         const DOCUMENT_NAME = 'SnapTeam Pitch Deck v6.2'; // Name for logging
         // Encoded deck content (base64)
-        const ENCODED_DECK =  + encoded_deck + ;
+        const ENCODED_DECK = '
+ICAgIDxkaXYgY2xhc3M9InNsaWRlc2hvdyI+CgogICAgICAgIDwhLS0gU0xJREUgMTogVElUTEUgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIGFjdGl2ZSI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJyYW5kLWxvZ28iIHN0eWxlPSJtYXJnaW4tYm90dG9tOiAwLjVlbTsiPjxzcGFuIGNsYXNzPSJzbmFwIj5TbmFwPC9zcGFuPjxzcGFuIGNsYXNzPSJ0ZWFtIj5UZWFtPC9zcGFuPjwvZGl2PgogICAgICAgICAgICA8aDE+VGhlIEFJIGZvcjxicj48c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5UZWFtd29yazwvc3Bhbj48L2gxPgogICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxcmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDNlbTsiPgogICAgICAgICAgICAgICAgQ29uZmlkZW50aWFsIFByZS1TZWVkIEludmVzdG1lbnQgRGVjawogICAgICAgICAgICA8L3A+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+CiAgICAgICAgICAgICAgICA8c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPgogICAgICAgICAgICAgICAgPHNwYW4+UHJpdmF0ZSBhbmQgQ29uZmlkZW50aWFsPC9zcGFuPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTTElERSAyOiBURUFNIC0tPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgIDxoMz5UaGUgVGVhbTwvaDM+CiAgICAgICAgICAgIDxoMj5BYm91dCBVczwvaDI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tZ3JpZCI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLWNhcmQiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tcGhvdG8iPgogICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0ib2xpdmllci1tYW51ZWwucG5nIiBhbHQ9Ik9saXZpZXIgTWFudWVsIj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLW5hbWUiPk9saXZpZXIgTWFudWVsPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1yb2xlIj5DRU88L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLWNyZWRzIj4KICAgICAgICAgICAgICAgICAgICAgICAgSGFydmFyZDxicj4KICAgICAgICAgICAgICAgICAgICAgICAgSGFydmFyZCBCdXNpbmVzcyBTY2hvb2w8YnI+CiAgICAgICAgICAgICAgICAgICAgICAgIFNhbXN1bmcgU21hcnRUViAoMOKGkiRCKTxicj4KICAgICAgICAgICAgICAgICAgICAgICAgNisgeWVhcnMgaW4gQUkKICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1jYXJkIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZWFtLXBob3RvIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9ImtpdHQtaGlyYXNha2kucG5nIiBhbHQ9IktpdHQgSGlyYXNha2kiPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tbmFtZSI+S2l0dCBIaXJhc2FraTwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InRlYW0tcm9sZSI+Q1RPPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1jcmVkcyI+CiAgICAgICAgICAgICAgICAgICAgICAgIEhhcnZhcmQ8YnI+CiAgICAgICAgICAgICAgICAgICAgICAgIEtoYW4gQWNhZGVteSAoMTBNKyB1c2Vycyk8YnI+CiAgICAgICAgICAgICAgICAgICAgICAgIFBpeGFyIMK3IERpc25leSDCtyBDb3Vyc2VyYTxicj4KICAgICAgICAgICAgICAgICAgICAgICAgNisgeWVhcnMgaW4gQUkKICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0idGVhbS1sb2dvcyI+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idGVhbS1sb2dvLXRleHQiPkhhcnZhcmQ8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idGVhbS1sb2dvLXRleHQiPlNhbXN1bmc8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idGVhbS1sb2dvLXRleHQiPktoYW4gQWNhZGVteTwvc3Bhbj4KICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0ZWFtLWxvZ28tdGV4dCI+UGl4YXI8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idGVhbS1sb2dvLXRleHQiPkRpc25leTwvc3Bhbj4KICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0ZWFtLWxvZ28tdGV4dCI+Q291cnNlcmE8L3NwYW4+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFIDM6IE1JU1NJT04gLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgPGgzPk91ciBNaXNzaW9uPC9oMz4KICAgICAgICAgICAgPGgyIHN0eWxlPSJmb250LXNpemU6IGNsYW1wKDIuOHJlbSwgNXZ3LCA0cmVtKTsgbWF4LXdpZHRoOiA5MDBweDsiPgogICAgICAgICAgICAgICAgQmV0dGVyIHRlYW13b3JrLjxicj4KICAgICAgICAgICAgICAgIEJldHRlciBjb21tdW5pY2F0aW9uLjxicj4KICAgICAgICAgICAgICAgIEJldHRlciByZXN1bHRzLgogICAgICAgICAgICA8L2gyPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFIDM6IFRIRSBQUk9CTEVNIC0tPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgIDxoMz5UaGUgUHJvYmxlbTwvaDM+CiAgICAgICAgICAgIDxoMj5UZWFtd29yayBpcyBicm9rZW48L2gyPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJwcm9ibGVtLWxpc3QiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJvYmxlbS1pdGVtIj4KICAgICAgICAgICAgICAgICAgICA8c3Bhbj5GZWVkYmFjayBjb252ZXJzYXRpb25zIHRoYXQgPHN0cm9uZz5uZXZlciBoYXBwZW48L3N0cm9uZz48L3NwYW4+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb2JsZW0taXRlbSI+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4+MToxcyB3aXRoIDxzdHJvbmc+bm8gZm9sbG93LXRocm91Z2g8L3N0cm9uZz48L3NwYW4+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByb2JsZW0taXRlbSI+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4+Q29vcmRpbmF0aW9uIHRha2VzIDxzdHJvbmc+bW9yZSB0aW1lIHRoYW4gdGhlIHdvcmsgaXRzZWxmPC9zdHJvbmc+PC9zcGFuPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXJnaW4tdG9wOiAxZW07IG1heC13aWR0aDogODUwcHg7Ij4KICAgICAgICAgICAgICAgIFRlYW13b3JrIGlzIG9uZSBvZiBsaWZlJ3MgbW9zdCA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5tZWFuaW5nZnVsIGV4cGVyaWVuY2VzPC9zcGFuPi48YnI+CiAgICAgICAgICAgICAgICBBSSBjYW4gaGVscCB1cyBkbyBpdCB3aXRoIGxlc3MgZnJpY3Rpb24gYW5kIG1vcmUgZmxvdy4KICAgICAgICAgICAgPC9wPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFIDQ6IFdIWSBOT1cgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgPGgzPldoeSBOb3c8L2gzPgogICAgICAgICAgICA8aDI+RnJvbSBzaW5nbGUtcGxheWVyIEFJIHRvIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPm11bHRpcGxheWVyPC9zcGFuPjwvaDI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImNvbXBhcmUtZ3JpZCI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJjb21wYXJlLWJveCIgc3R5bGU9ImJvcmRlcjogMnB4IHNvbGlkIHZhcigtLXRleHQtbXV0ZWQpOyI+CiAgICAgICAgICAgICAgICAgICAgPGg0IHN0eWxlPSJjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7Ij5Ub2RheTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHA+Q2hhdEdQVCwgQ29waWxvdCBtYWtlIDxzdHJvbmc+aW5kaXZpZHVhbHM8L3N0cm9uZz4gZmFzdGVyIGF0IHRhc2tzLjwvcD4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iY29tcGFyZS1ib3giIHN0eWxlPSJib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1hY2NlbnQtb3JhbmdlKTsiPgogICAgICAgICAgICAgICAgICAgIDxoNCBzdHlsZT0iY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyI+VGhlIEdhcDwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHA+QUkgdGhhdCBoZWxwcyA8c3Ryb25nPnRlYW1zPC9zdHJvbmc+IGV4ZWN1dGUgdG9nZXRoZXIuPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXgtd2lkdGg6IDgwMHB4OyI+CiAgICAgICAgICAgICAgICBQZW9wbGUgbmVlZCBoZWxwIG1hbmFnaW5nIHRoZW1zZWx2ZXMgPGVtPmFuZDwvZW0+IG1hbmFnaW5nIG90aGVycyDigJQgdGhhdCByZXF1aXJlcyA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5jb21tdW5pY2F0aW9uICYgY29sbGFib3JhdGlvbjwvc3Bhbj4uCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTTElERSA1OiBPVVIgSk9VUk5FWSAtLT4KICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICA8aDM+T3VyIEpvdXJuZXk8L2gzPgogICAgICAgICAgICA8aDI+SG93IDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlNuYXBUZWFtPC9zcGFuPiBnb3QgaGVyZTwvaDI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImpvdXJuZXktdGltZWxpbmUiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iam91cm5leS1zdGVwIGN1cnJlbnQiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImxhYmVsIj4yMDIzIMK3IExhdW5jaGVkPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGg0PlByYWN0aWNlIFRvb2xzPC9oND4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iam91cm5leS1hcnJvdyI+4oaSPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJqb3VybmV5LXN0ZXAgY3VycmVudCI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibGFiZWwiPjIwMjQgwrcgTGF1bmNoZWQ8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8aDQ+QUkgQ29hY2g8L2g0PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJqb3VybmV5LWFycm93Ij7ihpI8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImpvdXJuZXktc3RlcCBjdXJyZW50Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYWJlbCI+Tm93IMK3IExhdW5jaGluZzwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxoND5Db2FjaCArIENvb3JkaW5hdG9yPC9oND4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPHAgY2xhc3M9InN1YnRpdGxlIiBzdHlsZT0ibWF4LXdpZHRoOiA4MDBweDsiPgogICAgICAgICAgICAgICAgRWFjaCBzdGVwIGdvdCB1cyBjbG9zZXIgdG8gdGhlIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPnJvb3Qgb2YgdGhlIHByb2JsZW08L3NwYW4+OiB0aGUgY29vcmRpbmF0aW9uIHRheCDigJQgYWxsIHRoZSB3b3JrIHRoYXQgZ29lcyBpbnRvIHRlYW13b3JrLgogICAgICAgICAgICA8L3A+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBTbmFwSW5zdHJ1Y3QgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgPC9kaXY+CgogICAgICAgIDwhLS0gU0xJREUgNjogVEVBTSBJTlRFTExJR0VOQ0UgLSBUSEUgTEFZRVIgQUJPVkUgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUiPgogICAgICAgICAgICA8ZGl2IHN0eWxlPSJkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDEuNGZyIDAuNmZyOyBnYXA6IDUwcHg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IHdpZHRoOiAxMDAlOyIgY2xhc3M9InRlYW0taW50ZWxsaWdlbmNlLWdyaWQiPgogICAgICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgICAgICA8aDM+VGhlIENhdGVnb3J5PC9oMz4KICAgICAgICAgICAgICAgICAgICA8aDI+QSBuZXcgbGF5ZXI6PGJyPjxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlRlYW0gSW50ZWxsaWdlbmNlPC9zcGFuPjwvaDI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibGF5ZXItZGlhZ3JhbSIgc3R5bGU9Im1hcmdpbjogMS41ZW0gMDsiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJsYXllci1ib3ggc25hcHRlYW0iPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGg0PlNuYXBUZWFtPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwPkNvYWNoaW5nICsgY29vcmRpbmF0aW9uIGFjcm9zcyBhbGwgeW91ciB0b29sczwvcD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImxheWVyLWNvbm5lY3RvciI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3Bhbj5jb2xsZWN0cyBmcm9tICYgd3JpdGVzIHRvPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXJyb3dzIj7ihpUg4oaVIOKGlTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibGF5ZXItYm94IHRvb2xzIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPlNsYWNrPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRvb2wtaXRlbSI+QXNhbmE8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0idG9vbC1pdGVtIj5FbWFpbDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPkNhbGVuZGFyPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InRvb2wtaXRlbSI+SmlyYTwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0b29sLWl0ZW0iPlNhbGVzZm9yY2U8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDFyZW07IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsiPgogICAgICAgICAgICAgICAgICAgICAgICBFYWNoIGludGVncmF0aW9uID0gPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+ZGVlcGVyIGNvbnRleHQ8L3NwYW4+ICsgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+aGlnaGVyIHN3aXRjaGluZyBjb3N0czwvc3Bhbj4uCiAgICAgICAgICAgICAgICAgICAgPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJxdW90ZS1zaWRlYmFyIiBzdHlsZT0iZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IGFsaWduLWl0ZW1zOiBjZW50ZXI7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJiYWNrZ3JvdW5kOiB2YXIoLS1iZy1jYXJkKTsgYm9yZGVyOiAycHggc29saWQgdmFyKC0tYWNjZW50LW9yYW5nZSk7IGJvcmRlci1yYWRpdXM6IDIwcHg7IHBhZGRpbmc6IDUwcHggMzVweDsgYm94LXNoYWRvdzogdmFyKC0tZ2xvdy1vcmFuZ2UpOyBtYXgtd2lkdGg6IDI4MHB4OyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDEuMTVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LWxpZ2h0KTsgZm9udC1zdHlsZTogaXRhbGljOyBsaW5lLWhlaWdodDogMS43OyBtYXJnaW46IDA7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICJXZSBidWlsdCBhbiBBc2FuYSBjb25uZWN0b3IsIGFuZCBzdWRkZW5seSBubyBvbmUgY2hlY2tzIEFzYW5hIGFueW1vcmUuIFRoZSBBSSBqdXN0IGhhbmRsZXMgaXQuIgogICAgICAgICAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+PHNwYW4+wqkgMjAyNiBTbmFwSW5zdHJ1Y3QgSW5jLjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9kaXY+CiAgICAgICAgPC9kaXY+CgogICAgICAgIDwhLS0gU0xJREU6IFRBTSAtLT4KICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICA8aDM+VEFNPC9oMz4KICAgICAgICAgICAgPGgyPlRocmVlIHBoYXNlcyBvZiA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5BSSBhZG9wdGlvbjwvc3Bhbj48L2gyPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGFnZS1jYXJkcyI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGFnZS1jYXJkIj4KICAgICAgICAgICAgICAgICAgICA8aDQ+SW5kaXZpZHVhbCBBSTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9InByb2R1Y3QiPkNoYXRHUFQsIENvcGlsb3Q8L3A+CiAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMC45cmVtOyBjb2xvcjogdmFyKC0tdGV4dC1saWdodCk7IG1hcmdpbi1ib3R0b206IDAuOGVtOyI+QUkgaGVscHMgaW5kaXZpZHVhbHMgZG8gdGFza3MgZmFzdGVyPC9wPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJzdGF0dXMgZG9uZSI+UGhhc2UgMTwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxLjFyZW07IGZvbnQtd2VpZ2h0OiA3MDA7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgbWFyZ2luLXRvcDogMC44ZW07Ij4kWFhCIFRBTTwvcD4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhZ2UtY2FyZCBjdXJyZW50Ij4KICAgICAgICAgICAgICAgICAgICA8aDQ+VGVhbSBBSTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9InByb2R1Y3QiPlNuYXBUZWFtPC9wPgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuOXJlbTsgY29sb3I6IHZhcigtLXRleHQtbGlnaHQpOyBtYXJnaW4tYm90dG9tOiAwLjhlbTsiPkFJIGJlY29tZXMgdGhlIGNpcmN1bGF0b3J5IHN5c3RlbSBmb3IgeW91ciB0ZWFtPC9wPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJzdGF0dXMgbm93Ij5QaGFzZSAyPC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDEuMXJlbTsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyBtYXJnaW4tdG9wOiAwLjhlbTsiPiRYWEIgVEFNPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGFnZS1jYXJkIj4KICAgICAgICAgICAgICAgICAgICA8aDQ+Q29tcGFueSBBSTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9InByb2R1Y3QiPkNvbWluZyBuZXh0PC9wPgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuOXJlbTsgY29sb3I6IHZhcigtLXRleHQtbGlnaHQpOyBtYXJnaW4tYm90dG9tOiAwLjhlbTsiPlByb2Nlc3MgdmlzaWJpbGl0eSBhY3Jvc3MgdGhlIGVudGlyZSBvcmdhbml6YXRpb248L3A+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InN0YXR1cyBuZXh0Ij5QaGFzZSAzPC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDEuMXJlbTsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tdG9wOiAwLjhlbTsiPiRYWEIgVEFNPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8cCBjbGFzcz0ic3VidGl0bGUiIHN0eWxlPSJtYXgtd2lkdGg6IDgwMHB4OyBtYXJnaW4tdG9wOiAxZW07Ij4KICAgICAgICAgICAgICAgIFBvc2l0aW9uaW5nIHRvIG93biBjb3JlIHBhcnRzIG9mIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlBoYXNlIDI8L3NwYW4+IOKAlCBhbmQgYmUgcmVhZHkgZm9yIFBoYXNlIDMuCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTTElERTogVEhFIFBST0RVQ1QgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUiPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJwcm9kdWN0LWdyaWQiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJvZHVjdC10ZXh0Ij4KICAgICAgICAgICAgICAgICAgICA8aDM+VGhlIFByb2R1Y3Q8L2gzPgogICAgICAgICAgICAgICAgICAgIDxoMiBzdHlsZT0iZm9udC1zaXplOiBjbGFtcCgzcmVtLCA1LjV2dywgNC41cmVtKTsiPkEgQ29hY2ggSW48YnI+WW91ciBQb2NrZXQ8L2gyPgogICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJzdWJ0aXRsZSIgc3R5bGU9Im1hcmdpbjogMC44ZW0gMCAxLjVlbTsgZm9udC1zaXplOiAxLjVyZW07Ij5UaGF0IDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPm1ha2VzIHRlYW13b3JrIHdvcms8L3NwYW4+LjwvcD4KICAgICAgICAgICAgICAgICAgICA8dWwgY2xhc3M9ImRpZmYtbGlzdCIgc3R5bGU9Im1hcmdpbi10b3A6IDEuMmVtOyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMS44ZW07Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJvbmcgc3R5bGU9ImZvbnQtc2l6ZTogMS42cmVtOyI+UHJvYWN0aXZlPC9zdHJvbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxLjE1cmVtOyI+UmVhY2hlcyBvdXQgd2hlbiBuZWVkZWQ8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMS44ZW07Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJvbmcgc3R5bGU9ImZvbnQtc2l6ZTogMS42cmVtOyI+U2hhcmVkIGNvbnRleHQ8L3N0cm9uZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEuMTVyZW07Ij5UZWFtIEFJcyB0YWxrIHRvIGVhY2ggb3RoZXI8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMS44ZW07Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJvbmcgc3R5bGU9ImZvbnQtc2l6ZTogMS42cmVtOyI+QmVoYXZpb3IgY2hhbmdlPC9zdHJvbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxLjE1cmVtOyI+UmVhbCBwZXJmb3JtYW5jZSBpbXByb3ZlbWVudDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9saT4KICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwaG9uZS1jb250YWluZXIiIHN0eWxlPSJwb3NpdGlvbjogcmVsYXRpdmU7Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwaG9uZSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBob25lLWlubmVyIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBob25lLW5vdGNoIj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBob25lLWNvbnRlbnQiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBob25lLW1zZyBzeXN0ZW0iPlNuYXBUZWFtPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtbXNnIGFpIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2FyYWgncyBwcm9qZWN0IHVwZGF0ZTogUTIgcmVwb3J0IG9uIHRyYWNrLiBTaGUgZmxhZ2dlZCBhIHBvdGVudGlhbCBkZWxheSBvbiB0aGUgYW5hbHl0aWNzIHNlY3Rpb24uCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGhvbmUtbXNnIGFpIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTm8gYWN0aW9uIG5lZWRlZCDigJQganVzdCBrZWVwaW5nIHlvdSBpbiB0aGUgbG9vcCBiZWZvcmUgeW91ciAxOjEuCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCZWZvcmUvQWZ0ZXIgb3ZlcmxheSAtLT4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJiZWZvcmUtYWZ0ZXItb3ZlcmxheSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlZm9yZS1hZnRlci1ib3ggYmVmb3JlIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxoND5CZWZvcmU8L2g0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHA+TWVldGluZyBvciBzdGF0dXMgdXBkYXRlLiBTb21lb25lIHdyaXRlcyBpdC4gU29tZW9uZSBhc2tzLjwvcD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlZm9yZS1hZnRlci1ib3ggYWZ0ZXIiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGg0PkFmdGVyPC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwPkNvYWNoIHBhc3NpdmVseSBwdXNoZXMgd2hhdCB5b3UgbmVlZC4gTm8gc3RhdHVzIHVwZGF0ZS4gTm8gbWVldGluZy48L3A+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFIDg6IFRFU1RJTU9OSUFMUyAtLT4KICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICA8aDM+VHJhY3Rpb248L2gzPgogICAgICAgICAgICA8aDI+PHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+Rm9ydHVuZSA1MDA8L3NwYW4+IGNsaWVudHM8L2gyPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJsb2dvLXJvdyIgc3R5bGU9ImdhcDogNDBweDsgbWFyZ2luOiAxLjVlbSAwOyI+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5BbWF6b248L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5VQ1NGPC9zcGFuPgogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9ImxvZ28taXRlbSI+TWFzcyBHZW5lcmFsPC9zcGFuPgogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9ImxvZ28taXRlbSI+Qm90dGVnYSBWZW5ldGE8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1pdGVtIj5TdW5iZWx0IFJlbnRhbHMgVUs8L3NwYW4+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJxdW90ZXMtcm93IiBzdHlsZT0iZGlzcGxheTogZmxleDsgZ2FwOiAzMHB4OyBtYXJnaW46IDJlbSAwOyBtYXgtd2lkdGg6IDEwMDBweDsiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icXVvdGUtY2FyZCIgc3R5bGU9ImZsZXg6IDE7IG1hcmdpbjogMDsiPgogICAgICAgICAgICAgICAgICAgIDxwPiJJbnNlcnQgcXVvdGUiPC9wPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImF1dGhvciI+VUNTRjwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJxdW90ZS1jYXJkIiBzdHlsZT0iZmxleDogMTsgbWFyZ2luOiAwOyI+CiAgICAgICAgICAgICAgICAgICAgPHA+Ikluc2VydCBxdW90ZSI8L3A+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXV0aG9yIj5BbWF6b248L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhdHMtZ3JpZCIgc3R5bGU9ImdhcDogNjBweDsgbWFyZ2luOiAxLjVlbSAwOyI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWl0ZW0iPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InN0YXQtbnVtYmVyIiBzdHlsZT0iZm9udC1zaXplOiAzcmVtOyI+WFglPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhdC1sYWJlbCI+Y29tcGxldGlvbiByYXRlPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InN0YXQtaXRlbSI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhdC1udW1iZXIiIHN0eWxlPSJmb250LXNpemU6IDNyZW07Ij5YWCU8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LWxhYmVsIj53b3VsZCB0cnkgaXQgYWdhaW48L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ic3RhdC1pdGVtIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzdGF0LW51bWJlciIgc3R5bGU9ImZvbnQtc2l6ZTogM3JlbTsiPlhYJTwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InN0YXQtbGFiZWwiPnNhaWQgaXQgaGVscGVkIHRoZW0gaW1wcm92ZTwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKCiAgICAgICAgPCEtLSBTTElERSAxMDogQkVBQ0hIRUFEUyAtLT4KICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZSBjZW50ZXIiPgogICAgICAgICAgICA8aDM+RXhwYW5kaW5nIFdpdGhpbiBFbnRlcnByaXNlIENsaWVudHM8L2gzPgogICAgICAgICAgICA8aDI+R3Jvd3RoIGluIG91ciA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5iZWFjaGhlYWRzPC9zcGFuPjwvaDI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InRhYmxlLXdyYXBwZXIiPgogICAgICAgICAgICAgICAgPHRhYmxlIGNsYXNzPSJjb21wZXRlLXRhYmxlIiBzdHlsZT0ibWF4LXdpZHRoOiA5MDBweDsiPgogICAgICAgICAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgICAgICAgICAgPHRoPkNsaWVudDwvdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0aD5DdXJyZW50IFVzZXJzPC90aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRoPkV4cGFuZGluZyBUbzwvdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0aD5Ub3RhbCBFbXBsb3llZXM8L3RoPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImNhdGVnb3J5Ij5BbWF6b248L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MjAwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjYwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4xLDUwMCwwMDA8L3RkPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImNhdGVnb3J5Ij5VQ1NGPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjIwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD41MDA8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MzUsMDAwPC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJjYXRlZ29yeSI+TWFzcyBHZW5lcmFsIEJyaWdoYW08L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+Q29udHJhY3Q8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MjAwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjgwLDAwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPkJvdHRlZ2EgVmVuZXRhPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjE0MDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4zMDA8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+NCwwMDA8L3RkPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImNhdGVnb3J5Ij5TdW5iZWx0IFJlbnRhbHMgVUs8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+MTUwPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjMwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD4yLDUwMDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iY2F0ZWdvcnkiPlJ1dGdlcnM8L3RkPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQ+4oCUPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPuKAlDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD7igJQ8L3RkPgogICAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICAgICAgPHRyIGNsYXNzPSJoaWdobGlnaHQiPgogICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImNhdGVnb3J5Ij48c3Ryb25nPlRvdGFsPC9zdHJvbmc+PC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjxzdHJvbmc+fjcwMDwvc3Ryb25nPjwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD48c3Ryb25nPn4xLDkwMDwvc3Ryb25nPjwvdGQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD48c3Ryb25nPn4xLjZNPC9zdHJvbmc+PC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgPC90YWJsZT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9Im1hcmdpbi10b3A6IDEuNWVtOyB0ZXh0LWFsaWduOiBjZW50ZXI7Ij4KICAgICAgICAgICAgICAgIDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEuOHJlbTsgZm9udC13ZWlnaHQ6IDgwMDsgY29sb3I6IHZhcigtLWFjY2VudC1vcmFuZ2UpOyI+JDQwMEs8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxcmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi1sZWZ0OiAwLjVlbTsiPmxpZmV0aW1lIHJldmVudWU8L3NwYW4+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAxcmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IG1hcmdpbi10b3A6IDAuNWVtOyI+CiAgICAgICAgICAgICAgICBDYXNoLWZsb3cgbmV1dHJhbCDCtyBCb290c3RyYXBwZWQgwrcgQWxsIHJlaW52ZXN0ZWQKICAgICAgICAgICAgPC9wPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFOiBQUk9EVUNULUxFRCBHUk9XVEggLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUgY2VudGVyIj4KICAgICAgICAgICAgPGgzPlByb2R1Y3QtTGVkIEdyb3d0aDwvaDM+CiAgICAgICAgICAgIDxoMj5FeHBhbmRpbmcgdGhyb3VnaCA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij52aXJhbCBzcHJlYWQ8L3NwYW4+PC9oMj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLWZsb3ciIHN0eWxlPSJtYXJnaW46IDEuNWVtIDA7Ij4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1zdGVwIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tbnVtYmVyIj4xPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGg0PjItV2VlayBDaGFsbGVuZ2U8L2g0PgogICAgICAgICAgICAgICAgICAgIDxwPk1hbmFnZXIgYWRvcHRzPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tYXJyb3ciPuKGkjwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLXN0ZXAiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1udW1iZXIiPjI8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8aDQ+My1Nb250aCBDb2hvcnQ8L2g0PgogICAgICAgICAgICAgICAgICAgIDxwPkNvbnRpbnVlIHVzaW5nIGl0PC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJndG0tYXJyb3ciPuKGkjwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZ3RtLXN0ZXAiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Imd0bS1udW1iZXIiPjM8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8aDQ+TGF1bmNoIFRlYW1zPC9oND4KICAgICAgICAgICAgICAgICAgICA8cD5CYWNrIHRvIHN0ZXAgMSBmb3IgdGhlaXIgdGVhbTwvcD4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJpY2luZy1ib3hlcyIgc3R5bGU9ImRpc3BsYXk6IGZsZXg7IGdhcDogMzBweDsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IG1hcmdpbjogMS41ZW0gMDsiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHJpY2luZy1ib3giIHN0eWxlPSJwYWRkaW5nOiAyMHB4IDMwcHg7IGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsIHJnYmEoMjU1LDEwNyw1MywwLjE1KSAwJSwgcmdiYSgyNTUsMTA3LDUzLDAuMDUpIDEwMCUpOyBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1hY2NlbnQtb3JhbmdlKTsgYm9yZGVyLXJhZGl1czogMTZweDsgdGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWxhYmVsIj5MYXVuY2ggKDMgbW9udGhzKTwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZTogMS44cmVtOyBmb250LXdlaWdodDogODAwOyBjb2xvcjogdmFyKC0tYWNjZW50LW9yYW5nZSk7Ij4kMjk5PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPHAgc3R5bGU9ImZvbnQtc2l6ZTogMC43NXJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tdG9wOiAwLjJlbTsiPnBlciBwZXJzb248L3A+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InByaWNpbmctYm94IiBzdHlsZT0icGFkZGluZzogMjBweCAzMHB4OyBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCByZ2JhKDI1NSwxMDcsNTMsMC4xNSkgMCUsIHJnYmEoMjU1LDEwNyw1MywwLjA1KSAxMDAlKTsgYm9yZGVyOiAycHggc29saWQgdmFyKC0tYWNjZW50LW9yYW5nZSk7IGJvcmRlci1yYWRpdXM6IDE2cHg7IHRleHQtYWxpZ246IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1sYWJlbCI+T25nb2luZzwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZTogMS44cmVtOyBmb250LXdlaWdodDogODAwOyBjb2xvcjogdmFyKC0tYWNjZW50LW9yYW5nZSk7Ij4kMTAwPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMC45cmVtOyBmb250LXdlaWdodDogNDAwOyI+L21vPC9zcGFuPjwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxwIHN0eWxlPSJmb250LXNpemU6IDAuNzVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgbWFyZ2luLXRvcDogMC4yZW07Ij5wZXIgcGVyc29uPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8cCBzdHlsZT0iZm9udC1zaXplOiAwLjk1cmVtOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7Ij4KICAgICAgICAgICAgICAgIEVtYmVkZGVkIGluIDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPlNsYWNrLCBNaWNyb3NvZnQgVGVhbXMsIGFuZCB0ZXh0IG1lc3NhZ2U8L3NwYW4+LiBOb3RoaW5nIHRvIGluc3RhbGwuCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTTElERTogVVNFIE9GIEZVTkRTIC0tPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgIDxoMz5Vc2Ugb2YgRnVuZHM8L2gzPgogICAgICAgICAgICA8aDI+U2NhbGluZyB0byBtZWV0IDxzcGFuIGNsYXNzPSJoaWdobGlnaHQiPmRlbWFuZDwvc3Bhbj48L2gyPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJiZWFjaGhlYWQtZ3JpZCIgc3R5bGU9ImdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDQsIDFmcik7IG1heC13aWR0aDogMTEwMHB4OyI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJiZWFjaGhlYWQtY2FyZCIgc3R5bGU9InRleHQtYWxpZ246IGNlbnRlcjsiPgogICAgICAgICAgICAgICAgICAgIDxoND5QYXRlbnRzICYgSVA8L2g0PgogICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJ3aHkiIHN0eWxlPSJtYXJnaW4tYm90dG9tOiAwOyI+RmlsZSBmb3VuZGF0aW9uYWwgcGF0ZW50cyBvbiBzaGFyZWQgY29udGV4dCBhcmNoaXRlY3R1cmU8L3A+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlYWNoaGVhZC1jYXJkIiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgPGg0Pkdyb3cgVGVhbTwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9IndoeSIgc3R5bGU9Im1hcmdpbi1ib3R0b206IDA7Ij5FbmdpbmVlcmluZyBhbmQgcHJvZHVjdCBoaXJlcyB0byBleHBhbmQgY2FwYWNpdHk8L3A+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlYWNoaGVhZC1jYXJkIiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgPGg0PkV4cGFuZCBDbGllbnRzPC9oND4KICAgICAgICAgICAgICAgICAgICA8cCBjbGFzcz0id2h5IiBzdHlsZT0ibWFyZ2luLWJvdHRvbTogMDsiPkdyb3cgd2l0aGluIGN1cnJlbnQgRm9ydHVuZSA1MDAgYWNjb3VudHM8L3A+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJlYWNoaGVhZC1jYXJkIiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+CiAgICAgICAgICAgICAgICAgICAgPGg0PlZpcmFsIFBMRzwvaDQ+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3M9IndoeSIgc3R5bGU9Im1hcmdpbi1ib3R0b206IDA7Ij5MYXVuY2ggdGVhbS1iYXNlZCB2aXJhbCBncm93dGggZW5naW5lPC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzbGlkZS1mb290ZXIiPjxzcGFuPsKpIDIwMjYgU25hcEluc3RydWN0IEluYy48L3NwYW4+PHNwYW4+PC9zcGFuPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8IS0tIFNMSURFIDE0OiBUSEUgQVNLIC0tPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciI+CiAgICAgICAgICAgIDxoMz5UaGUgQXNrPC9oMz4KICAgICAgICAgICAgPGgyPlByZS1TZWVkIFJvdW5kPC9oMj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWdyaWQiPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWJveCI+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLWxhYmVsIj5JbnN0cnVtZW50PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYXNrLXZhbHVlIj5TQUZFPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1ib3giPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay1sYWJlbCI+RGlzY291bnQ8L2Rpdj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stdmFsdWUiPjIwJTwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stYm94Ij4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJhc2stbGFiZWwiPkNhcDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFzay12YWx1ZSIgc3R5bGU9ImZvbnQtc2l6ZTogMS42cmVtOyI+Tm8gQ2FwPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxwIGNsYXNzPSJzdWJ0aXRsZSIgc3R5bGU9Im1heC13aWR0aDogNzAwcHg7IG1hcmdpbi10b3A6IDFlbTsiPgogICAgICAgICAgICAgICAgTG9va2luZyBmb3IgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+aW50cm9zPC9zcGFuPiwgPHNwYW4gY2xhc3M9ImhpZ2hsaWdodCI+YWR2aWNlPC9zcGFuPiwgYW5kIGJlbGlldmVycyBpbiA8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5lbGV2YXRpbmcgcGVvcGxlIGFuZCB0ZWFtczwvc3Bhbj4uCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ic2xpZGUtZm9vdGVyIj48c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPjxzcGFuPjwvc3Bhbj48L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTTElERSAxNjogVEhBTksgWU9VIC0tPgogICAgICAgIDxkaXYgY2xhc3M9InNsaWRlIGNlbnRlciB0aGFuay15b3UiPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJicmFuZC1sb2dvIj48c3BhbiBjbGFzcz0ic25hcCI+U25hcDwvc3Bhbj48c3BhbiBjbGFzcz0idGVhbSI+VGVhbTwvc3Bhbj48L2Rpdj4KICAgICAgICAgICAgPGgxIHN0eWxlPSJmb250LXNpemU6IGNsYW1wKDIuNXJlbSwgNHZ3LCAzLjVyZW0pOyI+VGhhbmsgWW91PC9oMT4KICAgICAgICAgICAgPHAgY2xhc3M9ImNvbnRhY3QtaW5mbyI+CiAgICAgICAgICAgICAgICA8YSBocmVmPSJtYWlsdG86b2xpdmllckBzbmFwaW5zdHJ1Y3QuY29tIj5vbGl2aWVyQHNuYXBpbnN0cnVjdC5jb208L2E+CiAgICAgICAgICAgICAgICAmbmJzcDvCtyZuYnNwOwogICAgICAgICAgICAgICAgPGEgaHJlZj0ibWFpbHRvOmtpdHRAc25hcGluc3RydWN0LmNvbSI+a2l0dEBzbmFwaW5zdHJ1Y3QuY29tPC9hPgogICAgICAgICAgICA8L3A+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InNsaWRlLWZvb3RlciI+CiAgICAgICAgICAgICAgICA8c3Bhbj7CqSAyMDI2IFNuYXBJbnN0cnVjdCBJbmMuPC9zcGFuPgogICAgICAgICAgICAgICAgPHNwYW4+UHJpdmF0ZSBhbmQgQ29uZmlkZW50aWFsPC9zcGFuPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICA8L2Rpdj4KCiAgICA8YnV0dG9uIGNsYXNzPSJuYXYtYXJyb3cgcHJldiIgb25jbGljaz0iY2hhbmdlU2xpZGUoLTEpIj7igLk8L2J1dHRvbj4KICAgIDxidXR0b24gY2xhc3M9Im5hdi1hcnJvdyBuZXh0IiBvbmNsaWNrPSJjaGFuZ2VTbGlkZSgxKSI+4oC6PC9idXR0b24+CiAgICA8ZGl2IGNsYXNzPSJzbGlkZS1jb3VudGVyIj48c3BhbiBpZD0iY3VycmVudCI+MTwvc3Bhbj4gLyA8c3BhbiBpZD0idG90YWwiPjE1PC9zcGFuPjwvZGl2PgogICAgPGRpdiBjbGFzcz0icHJvZ3Jlc3MtYmFyIiBpZD0icHJvZ3Jlc3MiPjwvZGl2Pgo=';
 
 
-        // DOM elements
+        // ============================================
+        // EMAIL GATE LOGIC
+        // ============================================
+
         const emailGate = document.getElementById('emailGate');
         const deckContent = document.getElementById('deckContent');
         const emailInput = document.getElementById('emailInput');
-        const submitBtn = document.getElementById('submitEmail');
-        const errorMsg = document.getElementById('gateError');
+        const gateError = document.getElementById('gateError');
 
-        // Check if already authenticated
-        const savedEmail = localStorage.getItem('snapteam_deck_email');
-        if (savedEmail && isEmailApproved(savedEmail)) {
-            showDeck(savedEmail);
-        }
+        // Check localStorage on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedEmail = localStorage.getItem('snapteam_deck_email');
+            if (savedEmail && isEmailApproved(savedEmail)) {
+                grantAccess(savedEmail, true);
+            }
+        });
+
+        // Handle Enter key
+        emailInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAccess();
+            }
+        });
 
         function isEmailApproved(email) {
             const normalizedEmail = email.toLowerCase().trim();
             return APPROVED_EMAILS.includes(normalizedEmail);
         }
 
-        function logAccess(email, approved) {
-            if (!LOG_WEBHOOK) return;
-            fetch(LOG_WEBHOOK, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    timestamp: new Date().toISOString(),
-                    email: email,
-                    document: DOCUMENT_NAME,
-                    approved: approved,
-                    userAgent: navigator.userAgent
-                })
-            }).catch(() => {});
+        async function checkAccess() {
+            const email = emailInput.value.toLowerCase().trim();
+
+            if (!email || !email.includes('@')) {
+                gateError.textContent = 'Please enter a valid email address.';
+                gateError.classList.add('show');
+                return;
+            }
+
+            if (isEmailApproved(email)) {
+                grantAccess(email, false);
+            } else {
+                gateError.innerHTML = `<strong>${email}</strong> is not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>`;
+                gateError.classList.add('show');
+                logAccess(email, false);
+            }
         }
 
-        function showDeck(email) {
+        function grantAccess(email, fromCache) {
+            // Save to localStorage
+            localStorage.setItem('snapteam_deck_email', email);
+
+            // Log access
+            if (!fromCache) {
+                logAccess(email, true);
+            }
+
             // Decode and insert deck content
             const decoded = atob(ENCODED_DECK);
             deckContent.innerHTML = decoded;
 
-            // Hide gate, show deck
+            // Show deck
             emailGate.classList.add('hidden');
-            deckContent.style.display = 'block';
+            deckContent.classList.add('visible');
 
             // Initialize slideshow
             initSlideshow();
         }
 
-        function handleSubmit() {
-            const email = emailInput.value.toLowerCase().trim();
+        function logAccess(email, approved) {
+            if (!LOG_WEBHOOK) return;
 
-            if (!email || !email.includes('@')) {
-                errorMsg.textContent = 'Please enter a valid email address.';
-                errorMsg.classList.add('visible');
-                return;
-            }
+            const data = {
+                timestamp: new Date().toISOString(),
+                email: email,
+                document: DOCUMENT_NAME,
+                approved: approved,
+                userAgent: navigator.userAgent
+            };
 
-            if (isEmailApproved(email)) {
-                localStorage.setItem('snapteam_deck_email', email);
-                logAccess(email, true);
-                showDeck(email);
-            } else {
-                logAccess(email, false);
-                errorMsg.innerHTML = 'Access not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>';
-                errorMsg.classList.add('visible');
-            }
+            // Send to Google Sheets webhook (fire and forget)
+            fetch(LOG_WEBHOOK, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(() => {}); // Ignore errors
         }
 
-        submitBtn.addEventListener('click', handleSubmit);
-        emailInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSubmit();
-        });
+        // ============================================
+        // SLIDESHOW LOGIC
+        // ============================================
+
+        let currentSlide = 0;
+        let slides, total;
 
         function initSlideshow() {
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.slide');
-            const total = slides.length;
+            slides = document.querySelectorAll('.slide');
+            total = slides.length;
             document.getElementById('total').textContent = total;
-
-            window.showSlide = function(n) {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (n + total) % total;
-                slides[currentSlide].classList.add('active');
-                document.getElementById('current').textContent = currentSlide + 1;
-                document.getElementById('progress').style.width = ((currentSlide + 1) / total * 100) + '%';
-            }
-
-            window.changeSlide = function(d) { showSlide(currentSlide + d); }
-
-            document.addEventListener('keydown', e => {
-                if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
-                else if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
-            });
-
-            let touchStartX = 0;
-            document.querySelector('.slideshow').addEventListener('touchstart', e => {
-                touchStartX = e.touches[0].clientX;
-            });
-            document.querySelector('.slideshow').addEventListener('touchend', e => {
-                const diff = touchStartX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) changeSlide(1);
-                    else changeSlide(-1);
-                }
-            });
-
-            document.querySelector('.slideshow').addEventListener('click', e => {
-                if (e.target.classList.contains('nav-arrow')) return;
-                const x = e.clientX / window.innerWidth;
-                if (x < 0.25) changeSlide(-1);
-                else if (x > 0.75) changeSlide(1);
-            });
-
             showSlide(0);
         }
+
+        function showSlide(n) {
+            if (!slides) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + total) % total;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+            document.getElementById('progress').style.width = ((currentSlide + 1) / total * 100) + '%';
+        }
+
+        function changeSlide(d) { showSlide(currentSlide + d); }
+
+        document.addEventListener('keydown', e => {
+            if (emailGate && !emailGate.classList.contains('hidden')) return; // Don't navigate while gate is shown
+
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        document.addEventListener('touchstart', e => {
+            if (emailGate && !emailGate.classList.contains('hidden')) return;
+            touchStartX = e.touches[0].clientX;
+        });
+        document.addEventListener('touchend', e => {
+            if (emailGate && !emailGate.classList.contains('hidden')) return;
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) changeSlide(1);
+                else changeSlide(-1);
+            }
+        });
     </script>
 </body>
 </html>
