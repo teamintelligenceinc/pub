@@ -1901,7 +1901,7 @@
             }
 
             // Decode and insert deck content
-            const decoded = atob(ENCODED_DECK);
+            const decoded = decodeURIComponent(atob(ENCODED_DECK).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
             deckContent.innerHTML = decoded;
 
             // Show deck
