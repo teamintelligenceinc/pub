@@ -1827,7 +1827,7 @@
         // CONFIGURATION
         // ============================================
 
-        const VALIDATION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxGXleuY4PgoU3pGwO5KTS_xbYwkanV9TkGMnzTrheCjXydjrhBOiZjIav1yrLMLSNs/exec';
+        const VALIDATION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwUNcxaH4Fb5vJAJAa4By0botpHH0fSHcVY9tHV7tKE7jmLCIBL7JsBH4NKjITOUMIC/exec';
         const DOCUMENT_URL = window.location.href.split('?')[0];
 
 
@@ -1856,17 +1856,14 @@
 
         async function validateEmail(email, fromCache) {
             try {
-                const response = await fetch(VALIDATION_WEBHOOK, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        timestamp: new Date().toISOString(),
-                        email: email,
-                        url: DOCUMENT_URL,
-                        userAgent: navigator.userAgent,
-                        fromCache: fromCache || false
-                    })
+                const params = new URLSearchParams({
+                    action: 'validate',
+                    email: email,
+                    url: DOCUMENT_URL,
+                    userAgent: navigator.userAgent,
+                    fromCache: fromCache || false
                 });
+                const response = await fetch(VALIDATION_WEBHOOK + '?' + params.toString());
                 const result = await response.json();
                 return result.approved;
             } catch (error) {
