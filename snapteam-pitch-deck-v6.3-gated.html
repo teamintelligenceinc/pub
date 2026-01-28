@@ -1827,19 +1827,9 @@
         // CONFIGURATION
         // ============================================
 
-        const APPROVED_EMAILS = [
-            'bmcgaw@hotmail.com',
-            'bridger.mcgaw@gmail.com',
-            'bridger_mcgaw@ksg04.harvard.edu',
-            'olivier@snapinstruct.com',
-            'kitt@snapinstruct.com',
-            'olivier@teamintelligence.ai',
-            'kitt@teamintelligence.ai',
-            'kitt.hirasaki@gmail.com'
-        ];
+        const VALIDATION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwP41qNRNUBSu6BC1Quaos5qEzWb9uCx7MaudXDmgN7N4YZfGj5FWZbyKO55zcQOJYS/exec';
+        const DOCUMENT_NAME = 'SnapTeam Pitch Deck v6.3';
 
-        const LOG_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyC-VV2q6Jk8FCsHc7IpV-ulaTRoHfBwPgTA0wWM-1Q73Bb8qCC9Ky6pOP4zbZl-RdL/exec'; // Leave empty to disable logging
-        const DOCUMENT_NAME = 'SnapTeam Pitch Deck v6.3'; // Name for logging
 
         // DOM Elements
         const emailGate = document.getElementById('emailGate');
@@ -1847,10 +1837,10 @@
         const gateError = document.getElementById('gateError');
         const deckContent = document.getElementById('deckContent');
         // Check for saved email on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const savedEmail = localStorage.getItem('snapteam_deck_email');
-            if (savedEmail && isEmailApproved(savedEmail)) {
-                grantAccess(savedEmail, true);
+            if (savedEmail && await validateEmail(savedEmail, true)) {
+                grantAccess(savedEmail);
             }
         });
 
@@ -1864,9 +1854,25 @@
             }
         });
 
-        function isEmailApproved(email) {
-            const normalizedEmail = email.toLowerCase().trim();
-            return APPROVED_EMAILS.includes(normalizedEmail);
+        async function validateEmail(email, fromCache) {
+            try {
+                const response = await fetch(VALIDATION_WEBHOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        email: email,
+                        document: DOCUMENT_NAME,
+                        userAgent: navigator.userAgent,
+                        fromCache: fromCache || false
+                    })
+                });
+                const result = await response.json();
+                return result.approved;
+            } catch (error) {
+                console.error('Validation error:', error);
+                return false;
+            }
         }
 
         async function checkAccess() {
@@ -1878,23 +1884,22 @@
                 return;
             }
 
-            if (isEmailApproved(email)) {
-                grantAccess(email, false);
+            gateError.textContent = 'Checking access...'; 
+            gateError.classList.add('show');
+
+            const approved = await validateEmail(email, false);
+            if (approved) {
+                gateError.classList.remove('show');
+                grantAccess(email);
             } else {
                 gateError.innerHTML = `<strong>${email}</strong> is not authorized. Please contact <a href="mailto:olivier@snapinstruct.com">olivier@snapinstruct.com</a>`;
-                gateError.classList.add('show');
-                logAccess(email, false);
             }
         }
 
-        function grantAccess(email, fromCache) {
+
+        function grantAccess(email) {
             // Save to localStorage
             localStorage.setItem('snapteam_deck_email', email);
-
-            // Log access
-            if (!fromCache) {
-                logAccess(email, true);
-            }
 
             // Decode and insert deck content
             const decoded = decodeURIComponent(atob(ENCODED_DECK).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
@@ -1908,25 +1913,7 @@
             initSlideshow();
         }
 
-        function logAccess(email, approved) {
-            if (!LOG_WEBHOOK) return;
 
-            const data = {
-                timestamp: new Date().toISOString(),
-                email: email,
-                document: DOCUMENT_NAME,
-                approved: approved,
-                userAgent: navigator.userAgent
-            };
-
-            // Send to Google Sheets webhook (fire and forget)
-            fetch(LOG_WEBHOOK, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).catch(() => {}); // Ignore errors
-        }
 
         // ============================================
         // SLIDESHOW LOGIC
