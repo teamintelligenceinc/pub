@@ -1827,8 +1827,8 @@
         // CONFIGURATION
         // ============================================
 
-        const VALIDATION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwP41qNRNUBSu6BC1Quaos5qEzWb9uCx7MaudXDmgN7N4YZfGj5FWZbyKO55zcQOJYS/exec';
-        const DOCUMENT_NAME = 'SnapTeam Pitch Deck v6.3';
+        const VALIDATION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxGXleuY4PgoU3pGwO5KTS_xbYwkanV9TkGMnzTrheCjXydjrhBOiZjIav1yrLMLSNs/exec';
+        const DOCUMENT_URL = window.location.href.split('?')[0];
 
 
         // DOM Elements
@@ -1862,7 +1862,7 @@
                     body: JSON.stringify({
                         timestamp: new Date().toISOString(),
                         email: email,
-                        document: DOCUMENT_NAME,
+                        url: DOCUMENT_URL,
                         userAgent: navigator.userAgent,
                         fromCache: fromCache || false
                     })
