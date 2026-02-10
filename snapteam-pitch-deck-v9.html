@@ -625,11 +625,17 @@
             <h3>What Users Say</h3>
             <h2>Hear it from <span class="highlight">them.</span></h2>
 
-            <!-- Video testimonial — click to play inline -->
-            <div id="video-container" style="width: 100%; max-width: 640px; height: 360px; margin: 1em auto; position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; flex-shrink: 0;" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/PQ2X9YeL-IQ?start=4&autoplay=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'; this.style.cursor='default';">
-                <img src="https://img.youtube.com/vi/PQ2X9YeL-IQ/maxresdefault.jpg" alt="User testimonial video" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(255,107,53,0.95); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; margin-left: 3px;"></div>
+            <!-- Video testimonial — quote card with play button -->
+            <div id="video-container" style="width: 100%; max-width: 640px; height: 280px; margin: 1em auto; position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; flex-shrink: 0; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/PQ2X9YeL-IQ?start=4&autoplay=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'; this.style.cursor='default'; this.style.height='360px';">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 2em 3em; text-align: center;">
+                    <p style="font-size: 1.25rem; color: var(--text-light); font-style: italic; line-height: 1.6; margin: 0;">"I started using it just on the weekdays. I've transitioned to I use it every day. I used it on my days off."</p>
+                    <div style="font-size: 0.9rem; color: var(--accent-orange); margin-top: 0.8em; font-weight: 600;">&mdash; Amazon Senior Manager</div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 1.2em; color: var(--text-muted); font-size: 0.8rem;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--accent-orange); display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 12px solid white; margin-left: 2px;"></div>
+                        </div>
+                        Watch video
+                    </div>
                 </div>
             </div>
 
