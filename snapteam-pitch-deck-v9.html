@@ -822,52 +822,46 @@
             <h3>From bootstrapped to funded growth</h3>
             <h2>Doubled every year. <span class="highlight">Accelerating.</span></h2>
 
-            <div style="display: flex; gap: 40px; align-items: flex-start; margin: 1em 0;">
-                <div style="flex: 1;">
-                    <div class="revenue-chart" style="height: 180px;">
-                        <div class="chart-bar">
-                            <div class="value">$59K</div>
-                            <div class="bar actual" style="height: 25px;"></div>
-                            <div class="year">2024</div>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="value">$117K</div>
-                            <div class="bar actual" style="height: 50px;"></div>
-                            <div class="year">2025</div>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="value" style="color: var(--accent-green);">$60K+</div>
-                            <div class="bar current" style="height: 80px;"></div>
-                            <div class="year">Jan 2026</div>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                        $60K+ in one month &middot; Accelerating
-                    </p>
+            <!-- Revenue chart — full width, centered -->
+            <div class="revenue-chart" style="height: 160px; max-width: 500px; margin: 0.8em auto;">
+                <div class="chart-bar">
+                    <div class="value">$59K</div>
+                    <div class="bar actual" style="height: 30px;"></div>
+                    <div class="year">2024</div>
                 </div>
+                <div class="chart-bar">
+                    <div class="value">$117K</div>
+                    <div class="bar actual" style="height: 60px;"></div>
+                    <div class="year">2025</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="value" style="color: var(--accent-green); font-weight: 800;">$52K</div>
+                    <div class="bar current" style="height: 45px; border: 2px dashed var(--accent-green); background: rgba(16,185,129,0.15);"></div>
+                    <div class="year" style="color: var(--accent-green); font-weight: 700;">Jan only</div>
+                </div>
+            </div>
 
-                <div style="flex: 1;">
-                    <div class="funding-card current" style="margin-bottom: 15px;">
-                        <h4>Pre-Seed Round</h4>
-                        <div class="amount">$500K</div>
-                        <div class="detail">SAFE &middot; 20% Discount &middot; No Cap</div>
-                        <div class="detail" style="color: var(--accent-orange); font-weight: 600;">Closing Q1 2026</div>
-                    </div>
+            <!-- Pre-Seed Round — full width card -->
+            <div style="max-width: 700px; margin: 0.8em auto; padding: 20px 30px; background: var(--bg-card); border: 1px solid rgba(255,107,53,0.3); border-radius: 12px; text-align: center;">
+                <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.3em;">Pre-Seed Round</h4>
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-orange);">$500K</div>
+                <div style="font-size: 1rem; color: var(--text-light);">SAFE &middot; 20% Discount &middot; No Cap</div>
+                <div style="font-size: 0.9rem; color: var(--accent-orange); font-weight: 600; margin-top: 0.3em;">Closing Q1 2026</div>
+            </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Patents & IP</div>
-                            <div style="font-size: 0.78rem; color: var(--text-light);">Foundational patents on shared context architecture</div>
-                        </div>
-                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Grow Team</div>
-                            <div style="font-size: 0.78rem; color: var(--text-light);">Two engineers to expand product</div>
-                        </div>
-                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Expand Accounts</div>
-                            <div style="font-size: 0.78rem; color: var(--text-light);">Grow inside current Fortune 500 clients</div>
-                        </div>
-                    </div>
+            <!-- Use of funds — 3 blocks -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 700px; margin: 0.6em auto 0;">
+                <div style="padding: 14px 16px; background: var(--bg-card); border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Patents & IP</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3em;">Shared context architecture</div>
+                </div>
+                <div style="padding: 14px 16px; background: var(--bg-card); border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Grow Team</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3em;">Two engineers</div>
+                </div>
+                <div style="padding: 14px 16px; background: var(--bg-card); border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Expand Accounts</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3em;">Grow inside Fortune 500 clients</div>
                 </div>
             </div>
 
