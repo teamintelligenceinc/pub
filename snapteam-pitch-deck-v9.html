@@ -625,9 +625,9 @@
             <h3>What Users Say</h3>
             <h2>Hear it from <span class="highlight">them.</span></h2>
 
-            <!-- Video testimonial — quote card with play button -->
-            <div id="video-container" style="width: 100%; max-width: 640px; height: 280px; margin: 1em auto; position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; flex-shrink: 0; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/PQ2X9YeL-IQ?start=4&autoplay=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'; this.style.cursor='default'; this.style.height='360px';">
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 2em 3em; text-align: center;">
+            <!-- Video testimonial — quote → YouTube → UCSF → quote -->
+            <div id="video-container" style="width: 100%; max-width: 640px; height: 280px; margin: 1em auto; position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; flex-shrink: 0; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);">
+                <div id="video-quote" onclick="playAmazonVideo()" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 2em 3em; text-align: center; cursor: pointer;">
                     <p style="font-size: 1.25rem; color: var(--text-light); font-style: italic; line-height: 1.6; margin: 0;">"I started using it just on the weekdays. I've transitioned to I use it every day."</p>
                     <div style="font-size: 0.9rem; color: var(--accent-orange); margin-top: 0.8em; font-weight: 600;">&mdash; Amazon Senior Manager</div>
                     <div style="display: flex; align-items: center; gap: 8px; margin-top: 1.2em; color: var(--text-muted); font-size: 0.8rem;">
@@ -637,7 +637,51 @@
                         Watch video
                     </div>
                 </div>
+                <div id="video-player" style="display: none; width: 100%; height: 100%;"></div>
             </div>
+            <script>
+            var ytPlayer, videoState = 'quote';
+            function onYouTubeIframeAPIReady() {}
+            function playAmazonVideo() {
+                var container = document.getElementById('video-container');
+                var quote = document.getElementById('video-quote');
+                var playerDiv = document.getElementById('video-player');
+                container.style.height = '360px';
+                container.style.cursor = 'default';
+                quote.style.display = 'none';
+                playerDiv.style.display = 'block';
+                videoState = 'amazon';
+                ytPlayer = new YT.Player('video-player', {
+                    width: '100%', height: '100%',
+                    videoId: 'PQ2X9YeL-IQ',
+                    playerVars: { autoplay: 1, start: 4, rel: 0, modestbranding: 1 },
+                    events: { 'onStateChange': onPlayerStateChange }
+                });
+            }
+            function onPlayerStateChange(event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    if (videoState === 'amazon') { playUCSFVideo(); }
+                    else if (videoState === 'ucsf') { showQuote(); }
+                }
+            }
+            function playUCSFVideo() {
+                var playerDiv = document.getElementById('video-player');
+                videoState = 'ucsf';
+                playerDiv.innerHTML = '<iframe src="https://cdnapisec.kaltura.com/p/1672761/sp/167276100/embedIframeJs/uiconf_id/27511992/partner_id/1672761?iframeembed=true&playerId=kaltura_player&entry_id=1_9aryhixx&autoplay=true" style="width:100%;height:100%;border:none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+            }
+            function showQuote() {
+                var container = document.getElementById('video-container');
+                var quote = document.getElementById('video-quote');
+                var playerDiv = document.getElementById('video-player');
+                playerDiv.innerHTML = '';
+                playerDiv.style.display = 'none';
+                quote.style.display = 'flex';
+                container.style.height = '280px';
+                container.style.cursor = 'pointer';
+                videoState = 'quote';
+            }
+            </script>
+            <script src="https://www.youtube.com/iframe_api"></script>
 
             <!-- Key stats row -->
             <div class="stats-grid" style="margin-top: 1em;">
