@@ -555,55 +555,58 @@
             <div class="section-label">Business Model</div>
             <h2>Managers adopt. <span class="highlight">Revenue compounds.</span></h2>
 
-            <div class="s4-grid">
-                <div class="s4-left">
-                    <div class="flywheel">
-                        <div class="fw-step">
-                            <div class="fw-num">1</div>
-                            <h4>Manager Tries It</h4>
-                            <p>2-week challenge</p>
-                        </div>
-                        <div class="fw-arrow">&rarr;</div>
-                        <div class="fw-step">
-                            <div class="fw-num">2</div>
-                            <h4>Deploys to Team</h4>
-                            <p>3-month coaching</p>
-                        </div>
-                        <div class="fw-arrow">&rarr;</div>
-                        <div class="fw-step">
-                            <div class="fw-num">3</div>
-                            <h4>Expands Onward</h4>
-                            <p>Cycle restarts</p>
-                        </div>
+            <!-- Flywheel — full width -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0; max-width: 820px; width: 100%; margin: 0.2em auto 1.4em;">
+                <div style="flex: 1; padding: 24px 20px; text-align: center; background: var(--surface-1); border: 1px solid var(--border); border-radius: 16px 0 0 16px;">
+                    <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: white; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5em;">1</div>
+                    <div style="font-size: 1.05rem; font-weight: 700;">Manager Tries It</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 0.15em;">2-week challenge</div>
+                </div>
+                <div style="font-size: 1.2rem; color: var(--orange); opacity: 0.5; padding: 0 2px; flex-shrink: 0;">&rarr;</div>
+                <div style="flex: 1; padding: 24px 20px; text-align: center; background: var(--surface-1); border: 1px solid var(--border); border-left: none; border-right: none;">
+                    <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: white; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5em;">2</div>
+                    <div style="font-size: 1.05rem; font-weight: 700;">Deploys to Team</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 0.15em;">3-month coaching</div>
+                </div>
+                <div style="font-size: 1.2rem; color: var(--orange); opacity: 0.5; padding: 0 2px; flex-shrink: 0;">&rarr;</div>
+                <div style="flex: 1; padding: 24px 20px; text-align: center; background: var(--surface-1); border: 1px solid var(--border); border-radius: 0 16px 16px 0;">
+                    <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: white; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5em;">3</div>
+                    <div style="font-size: 1.05rem; font-weight: 700;">Expands Onward</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 0.15em;">Cycle restarts</div>
+                </div>
+            </div>
+
+            <!-- Bottom row: pricing + revenue chart -->
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 24px; max-width: 820px; width: 100%; align-items: stretch;">
+                <!-- Unit economics -->
+                <div style="display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+                    <div style="text-align: center; padding: 22px 32px; background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius);">
+                        <div style="font-size: 2.4rem; font-weight: 800; color: var(--orange); line-height: 1;">$299</div>
+                        <div style="font-size: 0.72rem; color: var(--gray-500); margin-top: 0.25em; font-weight: 500;">Launch Fee</div>
                     </div>
-                    <div class="unit-econ">
-                        <div class="ue-card">
-                            <div class="n">$299</div>
-                            <div class="l">Launch Fee</div>
-                        </div>
-                        <div class="ue-card">
-                            <div class="n">$100</div>
-                            <div class="l">Per User / Month</div>
-                        </div>
+                    <div style="text-align: center; padding: 22px 32px; background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius);">
+                        <div style="font-size: 2.4rem; font-weight: 800; color: var(--orange); line-height: 1;">$100</div>
+                        <div style="font-size: 0.72rem; color: var(--gray-500); margin-top: 0.25em; font-weight: 500;">Per User / Month</div>
                     </div>
                 </div>
 
-                <div class="s4-right">
+                <!-- Revenue chart -->
+                <div style="display: flex; flex-direction: column;">
                     <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gray-500); font-weight: 600; margin-bottom: 0.5em;">Revenue</div>
-                    <div class="rev-chart" style="min-height: 220px;">
+                    <div class="rev-chart" style="flex: 1; min-height: 200px;">
                         <div class="rev-bar">
                             <div class="val">$59K</div>
-                            <div class="bar a" style="height: 45px;"></div>
+                            <div class="bar a" style="height: 50px;"></div>
                             <div class="yr">2024</div>
                         </div>
                         <div class="rev-bar">
                             <div class="val">$117K</div>
-                            <div class="bar a" style="height: 90px;"></div>
+                            <div class="bar a" style="height: 100px;"></div>
                             <div class="yr">2025</div>
                         </div>
                         <div class="rev-bar">
                             <div class="val" style="color: var(--green); font-weight: 800;">$52K</div>
-                            <div class="bar c" style="height: 72px;"></div>
+                            <div class="bar c" style="height: 80px;"></div>
                             <div class="yr" style="color: var(--green); font-weight: 600;">Jan only</div>
                         </div>
                     </div>
