@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTeam - Pre-Seed Investment Deck v9</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #0a0f1a;
+            --bg-card: #141b2d;
+            --bg-card-light: #1c2541;
+            --text-white: #ffffff;
+            --text-light: #c5cee0;
+            --text-muted: #5c6b8a;
+            --accent-orange: #ff6b35;
+            --accent-orange-dim: rgba(255,107,53,0.15);
+            --accent-blue: #4a9eff;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+            --glow-orange: 0 0 60px rgba(255,107,53,0.2);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+        }
+
+        .slideshow { width: 100%; height: 100vh; position: relative; overflow: hidden; }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 50px 80px;
+            background: var(--bg-dark);
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+        }
+        .slide.active { display: flex; opacity: 1; }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .slide > * { position: relative; z-index: 1; }
+
+        /* Navigation */
+        .nav-arrow {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            width: 50px; height: 80px;
+            background: transparent;
+            border: none; cursor: pointer;
+            z-index: 100;
+            font-size: 28px; color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .slideshow:hover .nav-arrow { opacity: 0.25; }
+        .nav-arrow:hover { opacity: 0.8 !important; }
+        .nav-arrow.prev { left: 15px; }
+        .nav-arrow.next { right: 15px; }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 25px; right: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            z-index: 100;
+            font-weight: 500;
+        }
+        .progress-bar {
+            position: fixed;
+            bottom: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
+            transition: width 0.4s ease;
+            z-index: 100;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(3rem, 5.5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+        }
+        h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5em;
+        }
+        h3 {
+            font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+            font-weight: 600;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.6em;
+        }
+        .subtitle {
+            font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+            line-height: 1.5;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+        .highlight { color: var(--accent-orange); }
+        .center { text-align: center; align-items: center; }
+
+        .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .brand-logo .snap { color: var(--text-white); }
+        .brand-logo .team { color: var(--accent-orange); }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 18px; left: 80px; right: 80px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Logo row */
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 1.5em 0;
+            padding: 25px 40px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+        }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: -0.01em;
+            opacity: 0.85;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 1.2em 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--bg-card);
+            border-radius: 14px;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.3em;
+        }
+
+        /* Engagement row */
+        .engagement-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 1em 0;
+        }
+        .engagement-item { text-align: center; }
+        .engagement-item .pct {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+        .engagement-item .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Quote cards */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 1.5em 0;
+        }
+        .quote-card {
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border-radius: 14px;
+            border-left: 4px solid var(--accent-orange);
+        }
+        .quote-card.blue { border-left-color: var(--accent-blue); }
+        .quote-card p {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        .quote-card .author {
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            margin-top: 0.6em;
+            font-style: normal;
+            font-weight: 600;
+        }
+        .quote-card.blue .author { color: var(--accent-blue); }
+
+        /* Use cases — asymmetric grid */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 18px;
+            margin: 1em 0;
+            width: 100%;
+        }
+        .use-case-card {
+            padding: 22px 26px;
+            border-radius: 14px;
+            background: var(--bg-card);
+        }
+        .use-case-card.primary {
+            grid-row: 1 / 3;
+            border-left: 5px solid var(--accent-orange);
+        }
+        .use-case-card.secondary {
+            border-left: 4px solid var(--accent-blue);
+        }
+        .use-case-card.tertiary {
+            border-left: 4px solid var(--accent-purple);
+        }
+        .use-case-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+        .use-case-card .clients {
+            font-size: 0.8rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.7em;
+            font-weight: 600;
+        }
+        .use-case-card.secondary .clients { color: var(--accent-blue); }
+        .use-case-card.tertiary .clients { color: var(--accent-purple); }
+        .use-case-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 0.5em;
+        }
+        .use-case-card .metric {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Diff callout */
+        .diff-callout {
+            max-width: 800px;
+            margin: 1em auto 0;
+            padding: 16px 24px;
+            background: rgba(74,158,255,0.06);
+            border: 1px solid rgba(74,158,255,0.2);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .diff-callout p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* GTM flow */
+        .gtm-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 1.5em 0;
+        }
+        .gtm-step {
+            padding: 22px 28px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            text-align: center;
+            min-width: 170px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .gtm-number {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: var(--accent-orange); color: white;
+            font-weight: 700; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 0.5em;
+        }
+        .gtm-step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2em; }
+        .gtm-step p { font-size: 0.8rem; color: var(--text-muted); }
+        .gtm-arrow { font-size: 1.5rem; color: var(--accent-orange); }
+
+        /* Retention row */
+        .retention-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 1.5em 0;
+            flex-wrap: wrap;
+        }
+        .retention-card {
+            text-align: center;
+            padding: 16px 22px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            min-width: 130px;
+        }
+        .retention-card .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .retention-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2em;
+        }
+
+        /* Revenue chart */
+        .revenue-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 25px;
+            height: 200px;
+            margin: 1.2em 0;
+            padding: 25px 40px;
+            background: var(--bg-card);
+            border-radius: 16px;
+        }
+        .chart-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .chart-bar .bar {
+            width: 70px;
+            border-radius: 6px 6px 0 0;
+        }
+        .chart-bar .bar.actual {
+            background: linear-gradient(180deg, var(--accent-orange) 0%, #e55a2b 100%);
+        }
+        .chart-bar .bar.current {
+            background: linear-gradient(180deg, var(--accent-green) 0%, #0d9668 100%);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+        .chart-bar .value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+        .chart-bar .year {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Funding section */
+        .funding-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 1.2em 0;
+        }
+        .funding-card {
+            padding: 18px 22px;
+            border-radius: 14px;
+            background: var(--bg-card);
+            text-align: center;
+            min-width: 140px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .funding-card.current {
+            border: 2px solid var(--accent-orange);
+            box-shadow: var(--glow-orange);
+        }
+        .funding-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2em; }
+        .funding-card .amount { font-size: 1.4rem; font-weight: 800; color: var(--accent-orange); }
+        .funding-card .detail { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3em; }
+        .funding-arrow { font-size: 1.3rem; color: var(--accent-orange); margin-top: 22px; }
+
+        /* Team */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 1.5em 0;
+        }
+        .team-card {
+            text-align: center;
+            padding: 35px 40px;
+            background: var(--bg-card);
+            border-radius: 18px;
+            min-width: 300px;
+        }
+        .team-photo {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: var(--bg-card-light);
+            margin: 0 auto 1em;
+            overflow: hidden;
+            border: 3px solid var(--accent-orange);
+        }
+        .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .team-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.1em; }
+        .team-role { font-size: 1rem; color: var(--accent-orange); font-weight: 600; margin-bottom: 0.5em; }
+        .team-bio {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 1em;
+        }
+        .founder-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0.8em;
+        }
+        .founder-logo {
+            height: 36px; padding: 6px 14px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .founder-logo img {
+            height: 18px;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+        .founder-logo span {
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--text-light); letter-spacing: 0.01em;
+        }
+
+        /* Close box */
+        .close-box {
+            max-width: 650px;
+            margin: 1em auto 0;
+            padding: 20px 28px;
+            background: var(--bg-card);
+            border-radius: 14px;
+            border-left: 4px solid var(--accent-orange);
+            text-align: left;
+        }
+        .close-box p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Responsive - Tablet */
+        @media (max-width: 900px) {
+            .slide { padding: 35px 40px; }
+            .use-cases-grid { grid-template-columns: 1fr; }
+            .use-case-card.primary { grid-row: auto; }
+            .team-grid { flex-direction: column; align-items: center; gap: 25px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .quotes-grid { grid-template-columns: 1fr; }
+            .funding-row { flex-wrap: wrap; }
+            .gtm-flow { flex-direction: column; }
+            .gtm-arrow { transform: rotate(90deg); }
+            .revenue-chart { height: 160px; }
+        }
+
+        /* Responsive - Phone */
+        @media (max-width: 500px) {
+            .slide { padding: 20px 16px; padding-bottom: 50px; }
+            .slide-footer { display: none; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.3rem; }
+            .brand-logo { font-size: 1.8rem; }
+            .logo-row { gap: 18px; padding: 15px 20px; }
+            .logo-text { font-size: 0.95rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .stat-card { padding: 14px 10px; }
+            .stat-card .number { font-size: 1.5rem; }
+            .engagement-row { flex-direction: column; gap: 10px; }
+            .team-card { min-width: auto; width: 100%; padding: 20px; }
+            .team-photo { width: 80px; height: 80px; }
+            .nav-arrow { width: 35px; height: 50px; font-size: 1.3rem; opacity: 0.25; }
+            .nav-arrow.prev { left: 5px; }
+            .nav-arrow.next { right: 5px; }
+            .slide-counter { font-size: 0.7rem; bottom: 12px; right: 12px; }
+        }
+
+        /* Notes Panel */
+        .notes-panel {
+            position: fixed; top: 0; right: -380px;
+            width: 380px; height: 100vh;
+            background: #0d1220;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            z-index: 200; transition: right 0.3s ease;
+            overflow-y: auto; padding: 25px;
+        }
+        .notes-panel.open { right: 0; }
+        body.notes-open .slideshow { width: calc(100% - 380px); }
+        body.notes-open .nav-arrow.next { right: 400px; }
+        body.notes-open .slide-counter { right: 420px; }
+        .notes-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .notes-header h4 {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent-orange);
+        }
+        .notes-close {
+            background: none; border: none;
+            color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
+        }
+        .notes-close:hover { color: var(--text-white); }
+        .notes-content { display: none; }
+        .notes-content.active { display: block; }
+        .notes-content h5 { font-size: 0.95rem; color: var(--text-white); margin-bottom: 0.8em; }
+        .notes-content p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 0.8em; }
+        .notes-content ul { list-style: none; padding: 0; margin: 0 0 1em 0; }
+        .notes-content li {
+            font-size: 0.82rem; color: var(--text-light);
+            padding: 6px 0; padding-left: 1.1em;
+            position: relative; line-height: 1.4;
+        }
+        .notes-content li::before { content: '\2022'; color: var(--accent-orange); position: absolute; left: 0; }
+        .notes-content .key-line {
+            background: var(--bg-card); padding: 10px 14px;
+            border-radius: 8px; margin-bottom: 0.8em;
+            border-left: 3px solid var(--accent-orange);
+            font-size: 0.85rem; color: var(--text-white); font-weight: 500;
+        }
+        .notes-toggle {
+            position: fixed; top: 50%; right: 0;
+            transform: translateY(-50%);
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.1);
+            border-right: none; color: var(--text-muted);
+            padding: 12px 8px; border-radius: 8px 0 0 8px;
+            font-size: 0.75rem; cursor: pointer; z-index: 201;
+            transition: all 0.3s ease;
+            writing-mode: vertical-rl; text-orientation: mixed;
+        }
+        .notes-toggle:hover { background: var(--bg-card-light); color: var(--text-white); }
+        body.notes-open .notes-toggle { right: 380px; }
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+
+        <!-- =============================================
+             SLIDE 1: THE HOOK
+             Clean. Logos. One-liner. That's it.
+             ============================================= -->
+        <div class="slide center active">
+            <div class="brand-logo" style="margin-bottom: 0.3em;"><span class="snap">Snap</span><span class="team">Team</span></div>
+
+            <h1 style="margin-top: 0.2em;">AI Coaching for<br><span class="highlight">Enterprise Teams</span></h1>
+
+            <p class="subtitle" style="max-width: 700px; margin: 0.8em auto 0;">
+                Most AI replaces workers. We elevate them.<br>
+                Customized to your company. Deployed at scale.
+            </p>
+
+            <div class="logo-row" style="margin-top: 2em;">
+                <span class="logo-text" style="font-weight: 800; color: #fff; font-size: 1.5rem;">amazon</span>
+                <span class="logo-text" style="font-weight: 800; color: #fff; font-size: 1.5rem;">UCSF</span>
+                <span class="logo-text" style="font-weight: 700; color: #fff; font-size: 1.1rem; line-height: 1.2;">Mass General<br>Brigham</span>
+                <span class="logo-text" style="font-family: Georgia, serif; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; color: #fff; font-weight: 500;">Bottega Veneta</span>
+                <span class="logo-text" style="font-weight: 700; color: #fff; font-size: 1.1rem;">Sunbelt Rentals</span>
+            </div>
+
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>Private and Confidential</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             SLIDE 2: TRACTION
+             Numbers + engagement + quotes + video area
+             ============================================= -->
+        <div class="slide">
+            <h3>What Users Say</h3>
+            <h2>Hear it from <span class="highlight">them.</span></h2>
+
+            <!-- Video testimonial — click to play inline -->
+            <div id="video-container" style="max-width: 640px; margin: 1em auto; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer;" onclick="this.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'https://www.youtube.com/embed/PQ2X9YeL-IQ?start=4&autoplay=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media\' allowfullscreen style=\'border-radius:12px;\'></iframe>'; this.style.cursor='default';">
+                <img src="https://img.youtube.com/vi/PQ2X9YeL-IQ/maxresdefault.jpg" alt="User testimonial video" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(255,107,53,0.95); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; margin-left: 3px;"></div>
+                </div>
+            </div>
+
+            <!-- Key stats row -->
+            <div class="stats-grid" style="margin-top: 1em;">
+                <div class="stat-card">
+                    <div class="number">427</div>
+                    <div class="label">Users at Amazon</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" style="color: var(--accent-orange);">1,042</div>
+                    <div class="label">Messages &mdash; One User</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" style="color: var(--accent-green);">88%</div>
+                    <div class="label">Retained at 2 Weeks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" style="color: var(--accent-green);">$60K+</div>
+                    <div class="label">January 2026</div>
+                </div>
+            </div>
+
+            <!-- Wachter quote -->
+            <div style="max-width: 640px; margin: 0.8em auto 0; padding: 0.8em 1.2em; background: rgba(74,158,255,0.08); border-left: 3px solid var(--accent-blue); border-radius: 0 8px 8px 0;">
+                <p style="font-size: 0.9rem; color: var(--text-light); font-style: italic; margin: 0;">"I recommend it &mdash; give it a try. I think it is one of the ways that AI is going to make our lives better."</p>
+                <div style="font-size: 0.8rem; color: var(--accent-blue); margin-top: 0.4em; font-weight: 600;">Bob Wachter &mdash; Chair of Medicine, UCSF</div>
+            </div>
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>2 of 6</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             SLIDE 3: USE CASES
+             Three verticals, visual hierarchy
+             Big Tech > Healthcare > Luxury Retail
+             ============================================= -->
+        <div class="slide">
+            <h3>Proven Across Industries</h3>
+            <h2>AI coaching that delivers <span class="highlight">measurable outcomes</span></h2>
+
+            <div class="use-cases-grid">
+                <div class="use-case-card primary">
+                    <h4>Big Tech</h4>
+                    <div class="clients">Amazon (via SynerQ Partnership)</div>
+                    <p>Amazon is cutting management layers. Remaining leaders need emotional intelligence and coordination skills &mdash; at scale.</p>
+                    <p><strong>300+</strong> senior managers enrolled. Expanding monthly. One user exchanged <strong>1,000+ messages</strong> with their coach.</p>
+                    <p class="metric">38% become power users (50+ messages). Initiative leader oversees 8,000 reports &mdash; massive expansion ceiling.</p>
+                </div>
+
+                <div class="use-case-card secondary">
+                    <h4>Healthcare</h4>
+                    <div class="clients">UCSF Medical Center &middot; Mass General Brigham</div>
+                    <p>Physicians spend 2+ hours/day on coordination, not medicine. Coaching doesn't scale &mdash; AI does.</p>
+                    <p>AMA grant-supported study. <strong>88% retained at two weeks.</strong> Bob Wachter, Chair of Medicine at UCSF, uses it personally.</p>
+                </div>
+
+                <div class="use-case-card tertiary">
+                    <h4>Luxury Retail</h4>
+                    <div class="clients">Bottega Veneta (Kering Group)</div>
+                    <p>They know how to sell a $3,000 handbag. That skill lives in the heads of their best people. SnapTeam scales it.</p>
+                    <p>Pilot across 3 stores. <strong>Expanding to all North American locations.</strong></p>
+                </div>
+            </div>
+
+            <div class="diff-callout">
+                <p><strong style="color: var(--accent-blue);">Why not ChatGPT?</strong> &nbsp;Unlike ChatGPT, SnapTeam understands your work, understands your team through shared context, and reaches out to you proactively. Building that for enterprise security and quality requirements isn't something you can vibe code.</p>
+                <p style="margin-top: 0.5em; font-size: 0.85rem; color: var(--text-muted);"><strong style="color: var(--text-light);">Why not Microsoft / Salesforce?</strong> &nbsp;Microsoft is focused on autonomous digital workers &mdash; fundamentally different. Salesforce builds walled-garden AI. We're horizontal &mdash; and after launching our Asana integration, people stopped checking Asana.</p>
+            </div>
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>3 of 6</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             SLIDE 4: HOW IT GROWS
+             Simple flywheel + economics + retention
+             ============================================= -->
+        <div class="slide center">
+            <h3>Growth Model</h3>
+            <h2>Managers adopt. <span class="highlight">Teams follow.</span></h2>
+
+            <p class="subtitle" style="max-width: 700px; margin: 0 auto 1.5em;">
+                AI made every individual worker faster. Now companies are cutting management layers &mdash;<br>
+                and the demand for team coaching is exploding. It spreads through the org without a new sale.
+            </p>
+
+            <div class="gtm-flow">
+                <div class="gtm-step">
+                    <div class="gtm-number">1</div>
+                    <h4>Manager Tries It</h4>
+                    <p>2-week challenge</p>
+                </div>
+                <div class="gtm-arrow">&rarr;</div>
+                <div class="gtm-step">
+                    <div class="gtm-number">2</div>
+                    <h4>Deploys to Team</h4>
+                    <p>3-month coaching</p>
+                </div>
+                <div class="gtm-arrow">&rarr;</div>
+                <div class="gtm-step">
+                    <div class="gtm-number">3</div>
+                    <h4>Team Deploys Onward</h4>
+                    <p>Cycle restarts</p>
+                </div>
+            </div>
+
+            <div class="retention-row">
+                <div class="retention-card">
+                    <div class="number" style="color: var(--accent-green);">94%</div>
+                    <div class="label">D7 Retention</div>
+                </div>
+                <div class="retention-card">
+                    <div class="number" style="color: var(--accent-green);">38%</div>
+                    <div class="label">Become Power Users</div>
+                </div>
+                <div class="retention-card">
+                    <div class="number" style="color: var(--accent-orange);">$100</div>
+                    <div class="label">Per User / Month</div>
+                </div>
+                <div class="retention-card">
+                    <div class="number" style="color: var(--accent-orange);">$299</div>
+                    <div class="label">Launch Fee</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.05rem; color: var(--text-light); margin-top: 1em;">
+                100 managers &times; 5 reports each = <span class="highlight" style="font-weight: 700;">500 &rarr; 3,000 users</span> inside one company, without a single new deal.
+            </p>
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>4 of 6</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             SLIDE 5: FINANCIALS + ASK
+             Revenue + terms + use of funds
+             ============================================= -->
+        <div class="slide">
+            <h3>Financials</h3>
+            <h2>Doubled every year. Bootstrapped. <span class="highlight">Accelerating.</span></h2>
+
+            <div style="display: flex; gap: 40px; align-items: flex-start; margin: 1em 0;">
+                <div style="flex: 1;">
+                    <div class="revenue-chart" style="height: 180px;">
+                        <div class="chart-bar">
+                            <div class="value">$59K</div>
+                            <div class="bar actual" style="height: 25px;"></div>
+                            <div class="year">2024</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="value">$117K</div>
+                            <div class="bar actual" style="height: 50px;"></div>
+                            <div class="year">2025</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="value" style="color: var(--accent-green);">$500K+</div>
+                            <div class="bar current" style="height: 140px;"></div>
+                            <div class="year">2026*</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                        *$60K+ in January alone &middot; Tracking $500K+ from pipeline + expansion
+                    </p>
+                </div>
+
+                <div style="flex: 1;">
+                    <div class="funding-card current" style="margin-bottom: 15px;">
+                        <h4>Pre-Seed Round</h4>
+                        <div class="amount">$500K</div>
+                        <div class="detail">SAFE &middot; 20% Discount &middot; No Cap</div>
+                        <div class="detail" style="color: var(--accent-orange); font-weight: 600;">Closing Q1 2026</div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Patents & IP</div>
+                            <div style="font-size: 0.78rem; color: var(--text-light);">Foundational patents on shared context architecture</div>
+                        </div>
+                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Grow Team</div>
+                            <div style="font-size: 0.78rem; color: var(--text-light);">Two engineers to expand product</div>
+                        </div>
+                        <div style="padding: 14px 18px; background: var(--bg-card); border-radius: 10px;">
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-orange);">Expand Accounts</div>
+                            <div style="font-size: 0.78rem; color: var(--text-light);">Grow inside current Fortune 500 clients</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.8em; text-align: center;">
+                        &rarr; Gets us to <strong style="color: var(--text-light);">seed-stage metrics</strong> within 12 months
+                    </p>
+                </div>
+            </div>
+
+            <div style="max-width: 700px; margin: 0.8em auto 0; padding: 12px 22px; background: linear-gradient(135deg, rgba(255,107,53,0.06) 0%, rgba(255,107,53,0.02) 100%); border: 1px solid rgba(255,107,53,0.2); border-radius: 10px; text-align: center;">
+                <p style="font-size: 0.9rem; color: var(--text-light);">
+                    <span class="highlight" style="font-weight: 700;">Momentum:</span> Amazon expanding monthly. Bottega scaling to all NA stores. The inflection point is now.
+                </p>
+            </div>
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>5 of 6</span>
+            </div>
+        </div>
+
+        <!-- =============================================
+             SLIDE 6: TEAM + CLOSE
+             Photos, real logos, mission
+             ============================================= -->
+        <div class="slide center">
+            <h3>The Founders</h3>
+            <h2><span class="highlight">Proven</span> Team</h2>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="olivier-manuel.png" alt="Olivier Manuel">
+                    </div>
+                    <div class="team-name">Olivier Manuel</div>
+                    <div class="team-role">CEO</div>
+                    <div class="team-bio">Built the SmartTV platform at Samsung &mdash; zero to a billion-dollar category. Harvard Business School. Six years in AI.</div>
+                    <div class="founder-logos">
+                        <div class="founder-logo"><img src="logo-harvard.svg" alt="Harvard" onerror="this.parentElement.innerHTML='<span>Harvard</span>'"></div>
+                        <div class="founder-logo"><img src="logo-samsung.svg" alt="Samsung" onerror="this.parentElement.innerHTML='<span>Samsung</span>'"></div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="kitt-hirasaki.png" alt="Kitt Hirasaki">
+                    </div>
+                    <div class="team-name">Kitt Hirasaki</div>
+                    <div class="team-role">CTO</div>
+                    <div class="team-bio">Second employee at Khan Academy &mdash; built their 10-million-user SAT product. Designer and developer. Pixar, Disney, Coursera. Six years in AI.</div>
+                    <div class="founder-logos">
+                        <div class="founder-logo"><img src="logo-khan-academy.svg" alt="Khan Academy" onerror="this.parentElement.innerHTML='<span>Khan Academy</span>'"></div>
+                        <div class="founder-logo"><img src="logo-pixar.svg" alt="Pixar" onerror="this.parentElement.innerHTML='<span>Pixar</span>'"></div>
+                        <div class="founder-logo"><span>Disney</span></div>
+                        <div class="founder-logo"><span>Coursera</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="close-box">
+                <p>We've spent two years coaching hundreds of leaders at companies like Amazon, UCSF, and Bottega Veneta. We watched them struggle with the hardest part of their jobs &mdash; not the work itself, but the <em>people</em>.</p>
+                <p style="margin-top: 0.6em;">AI will create enormous pressure on teams. We believe the right response is to <strong style="color: var(--accent-orange);">elevate people</strong>, not replace them.</p>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--text-light); margin-top: 1.2em;">
+                <span class="highlight">olivier@snapinstruct.com</span> &nbsp;&middot;&nbsp; <span class="highlight">kitt@snapinstruct.com</span>
+            </p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3em;">
+                Pre-Seed &middot; SAFE &middot; 20% Discount &middot; No Cap &middot; Closing Q1 2026
+            </p>
+
+            <div class="slide-footer">
+                <span>&copy; 2026 SnapInstruct Inc.</span>
+                <span>6 of 6</span>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="nav-arrow prev" onclick="changeSlide(-1)">&lsaquo;</button>
+    <button class="nav-arrow next" onclick="changeSlide(1)">&rsaquo;</button>
+    <div class="slide-counter"><span id="current">1</span> / <span id="total">6</span></div>
+    <div class="progress-bar" id="progress"></div>
+    <button class="notes-toggle" onclick="toggleNotes()">Notes</button>
+
+    <!-- =============================================
+         PRESENTER NOTES (Press N)
+         Brief reminders — full talk track in separate doc
+         ============================================= -->
+    <div class="notes-panel" id="notesPanel">
+        <div class="notes-header">
+            <h4>Talking Points</h4>
+            <button class="notes-close" onclick="toggleNotes()">&times;</button>
+        </div>
+
+        <div class="notes-content" data-slide="0">
+            <h5>Slide 1: The Hook (30-45 sec)</h5>
+            <div class="key-line">"Most AI companies are working on replacing workers. That's not what we're doing. As AI gets more powerful, the limiting factor will be people &mdash; especially managers."</div>
+            <ul>
+                <li>"We're building AI that elevates managers and their teams instead of replacing them."</li>
+                <li>Then stop. Let them ask.</li>
+            </ul>
+            <p><strong>Don't explain the product.</strong> Create curiosity. Let them pull.</p>
+        </div>
+
+        <div class="notes-content" data-slide="1">
+            <h5>Slide 2: Traction (45-60 sec)</h5>
+            <ul>
+                <li>"$80K year one. $160K year two. $60K in January alone &mdash; accelerating."</li>
+                <li>"One user at Amazon exchanged 1,000+ messages with their coach. That's not training. That's a relationship."</li>
+            </ul>
+            <p><strong>Play video testimonials</strong> here if available. Let users speak for themselves.</p>
+        </div>
+
+        <div class="notes-content" data-slide="2">
+            <h5>Slide 3: Use Cases (60 sec)</h5>
+            <div class="key-line">Tell ONE story. Let the investor pull the rest.</div>
+            <ul>
+                <li><strong>Amazon:</strong> "300 senior managers this month. Expanding every month."</li>
+                <li><strong>Bottega:</strong> "Knows exactly how to sell a $3,000 handbag. Now every associate gets a coach that knows the Bottega way."</li>
+                <li><strong>If asked about ChatGPT:</strong> "We understand your work, your team, and reach out proactively. You can't vibe code that for enterprise."</li>
+            </ul>
+        </div>
+
+        <div class="notes-content" data-slide="3">
+            <h5>Slide 4: How It Grows (45 sec)</h5>
+            <ul>
+                <li>"Manager does the challenge. Continues for 3 months. Then deploys to their team &mdash; cycle restarts."</li>
+                <li>"It spreads through the org without a new sale."</li>
+                <li>"100 managers &times; 5 reports = 500 becoming 3,000 inside one company."</li>
+            </ul>
+            <p><strong>Pricing on screen, not spoken</strong> unless asked.</p>
+        </div>
+
+        <div class="notes-content" data-slide="4">
+            <h5>Slide 5: Financials + Ask (45 sec)</h5>
+            <ul>
+                <li>"$80K year one, $160K year two, $60K in January alone &mdash; all bootstrapped, accelerating."</li>
+                <li>"Raising $500K. SAFE, 20% discount, no cap."</li>
+                <li>"Patents, two engineers, expand inside current accounts. Gets us to seed-stage metrics within 12 months."</li>
+            </ul>
+            <p><strong>Urgency:</strong> "Amazon expanding monthly. Bottega scaling to all NA stores. The inflection point is now &mdash; get in before it's obvious."</p>
+        </div>
+
+        <div class="notes-content" data-slide="5">
+            <h5>Slide 6: Team + Close (45 sec)</h5>
+            <ul>
+                <li>"I'm Olivier. Harvard. Samsung SmartTV &mdash; zero to billion-dollar category. Six years in AI."</li>
+                <li>"Kitt. Second employee at Khan Academy &mdash; built their 10M-user SAT product. Pixar, Disney. Six years in AI."</li>
+                <li>"We want believers in elevating people, not replacing them."</li>
+                <li>"If you're interested, I can send the SAFE tomorrow."</li>
+            </ul>
+            <p><strong>End with conviction, not gratitude.</strong></p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const notesPanel = document.getElementById('notesPanel');
+        const notesContents = document.querySelectorAll('.notes-content');
+        document.getElementById('total').textContent = total;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + total) % total;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+            document.getElementById('progress').style.width = ((currentSlide + 1) / total * 100) + '%';
+            updateNotes();
+        }
+
+        function updateNotes() {
+            notesContents.forEach(nc => nc.classList.remove('active'));
+            const activeNote = document.querySelector(`.notes-content[data-slide="${currentSlide}"]`);
+            if (activeNote) activeNote.classList.add('active');
+        }
+
+        function toggleNotes() {
+            notesPanel.classList.toggle('open');
+            document.body.classList.toggle('notes-open');
+        }
+
+        function changeSlide(d) { showSlide(currentSlide + d); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+            else if (e.key === 'n' || e.key === 'N') { toggleNotes(); }
+        });
+
+        let touchStartX = 0;
+        document.querySelector('.slideshow').addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+        document.querySelector('.slideshow').addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) changeSlide(1);
+                else changeSlide(-1);
+            }
+        });
+
+        document.querySelector('.slideshow').addEventListener('click', e => {
+            if (e.target.classList.contains('nav-arrow')) return;
+            if (notesPanel.classList.contains('open')) return;
+            const x = e.clientX / window.innerWidth;
+            if (x < 0.25) changeSlide(-1);
+            else if (x > 0.75) changeSlide(1);
+        });
+
+        showSlide(0);
+        updateNotes();
+    </script>
+</body>
+</html>
